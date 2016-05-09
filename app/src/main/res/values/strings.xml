@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Manejo de Almacen</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Seleccionar Base de Datos</string>
+    <string name="openDrawer">Menu abierto</string>
+    <string name="closeDrawer">Menu cerrado</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fragment1">Listado de Productos</string>
+    <string name="fragment3">Fragment 3</string>
+    <string name="fragment2">Fragment 2</string>
+    <string-array name="inventario">
+        <item>Diario</item>
+        <item>Mensual</item>
+        <item>Completo</item>
+    </string-array>
+    <string-array name="tipoFoto">
+        <item>Cotización</item>
+        <item>Pedido</item>
+        <item>Factura</item>
+        <item>Compra</item>
+    </string-array>
+    <string name="title_activity_listado_de_inventario">Listado De Inventario</string>
+    <string name="display">Mostrando %1$s de %2$s</string>
+    <string name="title_activity_detalle_producto">Detalle Producto</string>
+    <string name="fab_description">FAB button description</string>
+    <string name="title_activity_cargar_foto">Cargar Foto</string>
+
+</resources>

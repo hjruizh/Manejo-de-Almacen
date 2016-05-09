@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="100dp"
+    android:layout_margin="5dp"
+    android:orientation="horizontal" android:background="#FFFFFF" >
+
+    <ImageView
+                android:id="@+id/imgMenu"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/parallax_image_height"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="#FFFFFF"
+                android:padding="5dp"
+                android:layout_weight="1"/>
+
+
+
+</LinearLayout>

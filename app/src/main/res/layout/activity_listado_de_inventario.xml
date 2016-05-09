@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+    <!-- Toolbar -->
+    <RelativeLayout
+        android:id="@+id/RelativeLayoutHeader"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:minHeight="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <ImageView
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:id="@+id/imageViewBack"
+            android:src="@drawable/volver"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/txtHeader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text=""
+            android:elevation="4dp"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:padding="15dp"
+            android:paddingLeft="60dp"
+            android:layout_toRightOf="@+id/imageViewBack"
+            android:layout_toEndOf="@+id/imageViewBack" />
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/displaying"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center_horizontal"
+        android:textSize="13sp"
+        android:layout_below="@+id/RelativeLayoutHeader"/>
+
+    <RelativeLayout
+            android:id="@+id/RelativeLayoutBuscar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/displaying">
+
+            <EditText
+                android:id="@+id/editTextBuscar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:ems="4"
+                android:inputType="text" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editTextBuscar">
+
+                <ImageButton
+                        android:id="@+id/buttonBuscar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:src="@android:drawable/ic_menu_search"
+                        android:layout_toLeftOf="@+id/buttonScan"
+                        android:layout_toStartOf="@+id/buttonScan"
+                        android:layout_alignBottom="@+id/buttonScan" />
+
+                <ImageButton
+                        android:id="@+id/buttonScan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_below="@+id/editTextBuscar"
+                        android:layout_alignParentRight = "true"
+                        android:src="@drawable/ic_qr" />
+
+                <ImageButton
+                    android:id="@+id/buttonVoz"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_below="@+id/editTextBuscar"
+                    android:layout_alignParentRight = "true"
+                    android:src="@drawable/ic_action_mic" />
+            </LinearLayout>
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:dividerHeight="1dp"
+        android:layout_below="@+id/RelativeLayoutBuscar"
+        android:listSelector="@drawable/list_selector_flatcolor" />
+
+</RelativeLayout>

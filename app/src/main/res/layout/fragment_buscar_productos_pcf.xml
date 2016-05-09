@@ -1,0 +1,59 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="henry.manejodealmacen.manejoalmacenmantis.BuscarProductosPCF">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageViewBuscar"
+            android:layout_marginTop="59dp"
+            android:src="@drawable/lista"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editTextNumero"
+            android:layout_below="@+id/imageViewBuscar"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/editTextNumero"
+            android:layout_centerHorizontal="true">
+
+            <RadioButton
+                android:id="@+id/radioButtonCot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Cotización" />
+
+            <RadioButton
+                android:id="@+id/radioButtonPed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pedido" />
+
+            <RadioButton
+                android:id="@+id/radioButtonFac"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Factura" />
+        </RadioGroup>
+    </RelativeLayout>
+</FrameLayout>

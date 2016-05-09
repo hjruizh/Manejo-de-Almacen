@@ -1,0 +1,457 @@
+<!--
+  Copyright 2014 Soichiro Kashima
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <observablescrollview.ObservableScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/parallax_image_height"
+                android:scaleType="centerCrop"
+                android:src="@drawable/navheader" />
+            <View
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"/>
+
+            <View
+                android:id="@+id/anchor"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/parallax_image_height"
+                android:minHeight="@dimen/parallax_image_height" >
+            </View>
+
+            <ImageButton
+                android:id="@+id/fabButton"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginBottom="-150dp"
+                android:layout_marginRight="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignBottom="@id/header"
+                android:background="@drawable/fab_background"
+                android:src="@drawable/ic_action_camera"
+                android:contentDescription="@string/fab_description"/>
+            <ImageButton
+                android:id="@+id/fabButtonSMS"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginBottom="-150dp"
+                android:layout_marginRight="76dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignBottom="@id/header"
+                android:background="@drawable/fab_background"
+                android:src="@drawable/ic_action_email"
+                android:contentDescription="@string/fab_description"/>
+
+            <android.support.v7.widget.CardView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view_chat"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/anchor"
+                app:cardUseCompatPadding="true"
+                app:cardCornerRadius="4dp"
+                android:layout_margin="10dp">
+
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:layout_below="@+id/TbCard"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="false">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Enviar Informacion del Producto"
+                        android:id="@+id/textViewTitulo4"
+                        android:layout_margin="5dp" />
+
+                    <ImageButton
+                        android:id="@+id/fabButtonListo"
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:layout_below="@+id/textViewTitulo4"
+                        android:background="@drawable/fab_background_verde"
+                        android:src="@drawable/ic_action_accept"
+                        android:contentDescription="@string/fab_description"
+                        android:layout_weight="1"
+                        android:gravity="left"/>
+                    <ImageButton
+                        android:id="@+id/fabButtonCancelar"
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:layout_below="@+id/textViewTitulo4"
+                        android:layout_toRightOf="@+id/fabButtonListo"
+                        android:background="@drawable/fab_background_rojo"
+                        android:src="@drawable/ic_action_cancel"
+                        android:contentDescription="@string/fab_description"
+                        android:layout_weight="1"
+                        android:gravity="right"/>
+
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view_existencia"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/card_view_chat"
+                app:cardUseCompatPadding="true"
+                app:cardCornerRadius="4dp"
+                android:layout_margin="10dp">
+
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:layout_below="@+id/card_view_chat"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="false">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Existencia: "
+                        android:id="@+id/textViewTitulo5"
+                        android:layout_margin="5dp" />
+
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/card_view_existencia"
+                app:cardUseCompatPadding="true"
+                app:cardCornerRadius="4dp"
+                android:layout_margin="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:layout_below="@+id/TbCard"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="false">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Imprimir Etiquetas"
+                        android:id="@+id/textViewTitulo"
+                        android:layout_margin="5dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Cantidad de Etiquetas"
+                        android:id="@+id/textView3"
+                        android:layout_below="@id/textViewTitulo"
+                        android:layout_margin="5dp" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberSigned"
+                        android:ems="10"
+                        android:layout_below="@id/textView3"
+                        android:id="@+id/editTextCantidad"
+                        android:layout_margin="5dp" />
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view_contados"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/card_view"
+                app:cardUseCompatPadding="true"
+                app:cardCornerRadius="4dp"
+                android:layout_margin="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white"
+                    android:layout_below="@+id/TbCard"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="false"
+                    android:id="@+id/auditoria">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Autitoria"
+                        android:id="@+id/textViewTitulo2"
+                        android:layout_margin="5dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Contados"
+                        android:id="@+id/textView10"
+                        android:layout_below="@+id/textViewTitulo2"
+                        android:layout_margin="5dp" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberSigned"
+                        android:ems="10"
+                        android:layout_below="@id/textView10"
+                        android:id="@+id/editTextContados"
+                        android:layout_margin="5dp" />
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view1"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/card_view_contados"
+                app:cardUseCompatPadding="true"
+                app:cardCornerRadius="4dp"
+                android:layout_margin="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:layout_below="@+id/TbCard"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="false">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Ubicación en Almacen"
+                        android:id="@+id/textViewTitulo3"
+                        android:layout_margin="5dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Ubicacion 1"
+                        android:id="@+id/textView4"
+                        android:layout_below="@id/textViewTitulo3"
+                        android:layout_margin="5dp" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:layout_below="@id/textView4"
+                        android:id="@+id/editTextUbi1"
+                        android:layout_margin="5dp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Ubicacion 2"
+                        android:layout_below="@id/editTextUbi1"
+                        android:id="@+id/textView5"
+                        android:layout_margin="5dp" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:layout_below="@id/textView5"
+                        android:id="@+id/editTextUbi2"
+                        android:layout_margin="5dp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Ubicacion 3"
+                        android:layout_below="@id/editTextUbi2"
+                        android:id="@+id/textView6"
+                        android:layout_margin="5dp" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:layout_below="@id/textView6"
+                        android:id="@+id/editTextUbi3"
+                        android:layout_margin="5dp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Ubicacion 4"
+                        android:layout_below="@id/editTextUbi3"
+                        android:id="@+id/textView7"
+                        android:layout_margin="5dp" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:layout_below="@id/textView7"
+                        android:id="@+id/editTextUbi4"
+                        android:layout_margin="5dp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Ubicacion 5"
+                        android:layout_below="@id/editTextUbi4"
+                        android:id="@+id/textView8"
+                        android:layout_margin="5dp" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:layout_below="@id/textView8"
+                        android:id="@+id/editTextUbi5"
+                        android:layout_margin="5dp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Ubicacion 6"
+                        android:layout_below="@id/editTextUbi5"
+                        android:id="@+id/textView9"
+                        android:layout_margin="5dp" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:layout_below="@id/textView9"
+                        android:id="@+id/editTextUbi6"
+                        android:layout_margin="5dp" />
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </RelativeLayout>
+
+    </observablescrollview.ObservableScrollView>
+
+    <include layout="@layout/gradient_header" />
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:popupTheme="@style/Theme.AppCompat.Light.DarkActionBar"
+        app:theme="@style/Toolbar" >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Toolbar Title"
+                android:textSize="25sp"
+                android:layout_gravity="center"
+                android:gravity="left"
+                android:id="@+id/toolbar_nombre"
+                android:textColor="#000000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Toolbar Title 1"
+                android:layout_gravity="center"
+                android:gravity="left"
+                android:layout_below="@+id/toolbar_nombre"
+                android:id="@+id/toolbar_codigo"
+                android:textColor="#000000" />
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <ImageButton
+        android:id="@+id/buttonGuardar"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/fab_background"
+        android:src="@drawable/ic_action_save"
+        android:contentDescription="@string/fab_description"/>
+    <ImageButton
+        android:id="@+id/buttonEtiquetaG"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="70dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/fab_background"
+        android:src="@drawable/ic_action_view_as_list"
+        android:contentDescription="@string/fab_description"/>
+    <ImageButton
+        android:id="@+id/buttonEtiquetaP"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="70dp"
+        android:background="@drawable/fab_background"
+        android:src="@drawable/ic_action_view_as_list"
+        android:contentDescription="@string/fab_description"/>
+
+</FrameLayout>

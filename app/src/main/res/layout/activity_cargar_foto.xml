@@ -1,0 +1,47 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:clickable="true"
+    tools:context=".CargarFoto">
+
+    <android.support.v7.widget.Toolbar
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/colorPrimary"
+    android:minHeight="?attr/actionBarSize">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Toolbar Title"
+            android:textSize="25sp"
+            android:layout_gravity="center"
+            android:gravity="left"
+            android:id="@+id/toolbar_nombre"
+            android:textColor="#000000" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Toolbar Title 1"
+            android:layout_gravity="center"
+            android:gravity="left"
+            android:layout_below="@+id/toolbar_nombre"
+            android:id="@+id/toolbar_codigo"
+            android:textColor="#000000" />
+    </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+    <FrameLayout
+        android:id="@+id/content_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+
+    </FrameLayout>
+</LinearLayout>
