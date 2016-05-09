@@ -378,33 +378,26 @@ public class Conexion {
         if (isOnline()) {
             ArrayList parametros = new ArrayList();
             Post post = new Post();
-            parametros.add("ain_pk");
+            parametros.add("AIN_PK");
             parametros.add(pk);
-            parametros.add("ubi1");
+            parametros.add("AIN_UBI1");
             parametros.add(ubi1);
-            parametros.add("ubi2");
+            parametros.add("AIN_UBI2");
             parametros.add(ubi2);
-            parametros.add("ubi3");
+            parametros.add("AIN_UBI3");
             parametros.add(ubi3);
-            parametros.add("ubi4");
+            parametros.add("AIN_UBI4");
             parametros.add(ubi4);
-            parametros.add("ubi5");
+            parametros.add("AIN_UBI5");
             parametros.add(ubi5);
-            parametros.add("ubi6");
+            parametros.add("AIN_UBI6");
             parametros.add(ubi6);
             String datos = post.getServerDataString(parametros, direccion
-                    + "Inventario/Inv.aspx");
+                    + "Servicio.svc/ActUbi");
 
-            Log.i("sin error", direccion + "Inventario/Inv.aspx");
+            Log.i("sin error", direccion + "Servicio.svc/ActUbi");
             Log.i("ain_pk", pk);
-
-            try {
-                return (parseJSONdataActualizarAlm(datos));
-            } catch (JSONException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-
-            }
+            return datos.replace("\"","");
 
         } else {
             Log.i("sin conexion", "usr_busq.php");
