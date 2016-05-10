@@ -217,14 +217,15 @@ public class SubirFotos extends Fragment {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long id) {
-                Log.i("posicion", "posicion " + position);
                 final FOTO posActual = NavItms.get(position);
+                Log.i("posicion", "posicion " + posActual.getNombre().substring(1, posActual.getNombre().length()));
                 alt_bld.setMessage("Desea Eliminar la foto?")
                         .setCancelable(false)
                         .setPositiveButton("Aceptar",new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 tipo = posActual.getNombre().substring(1, posActual.getNombre().length());
                                 eliminar = true;
+
                                 new Foto().execute("");
                                 // finish();
                             }

@@ -568,22 +568,20 @@ public class Conexion {
         return null;
     }
     //Eliminar Foto
-    public String eliminar_Foto(String foto) {
+    public String eliminar_Foto(String tipo) {
         if (isOnline()) {
             ArrayList parametros = new ArrayList();
             Post post = new Post();
-            parametros.add("foto");
-            parametros.add("foto");
-            String datos = post.getServerDataString(parametros,
-                    "http://192.168.1.250:8080/catalogo_smith/imagen/catalogo/foto/delete.php?foto="+foto);
+            String datos = post.getServerDataString(parametros, direccion +
+                    "Servicio.svc/EliminarImagenFacPedCot/" + tipo);
 
-            Log.i("sin error",  "http://192.168.1.250:8080/catalogo_smith/imagen/catalogo/foto/delete.php?foto="+foto);
-            return datos;
+            Log.i("sin error", direccion + "Servicio.svc/EliminarImagenFacPedCot/" + tipo);
+            return datos.replace("\"","");
 
         } else {
             Log.i("sin conexion", "usr_busq.php");
         }
-        return "";
+        return "Error al eliminar la imagen";
     }
     //Eliminar Foto
     //Datos de Usuarios de Mantis
