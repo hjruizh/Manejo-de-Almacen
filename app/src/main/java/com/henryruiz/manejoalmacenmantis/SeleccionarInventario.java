@@ -34,8 +34,8 @@ public class SeleccionarInventario extends Fragment {
     private int month = 0;
     private int day = 0;
     static ArrayList<VN1> invent = new ArrayList<VN1>();
-    Context c = (Context)getActivity();
-    Conexion s = new Conexion(c);
+    Context c;
+    Conexion s;
     View rootView;
     static final int DATE_PICKER_ID = 1111;
 
@@ -48,6 +48,8 @@ public class SeleccionarInventario extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_seleccionar_inventario, container, false);
+        c = (Context)getActivity();
+        s = new Conexion(c);
         Variables.setFac("");
         Variables.setCot("");
         Variables.setPed("");

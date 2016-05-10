@@ -32,7 +32,6 @@ public class Conexion {
     public boolean isOnline() {
         try {
             ConnectivityManager cm;
-            NetworkInfo info = null;
             cm = (ConnectivityManager)
                     mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
             if (cm.getActiveNetworkInfo() != null) {
@@ -79,16 +78,14 @@ public class Conexion {
 
         Log.i("data", data);
         ArrayList<VN1> prod = new ArrayList<VN1>();
-        JSONObject jsonObj = new JSONObject(data);
-        String strData = jsonObj.getString("plural");
-        JSONArray jsonArray = new JSONArray(strData);
+        JSONArray jsonArray = new JSONArray(data);
 
         for (int i = 0; i < jsonArray.length(); i++) {
             VN1 producto = new VN1();
-            JSONObject userObj = jsonArray.getJSONObject(i);
+            //JSONObject userObj = jsonArray.getJSONObject(i);
             try{
-                String userStr = userObj.getString("singular");
-                JSONObject item = new JSONObject(userStr);
+                //String userStr = userObj.getString("singular");
+                JSONObject item = jsonArray.getJSONObject(i);
                 producto.setPk(item.getString("VN1_PK"));
                 producto.setFecha(item.getString("VN1_FECHA").trim());
                 producto.setNombre(item.getString("VN1_NOMBRE").trim());
@@ -97,7 +94,7 @@ public class Conexion {
 
                 Log.i("error", e.getMessage());
                 //e.printStackTrace();
-                producto.setMensaje(userObj.getString("mensaje").trim());
+                producto.setMensaje(data.replace("\"",""));
             }
             prod.add(i, producto);
         }
@@ -322,14 +319,10 @@ public class Conexion {
 
         Log.i("data", data);
         //ArrayList<PED> prod = new ArrayList<PED>();
-        JSONObject jsonObj = new JSONObject(data);
-        String strData = jsonObj.getString("plural");
-        JSONArray jsonArray = new JSONArray(strData);
+        JSONArray jsonArray = new JSONArray(data);
         String mensaje = "";
         for (int i = 0; i < jsonArray.length(); i++) {
-            JSONObject userObj = jsonArray.getJSONObject(i);
-            String userStr = userObj.getString("singular");
-            JSONObject item = new JSONObject(userStr);
+            JSONObject item = jsonArray.getJSONObject(i);
             mensaje = item.getString("mensaje").trim();
         }
         return mensaje;
