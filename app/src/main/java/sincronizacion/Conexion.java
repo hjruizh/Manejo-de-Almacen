@@ -108,7 +108,7 @@ public class Conexion {
                 ArrayList parametros = new ArrayList();
                 Post post = new Post();
                 String datos = post.getServerDataString(parametros, direccion
-                        + "Inventario/Auditoria.aspx");
+                        + "Servicio.svc/InvenatrioGeneral");
                 return parseJSONdataVN1_busq(datos);
             } else {
                 Log.i("sin conexion", "Tabla VN1");
