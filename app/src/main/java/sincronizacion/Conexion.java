@@ -332,16 +332,12 @@ public class Conexion {
 
         Log.i("data", data);
         ArrayList<FOTO> prod = new ArrayList<FOTO>();
-        JSONObject jsonObj = new JSONObject(data);
-        String strData = jsonObj.getString("plural");
-        JSONArray jsonArray = new JSONArray(strData);
+        JSONArray jsonArray = new JSONArray(data);
         String mensaje = "";
         for (int i = 0; i < jsonArray.length(); i++) {
-            JSONObject userObj = jsonArray.getJSONObject(i);
-            String userStr = userObj.getString("singular");
-            JSONObject item = new JSONObject(userStr);
+            JSONObject item = jsonArray.getJSONObject(i);
             FOTO producto = new FOTO();
-            producto.setNombre(item.getString("FOTO"));
+            producto.setNombre(item.getString("IMP_FOTO"));
             prod.add(i, producto);
         }
         return prod;
@@ -524,27 +520,21 @@ public class Conexion {
         if (isOnline()) {
             ArrayList parametros = new ArrayList();
             Post post = new Post();
-            parametros.add("vnm_invfk");
+            parametros.add("VN1_INVFK");
             parametros.add(pk);
-            parametros.add("fecha");
+            parametros.add("VN1_FECHA");
             parametros.add(fecha);
-            parametros.add("contados");
+            parametros.add("CONTADOS");
             parametros.add(contados);
-            parametros.add("existencia");
+            parametros.add("EXISTENCIA");
             parametros.add(existencia);
             String datos = post.getServerDataString(parametros, direccion
-                    + "Inventario/Inv.aspx");
+                    + "Servicio.svc/GuardarInventario");
 
             Log.i("enviar_conatdos", direccion + "Inventario/Inv.aspx");
             Log.i("fecha final", "fechaf "+fecha);
             Log.i("pk_inv", "vnm_invfk "+pk);
-            try {
-                return (parseJSONdataActualizarAlm(datos));
-            } catch (JSONException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-
-            }
+            return datos.replace("\"","");
 
         } else {
             Log.i("sin conexion", "usr_busq.php");
@@ -556,14 +546,14 @@ public class Conexion {
             ArrayList parametros = new ArrayList();
             Post post = new Post();
             Log.i("Numero y tipo", "Numero " + numero + " tipo " + tipo);
-            parametros.add("imp_numero");
+            parametros.add("IMP_NUMERO");
             parametros.add(numero);
-            parametros.add("imp_tipo");
+            parametros.add("IMP_TIPO");
             parametros.add(tipo);
             String datos = post.getServerDataString(parametros, direccion
-                    + "Inventario/Inv.aspx");
+                    + "Servicio.svc/Foto");
 
-            Log.i("sin error", direccion + "Inventario/Inv.aspx");
+            Log.i("sin error", direccion + "Servicio.svc/Foto");
             try {
                 return (parseJSONdataBuscarFoto(datos));
             } catch (JSONException e) {
@@ -602,14 +592,10 @@ public class Conexion {
 
         Log.i("data", data);
         ArrayList<USR> usr = new ArrayList<USR>();
-        /*JSONObject jsonObj = new JSONObject(data);
-        String strData = jsonObj.getString("plural");*/
         JSONArray jsonArray = new JSONArray(data);
 
         for (int i = 0; i < jsonArray.length(); i++) {
-            /*JSONObject userObj = jsonArray.getJSONObject(i);
-            String userStr = userObj.getString("singular");*/
-            JSONObject item = jsonArray.getJSONObject(i);//new JSONObject(userStr);
+            JSONObject item = jsonArray.getJSONObject(i);
             Log.i("item", "-" + item);
             USR usuario = new USR();
             usuario.setPk(Integer.parseInt(item.getString("USR_PK")));

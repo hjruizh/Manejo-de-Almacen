@@ -838,7 +838,8 @@ public class DetalleProducto extends BaseActivity implements ObservableScrollVie
                         .toString(), u6.getText().toString())+"\n";
                 if (!Variables.getMes().equals("") && !Variables.getAnio().equals("")){
                     EditText cont = (EditText) findViewById(R.id.editTextContados);
-                    String fechaf = String.valueOf(Variables.getAnio().toString()) + Variables.getMes().toString() + Fecha.diasDelMes(Integer.parseInt(Variables.getMes()), Variables.getAnio().toString());
+                    String mes = Variables.agregarCero(Integer.parseInt(Variables.getMes()) + 1);
+                    String fechaf = String.valueOf(Variables.getAnio().toString()) + mes + Fecha.diasDelMes(Integer.parseInt(Variables.getMes()), Variables.getAnio().toString());
                     mensaje += "Contados: "+s.enviar_conatdos(String.valueOf(aux.getPk()), fechaf,
                             cont.getText().toString(), String.valueOf(aux.getExistencia()));
                     Log.i("Inventario","-"+(Variables.getInventario()));
