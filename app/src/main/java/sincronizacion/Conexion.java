@@ -31,11 +31,14 @@ public class Conexion {
     //verifica la conexion de wifi
     public boolean isOnline() {
         try {
-            ConnectivityManager cm = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
-
+            ConnectivityManager cm;
+            NetworkInfo info = null;
+            cm = (ConnectivityManager)
+                    mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
             if (cm.getActiveNetworkInfo() != null) {
                 NetworkInfo mWifi = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-                if (mWifi.isConnected())
+                NetworkInfo tresG = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+                if (mWifi.isConnected() || tresG.isConnected())
                 {
                     return true;
                 }

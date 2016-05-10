@@ -203,9 +203,9 @@ public class SeleccionarInventario extends Fragment {
         protected Integer doInBackground(String... params) {
             try {
 
-                String nivel = "1";
+                //String nivel = "1";
 
-                publishProgress();
+                //publishProgress();
                 invent = s.sincronizar_VN1();
 
             } catch (Exception e) {
