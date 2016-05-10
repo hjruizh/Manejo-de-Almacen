@@ -471,9 +471,9 @@ public class Conexion {
                 parametros.add("buscar");
                 parametros.add(buscar);
                 String datos = post.getServerDataString(parametros, direccion
-                        + "Inventario/Inv.aspx");
+                        + "Servicio.svc/Inventario");
 
-                Log.i("sin error", direccion + "Inventario/Inv.aspx");
+                Log.i("sin error", direccion + "Inventario/Inventario");
                 return parseJSONdata_INV(datos);
             } else {
                 Log.i("sin conexion", "inv_busq.php");
@@ -501,7 +501,7 @@ public class Conexion {
             parametros.add("existencia");
             parametros.add(existencia);
             String datos = post.getServerDataString(parametros, direccion
-                    + "Inventario/Inv.aspx");
+                    + "Servicio.svc/Inv.aspx");
 
             Log.i("sin error", direccion + "Inventario/Inv.aspx");
             Log.i("ain_pk", Variables.getAudi());

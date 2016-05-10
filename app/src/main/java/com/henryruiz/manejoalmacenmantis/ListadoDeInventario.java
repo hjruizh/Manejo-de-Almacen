@@ -245,8 +245,9 @@ public class ListadoDeInventario extends AbstractListViewActivity  implements Vi
                             String fechaI = "";
                             String fechaF = "";
                             if(!Variables.getAnio().equals("") && !Variables.getMes().equals("")) {
-                                fechaI = String.valueOf(Variables.getAnio().toString()) + Variables.getMes().toString()+ "01";
-                                fechaF = String.valueOf(Variables.getAnio().toString()) + Variables.getMes().toString() + Fecha.diasDelMes(Integer.parseInt(Variables.getMes()), Variables.getAnio().toString());
+                                String mes = Variables.agregarCero(Integer.parseInt(Variables.getMes()) + 1);
+                                fechaI = String.valueOf(Variables.getAnio().toString()) + mes + "01";
+                                fechaF = String.valueOf(Variables.getAnio().toString()) + mes + Fecha.diasDelMes(Integer.parseInt(Variables.getMes()), Variables.getAnio().toString());
                             }
                             Log.i("Inventario","Fecha i " + fechaI + "Fecha F" + fechaF);
                             invent = s.sincronizar_INV_CDI(fechaI,fechaF,params[0].trim());
@@ -276,8 +277,9 @@ public class ListadoDeInventario extends AbstractListViewActivity  implements Vi
                             String fechaI = "";
                             String fechaF = "";
                             if(!Variables.getAnio().equals("") && !Variables.getMes().equals("")) {
-                                fechaI = String.valueOf(Variables.getAnio().toString()) + Variables.getMes().toString()+ "01";
-                                fechaF = String.valueOf(Variables.getAnio().toString()) + Variables.getMes().toString() + Fecha.diasDelMes(Integer.parseInt(Variables.getMes()), Variables.getAnio().toString());
+                                String mes = Variables.agregarCero(Integer.parseInt(Variables.getMes()) + 1);
+                                fechaI = String.valueOf(Variables.getAnio().toString()) + mes + "01";
+                                fechaF = String.valueOf(Variables.getAnio().toString()) + mes + Fecha.diasDelMes(Integer.parseInt(Variables.getMes()), Variables.getAnio().toString());
                             }
                             Log.i("Inventario","Fecha i " + fechaI + "Fecha F" + fechaF);
                             invent = s.sincronizar_INV_CDI(fechaI,fechaF,"");
