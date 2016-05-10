@@ -760,7 +760,7 @@ public class DetalleProducto extends BaseActivity implements ObservableScrollVie
             Log.i("NOmbre del archivo", "archivo "+archivo);
             mensaje = f.doFileUpload(String.valueOf(aux.getPk()),archivo, dir);
             Log.i("mensaje", mensaje);
-            s.enviar_foto(aux.getPk(), archivo);
+            //s.enviar_foto(aux.getPk(), archivo);
             return 1;
         }
 
