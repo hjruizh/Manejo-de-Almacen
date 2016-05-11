@@ -286,7 +286,7 @@ public class CuentasPorCobrar extends Fragment {
 
         protected Integer doInBackground(String... params) {
             try {
-                //NavItms = s.sincronizar_CXC();
+                NavItms = s.sincronizar_CXC();
                 if (NavItms!= null)
                 {
                     return 1;

@@ -13,6 +13,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import tablas.CLI;
+import tablas.CXC;
 import tablas.FOTO;
 import tablas.GCL;
 import tablas.INV;
@@ -806,4 +807,44 @@ public class Conexion {
         return new ArrayList<CLI>();
     }
     //Sincronizar Clientes
+    //Detalle cuentas por cobrar
+    private ArrayList<CXC> parseJSONdataCxc(String data)
+            throws JSONException {
+        ArrayList<CXC> cxc = new ArrayList<CXC>();
+        JSONArray jsonArray = new JSONArray(data);
+
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject item = jsonArray.getJSONObject(i);
+            CXC cuantasxcobrar = new CXC();
+            cuantasxcobrar.setPk(Integer.parseInt(item.getString("CXC_PK")));
+            cuantasxcobrar.setCliPk(Integer.parseInt(item.getString("CXC_CLIPK")));
+            cuantasxcobrar.setCodigo(item.getString("CXC_CODIGO").trim());
+            cuantasxcobrar.setNombre(item.getString("CXC_NOMBRE").trim());
+            cuantasxcobrar.setEmail(item.getString("CXC_EMAIL").trim());
+            cuantasxcobrar.setSaldo(item.getString("CXC_SALDO").trim());
+            cuantasxcobrar.setFecha(item.getString("CXC_FECHA").trim());
+            cuantasxcobrar.setFactura(item.getString("CXC_FACTURA").trim());
+            cuantasxcobrar.setGrupo(item.getString("CXC_GCLFK").trim());
+            cuantasxcobrar.setVence(item.getString("CXC_VENCE").trim());
+            cxc.add(i, cuantasxcobrar);
+        }
+        return cxc;
+    }
+    public ArrayList<CXC> sincronizar_CXC() throws JSONException {
+        if (isOnline()) {
+            ArrayList parametros = new ArrayList();
+            Post post = new Post();
+            String datos = post.getServerDataString(parametros, direccion
+                    + "Servicio.svc/CXC/" + Variables.getCliPk());
+            try {
+                return parseJSONdataCxc(datos);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Log.i("sin conexion", "inv_busq2.php");
+        }
+        return new ArrayList<CXC>();
+    }
+    //Detalle cuentas por cobrar
 }
