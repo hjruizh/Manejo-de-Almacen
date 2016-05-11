@@ -847,4 +847,24 @@ public class Conexion {
         return new ArrayList<CXC>();
     }
     //Detalle cuentas por cobrar
+    //Enviar pago
+    public String enviar_pago(int pk, String mensaje, String saldo) throws JSONException {
+        if (isOnline()) {
+            ArrayList parametros = new ArrayList();
+            Post post = new Post();
+            parametros.add("CPA_CLIFK");
+            parametros.add(pk);
+            parametros.add("CPA_MENSAJE");
+            parametros.add(mensaje);
+            parametros.add("CPA_MONTO");
+            parametros.add(saldo);
+            String datos = post.getServerDataString(parametros, direccion
+                    + "Servicio.svc/CuentasPagadas");
+            return datos.replace("\"","");
+        } else {
+            Log.i("sin conexion", "inv_busq2.php");
+        }
+        return "";
+    }
+    //Enviar pago
 }

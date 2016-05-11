@@ -341,7 +341,7 @@ public class CuentasPorCobrar extends Fragment {
             try {
                 if (params!=null) {
                     Post p = new Post();
-                    /*String foto = s.enviar_pago(NavItms.get(0).getCliPk(),params[1],params[0]);
+                    String foto = s.enviar_pago(NavItms.get(0).getCliPk(),params[1],params[0]);
                     Log.i("Foto", "-" + foto);
                     ArrayList parametros = new ArrayList();
                     String selectedImagePath = getPath(selectedImage);
@@ -353,7 +353,7 @@ public class CuentasPorCobrar extends Fragment {
                     emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, params[0] + "\r\nTotal Pagado: " + params[1]);
                     if (params[2]=="Si")
                         emailIntent.putExtra(Intent.EXTRA_STREAM, selectedImage);
-                    startActivity(Intent.createChooser(emailIntent, "Send mail..."));*/
+                    startActivity(Intent.createChooser(emailIntent, "Send mail..."));
                 }
             } catch (Exception e) {
                 Log.i("error_grupo", "-"+e.getLocalizedMessage());
