@@ -13,6 +13,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import tablas.FOTO;
+import tablas.GCL;
 import tablas.INV;
 import tablas.MSG;
 import tablas.USR;
@@ -720,4 +721,37 @@ public class Conexion {
         }
     }
     //Actualizar Estado del Mensaje
+    //Sincronizar Grupos clientes cuentas por cobrar
+    private ArrayList<GCL> parseJSONdataGrupoCli(String data)
+            throws JSONException {
+        ArrayList<GCL> gru = new ArrayList<GCL>();
+        JSONArray jsonArray = new JSONArray(data);
+
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject item = jsonArray.getJSONObject(i);
+            GCL grupo = new GCL();
+            grupo.setPk(Integer.parseInt(item.getString("GCL_PK")));
+            grupo.setCodigo(item.getString("GCL_CODIGO").trim());
+            grupo.setNombre(item.getString("GCL_NOMBRE").trim());
+            gru.add(i, grupo);
+        }
+        return gru;
+    }
+    public ArrayList<GCL> sincronizar_GRUPO_cli() throws JSONException {
+        if (isOnline()) {
+            ArrayList parametros = new ArrayList();
+            Post post = new Post();
+            String datos = post.getServerDataString(parametros, direccion
+                    + "Servicio.svc/GrupoxCliente");
+            try {
+                return parseJSONdataGrupoCli(datos);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Log.i("sin conexion", "inv_busq2.php");
+        }
+        return new ArrayList<GCL>();
+    }
+    //Sincronizar Grupos clientes cuentas por cobrar
 }

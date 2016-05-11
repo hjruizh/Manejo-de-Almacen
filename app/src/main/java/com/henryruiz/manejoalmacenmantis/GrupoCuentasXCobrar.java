@@ -72,7 +72,7 @@ public class GrupoCuentasXCobrar extends Fragment {
 
         protected Integer doInBackground(String... params) {
             try {
-                //NavItms = s.sincronizar_GRUPO_cli();
+                NavItms = s.sincronizar_GRUPO_cli();
                 if (NavItms!= null)
                 {
                     return 1;
