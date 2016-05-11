@@ -105,10 +105,10 @@ public class ListaClientes extends Fragment {
         protected Integer doInBackground(String... params) {
             try {
                 String pk = Variables.getCliPk();
-                //if (params[0].equals(""))
-                    //NavItms = s.sincronizar_cli(pk);
-                //else
-                    //NavItms = s.sincronizar_cli(pk, params[0]);
+                if (params[0].equals(""))
+                    NavItms = s.sincronizar_cli(pk);
+                else
+                    NavItms = s.sincronizar_cli(pk, params[0]);
                 if (NavItms!= null)
                 {
                     return 1;

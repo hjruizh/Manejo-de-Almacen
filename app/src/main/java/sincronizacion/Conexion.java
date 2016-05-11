@@ -771,23 +771,23 @@ public class Conexion {
         }
         return cli;
     }
-    public ArrayList<GCL> sincronizar_cli(String pk) throws JSONException {
+    public ArrayList<CLI> sincronizar_cli(String pk) throws JSONException {
         if (isOnline()) {
             ArrayList parametros = new ArrayList();
             Post post = new Post();
             String datos = post.getServerDataString(parametros, direccion
                     + "Servicio.svc/Cliente/" + pk);
             try {
-                return parseJSONdataGrupoCli(datos);
+                return parseJSONdataCli(datos);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         } else {
             Log.i("sin conexion", "inv_busq2.php");
         }
-        return new ArrayList<GCL>();
+        return new ArrayList<CLI>();
     }
-    public ArrayList<GCL> sincronizar_cli(String pk, String buscar) throws JSONException {
+    public ArrayList<CLI> sincronizar_cli(String pk, String buscar) throws JSONException {
         if (isOnline()) {
             ArrayList parametros = new ArrayList();
             Post post = new Post();
@@ -796,14 +796,14 @@ public class Conexion {
             String datos = post.getServerDataString(parametros, direccion
                     + "Servicio.svc/Cliente" + pk);
             try {
-                return parseJSONdataGrupoCli(datos);
+                return parseJSONdataCli(datos);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         } else {
             Log.i("sin conexion", "inv_busq2.php");
         }
-        return new ArrayList<GCL>();
+        return new ArrayList<CLI>();
     }
     //Sincronizar Clientes
 }
