@@ -764,9 +764,9 @@ public class Conexion {
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject item = jsonArray.getJSONObject(i);
             CLI cliente = new CLI();
-            cliente.setPk(Integer.parseInt(item.getString("GCL_PK")));
-            cliente.setCodigo(item.getString("GCL_CODIGO").trim());
-            cliente.setNombre(item.getString("GCL_NOMBRE").trim());
+            cliente.setPk(Integer.parseInt(item.getString("CLI_PK")));
+            cliente.setCodigo(item.getString("CLI_CODIGO").trim());
+            cliente.setNombre(item.getString("CLI_NOMBRE").trim());
             cli.add(i, cliente);
         }
         return cli;
@@ -794,7 +794,7 @@ public class Conexion {
             parametros.add("valor");
             parametros.add(buscar);
             String datos = post.getServerDataString(parametros, direccion
-                    + "Servicio.svc/Cliente" + pk);
+                    + "Servicio.svc/Cliente/" + pk);
             try {
                 return parseJSONdataCli(datos);
             } catch (JSONException e) {
