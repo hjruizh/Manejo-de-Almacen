@@ -51,7 +51,7 @@ public class Post {
 
                 }
                 //new String(jsonObject.getString("messages").getBytes("ISO-8859-1"), "UTF-8");
-                String json = new String(jsonObject.toString().getBytes("ISO-8859-1"), "UTF-8");//jsonObject.toString();//httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+                String json = new String(jsonObject.toString().getBytes("UTF-8"), "ISO-8859-1");//jsonObject.toString();//httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
                 Log.e("log_json", "Error in http connection " + json);
                 StringEntity se = new StringEntity(json);
                 httppost.setEntity(se);

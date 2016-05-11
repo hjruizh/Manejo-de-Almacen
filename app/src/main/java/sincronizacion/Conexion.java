@@ -848,12 +848,12 @@ public class Conexion {
     }
     //Detalle cuentas por cobrar
     //Enviar pago
-    public String enviar_pago(int pk, String mensaje, String saldo) throws JSONException {
+    public String enviar_pago(int pk, String saldo, String mensaje) throws JSONException {
         if (isOnline()) {
             ArrayList parametros = new ArrayList();
             Post post = new Post();
             parametros.add("CPA_CLIFK");
-            parametros.add(pk);
+            parametros.add(String.valueOf(pk));
             parametros.add("CPA_MENSAJE");
             parametros.add(mensaje);
             parametros.add("CPA_MONTO");

@@ -353,7 +353,7 @@ public class CuentasPorCobrar extends Fragment {
                     emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, params[0] + "\r\nTotal Pagado: " + params[1]);
                     if (params[2]=="Si")
                         emailIntent.putExtra(Intent.EXTRA_STREAM, selectedImage);
-                    startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+                    startActivity(Intent.createChooser(emailIntent, "Enviar correo..."));
                 }
             } catch (Exception e) {
                 Log.i("error_grupo", "-"+e.getLocalizedMessage());
