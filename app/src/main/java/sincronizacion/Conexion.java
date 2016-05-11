@@ -12,6 +12,7 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
+import tablas.CLI;
 import tablas.FOTO;
 import tablas.GCL;
 import tablas.INV;
@@ -754,4 +755,55 @@ public class Conexion {
         return new ArrayList<GCL>();
     }
     //Sincronizar Grupos clientes cuentas por cobrar
+    //Sincronizar Clientes
+    private ArrayList<CLI> parseJSONdataCli(String data)
+            throws JSONException {
+        ArrayList<CLI> cli = new ArrayList<CLI>();
+        JSONArray jsonArray = new JSONArray(data);
+
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject item = jsonArray.getJSONObject(i);
+            CLI cliente = new CLI();
+            cliente.setPk(Integer.parseInt(item.getString("GCL_PK")));
+            cliente.setCodigo(item.getString("GCL_CODIGO").trim());
+            cliente.setNombre(item.getString("GCL_NOMBRE").trim());
+            cli.add(i, cliente);
+        }
+        return cli;
+    }
+    public ArrayList<GCL> sincronizar_cli(String pk) throws JSONException {
+        if (isOnline()) {
+            ArrayList parametros = new ArrayList();
+            Post post = new Post();
+            String datos = post.getServerDataString(parametros, direccion
+                    + "Servicio.svc/Cliente/" + pk);
+            try {
+                return parseJSONdataGrupoCli(datos);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Log.i("sin conexion", "inv_busq2.php");
+        }
+        return new ArrayList<GCL>();
+    }
+    public ArrayList<GCL> sincronizar_cli(String pk, String buscar) throws JSONException {
+        if (isOnline()) {
+            ArrayList parametros = new ArrayList();
+            Post post = new Post();
+            parametros.add("valor");
+            parametros.add(buscar);
+            String datos = post.getServerDataString(parametros, direccion
+                    + "Servicio.svc/Cliente" + pk);
+            try {
+                return parseJSONdataGrupoCli(datos);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Log.i("sin conexion", "inv_busq2.php");
+        }
+        return new ArrayList<GCL>();
+    }
+    //Sincronizar Clientes
 }
