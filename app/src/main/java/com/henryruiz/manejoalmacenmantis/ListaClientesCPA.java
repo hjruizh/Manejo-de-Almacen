@@ -108,10 +108,10 @@ public class ListaClientesCPA extends Fragment {
         protected Integer doInBackground(String... params) {
             try {
                 String pk = Variables.getCliPk();
-                /*if (params[0].equals(""))
+                if (params[0].equals(""))
                     NavItms = s.sincronizar_cli_cpa(pk);
                 else
-                    NavItms = s.sincronizar_cli_cpa(pk, params[0]);*/
+                    NavItms = s.sincronizar_cli_cpa(pk, params[0]);
                 if (NavItms!= null)
                 {
                     return 1;

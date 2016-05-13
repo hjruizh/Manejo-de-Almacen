@@ -50,7 +50,7 @@ public class GrupoCuentasPagadas extends Fragment {
                 final GCL posActual = NavItms.get(position);
                 Variables.setCliPk(String.valueOf(posActual.getPk()));
                 String pk = Variables.getCliPk();
-                ListaClientes fragment2 = new ListaClientes();
+                ListaClientesCPA fragment2 = new ListaClientesCPA();
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.content_frame, fragment2);

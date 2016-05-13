@@ -884,5 +884,39 @@ public class Conexion {
         }
         return new ArrayList<GCL>();
     }
+    public ArrayList<CLI> sincronizar_cli_cpa(String pk) throws JSONException {
+        if (isOnline()) {
+            ArrayList parametros = new ArrayList();
+            Post post = new Post();
+            String datos = post.getServerDataString(parametros, direccion
+                    + "Servicio.svc/ClienteCPA/" + pk);
+            try {
+                return parseJSONdataCli(datos);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Log.i("sin conexion", "inv_busq2.php");
+        }
+        return new ArrayList<CLI>();
+    }
+    public ArrayList<CLI> sincronizar_cli_cpa(String pk, String buscar) throws JSONException {
+        if (isOnline()) {
+            ArrayList parametros = new ArrayList();
+            Post post = new Post();
+            parametros.add("valor");
+            parametros.add(buscar);
+            String datos = post.getServerDataString(parametros, direccion
+                    + "Servicio.svc/ClienteCPA/" + pk);
+            try {
+                return parseJSONdataCli(datos);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Log.i("sin conexion", "inv_busq2.php");
+        }
+        return new ArrayList<CLI>();
+    }
     //Grupo Cuentas Pagadas
 }
