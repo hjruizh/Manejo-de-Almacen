@@ -35,7 +35,7 @@
         android:layout_marginRight="30dp" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imageViewFoto"
         android:layout_width="match_parent"
         android:layout_height="@dimen/parallax_image_height"
         android:layout_gravity="center_horizontal" />
