@@ -87,7 +87,7 @@ public class ListaClientesCPA extends Fragment {
                 final CLI posActual = NavItms.get(position);
                 Variables.setCliPk(String.valueOf(posActual.getPk()));
                 String pk = Variables.getCliPk();
-                CuentasPorCobrar fragment2 = new CuentasPorCobrar();
+                CPAFragment fragment2 = new CPAFragment();
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.content_frame, fragment2);
