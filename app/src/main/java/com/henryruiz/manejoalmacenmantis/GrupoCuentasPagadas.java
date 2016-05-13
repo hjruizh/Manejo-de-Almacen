@@ -72,7 +72,7 @@ public class GrupoCuentasPagadas extends Fragment {
 
         protected Integer doInBackground(String... params) {
             try {
-                //NavItms = s.sincronizar_GRUPO_cpa();
+                NavItms = s.sincronizar_GRUPO_cpa();
                 if (NavItms!= null)
                 {
                     return 1;

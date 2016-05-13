@@ -867,4 +867,22 @@ public class Conexion {
         return "";
     }
     //Enviar pago
+    //Grupo Cuentas Pagadas
+    public ArrayList<GCL> sincronizar_GRUPO_cpa() throws JSONException {
+        if (isOnline()) {
+            ArrayList parametros = new ArrayList();
+            Post post = new Post();
+            String datos = post.getServerDataString(parametros, direccion
+                    + "Servicio.svc/GrupoxClienteCPA");
+            try {
+                return parseJSONdataGrupoCli(datos);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Log.i("sin conexion", "inv_busq2.php");
+        }
+        return new ArrayList<GCL>();
+    }
+    //Grupo Cuentas Pagadas
 }
