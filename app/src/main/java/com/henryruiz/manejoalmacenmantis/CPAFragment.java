@@ -41,7 +41,7 @@ public class CPAFragment extends Fragment {
         vista = inflater.inflate(R.layout.fragment_cpa, container, false);
         c = (Context)getActivity();
         s = new Conexion(c);
-
+        listview = (ListView) vista.findViewById(R.id.listViewCPA);
         new ListaCPA().execute();
 
         return vista;
