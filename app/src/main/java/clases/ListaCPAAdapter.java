@@ -63,13 +63,13 @@ public class ListaCPAAdapter extends BaseAdapter {
         Log.i("item","posicion "+position+" tam: "+getCount()+ " Nombre ");
         if (convertView == null) {
             view = new Fila();
-            convertView = inflator.inflate(R.layout.layout_cxc, null);
+            convertView = inflator.inflate(R.layout.layout_cpa, null);
             view.fecha = (TextView) convertView.findViewById(R.id.textViewFecha);
             view.saldo = (TextView) convertView.findViewById(R.id.textViewSaldo);
             view.msg = (TextView) convertView.findViewById(R.id.textViewMsg);
             view.foto = (ImageView) convertView.findViewById(R.id.imageViewFoto);
-            view.fecha.setText(item.getCPA_FECHA());
-            view.saldo.setText(item.getCPA_MONTO());
+            view.fecha.setText("Fecha: " + item.getCPA_FECHA());
+            view.saldo.setText("Monto Pagado: " + item.getCPA_MONTO());
             view.msg.setText(item.getCPA_MENSAJE());
             ImageLoader.getInstance().init(Variables.cargarImagen(context));
             ImageLoader.getInstance().displayImage(Variables.getDireccion_fotos() + "cpa/" + item.getCPA_FOTO() + "&width=250", view.foto);
@@ -81,8 +81,8 @@ public class ListaCPAAdapter extends BaseAdapter {
             view.saldo = (TextView) convertView.findViewById(R.id.textViewSaldo);
             view.msg = (TextView) convertView.findViewById(R.id.textViewMsg);
             view.foto = (ImageView) convertView.findViewById(R.id.imageViewFoto);
-            view.fecha.setText(item.getCPA_FECHA());
-            view.saldo.setText(item.getCPA_MONTO());
+            view.fecha.setText("Fecha: " + item.getCPA_FECHA());
+            view.saldo.setText("Monto Pagado: " + item.getCPA_MONTO());
             view.msg.setText(item.getCPA_MENSAJE());
             ImageLoader.getInstance().init(Variables.cargarImagen(context));
             ImageLoader.getInstance().displayImage(Variables.getDireccion_fotos() + "cpa/" + item.getCPA_FOTO() + "&width=250", view.foto);

@@ -921,7 +921,7 @@ public class Conexion {
     }
 
     private ArrayList<CPA> parseJSONdataCpa(String data)
-            throws JSONException {
+            throws JSONException, UnsupportedEncodingException {
         ArrayList<CPA> cpa = new ArrayList<CPA>();
         JSONArray jsonArray = new JSONArray(data);
 
@@ -932,7 +932,7 @@ public class Conexion {
             cuentaspagadas.setCPA_CLIFK(item.getString("CPA_CLIFK"));
             cuentaspagadas.setCPA_FECHA(item.getString("CPA_FECHA").trim());
             cuentaspagadas.setCPA_FOTO(item.getString("CPA_FOTO").trim());
-            cuentaspagadas.setCPA_MENSAJE(item.getString("CPA_MENSAJE").trim());
+            cuentaspagadas.setCPA_MENSAJE(new String(item.getString("CPA_MENSAJE").getBytes("ISO-8859-1"), "UTF-8"));
             cuentaspagadas.setCPA_MONTO(item.getString("CPA_MONTO").trim());
             cuentaspagadas.setCPA_NOMBRE(item.getString("CPA_NOMBRE").trim());
             cuentaspagadas.setCPA_RIF(item.getString("CPA_RIF").trim());
@@ -950,6 +950,8 @@ public class Conexion {
             try {
                 return parseJSONdataCpa(datos);
             } catch (JSONException e) {
+                e.printStackTrace();
+            } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
         } else {
