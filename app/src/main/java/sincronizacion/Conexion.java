@@ -13,6 +13,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import tablas.CLI;
+import tablas.CPA;
 import tablas.CXC;
 import tablas.FOTO;
 import tablas.GCL;
@@ -917,6 +918,44 @@ public class Conexion {
             Log.i("sin conexion", "inv_busq2.php");
         }
         return new ArrayList<CLI>();
+    }
+
+    private ArrayList<CPA> parseJSONdataCpa(String data)
+            throws JSONException {
+        ArrayList<CPA> cpa = new ArrayList<CPA>();
+        JSONArray jsonArray = new JSONArray(data);
+
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject item = jsonArray.getJSONObject(i);
+            CPA cuentaspagadas = new CPA();
+            cuentaspagadas.setCPA_PK(item.getString("CPA_PK"));
+            cuentaspagadas.setCPA_CLIFK(item.getString("CPA_CLIFK"));
+            cuentaspagadas.setCPA_FECHA(item.getString("CPA_FECHA").trim());
+            cuentaspagadas.setCPA_FOTO(item.getString("CPA_FOTO").trim());
+            cuentaspagadas.setCPA_MENSAJE(item.getString("CPA_MENSAJE").trim());
+            cuentaspagadas.setCPA_MONTO(item.getString("CPA_MONTO").trim());
+            cuentaspagadas.setCPA_NOMBRE(item.getString("CPA_NOMBRE").trim());
+            cuentaspagadas.setCPA_RIF(item.getString("CPA_RIF").trim());
+            cpa.add(i, cuentaspagadas);
+        }
+        return cpa;
+    }
+
+    public ArrayList<CPA> sincronizar_CPA() throws JSONException {
+        if (isOnline()) {
+            ArrayList parametros = new ArrayList();
+            Post post = new Post();
+            String datos = post.getServerDataString(parametros, direccion
+                    + "Servicio.svc/DetalleCPA/" + Variables.getCliPk());
+            try {
+                return parseJSONdataCpa(datos);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Log.i("sin conexion", "inv_busq2.php");
+        }
+        return new ArrayList<CPA>();
     }
     //Grupo Cuentas Pagadas
 }
