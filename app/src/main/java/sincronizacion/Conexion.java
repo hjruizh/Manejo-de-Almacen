@@ -960,7 +960,7 @@ public class Conexion {
         return new ArrayList<CPA>();
     }
     //Grupo Cuentas Pagadas
-    //Eenviar cuentas pagadas
+    //Enviar cuentas pagadas
     public String enviar_CPA(String pk) throws JSONException {
         if (isOnline()) {
             ArrayList parametros = new ArrayList();
@@ -973,5 +973,19 @@ public class Conexion {
         }
         return "";
     }
-    //Eenviar cuentas pagadas
+    //Enviar cuentas pagadas
+    // Eliminar cuentas pagadas
+    public String eliminar_CPA(String pk) throws JSONException {
+        if (isOnline()) {
+            ArrayList parametros = new ArrayList();
+            Post post = new Post();
+            String datos = post.getServerDataString(parametros, direccion
+                    + "Servicio.svc/EliminarCPA/" + pk);
+            return datos.replace("\"","");
+        } else {
+            Log.i("sin conexion", "inv_busq2.php");
+        }
+        return "";
+    }
+    //Eliminar cuentas pagadas
 }
