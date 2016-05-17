@@ -960,4 +960,18 @@ public class Conexion {
         return new ArrayList<CPA>();
     }
     //Grupo Cuentas Pagadas
+    //Eenviar cuentas pagadas
+    public String enviar_CPA(String pk) throws JSONException {
+        if (isOnline()) {
+            ArrayList parametros = new ArrayList();
+            Post post = new Post();
+            String datos = post.getServerDataString(parametros, direccion
+                    + "Servicio.svc/EnviarCPA/" + pk);
+            return datos.replace("\"","");
+        } else {
+            Log.i("sin conexion", "inv_busq2.php");
+        }
+        return "";
+    }
+    //Eenviar cuentas pagadas
 }
