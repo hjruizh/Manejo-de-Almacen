@@ -345,7 +345,10 @@ public class CuentasPorCobrar extends Fragment {
                     Log.i("Foto", "-" + foto);
                     ArrayList parametros = new ArrayList();
                     String selectedImagePath = getPath(selectedImage);
-                    p.getServerDataStringImagen(parametros,selectedImagePath,Variables.getDireccion() + "Servicio.svc/CPA_FOTO/" + foto.replace("\n",""));
+                    if (selectedImagePath!=null)
+                        p.getServerDataStringImagen(parametros,selectedImagePath,Variables.getDireccion() + "Servicio.svc/CPA_FOTO/" + foto.replace("\n",""));
+                    else
+                        p.getServerDataStringImagen(parametros,name,Variables.getDireccion() + "Servicio.svc/CPA_FOTO/" + foto.replace("\n",""));
                     Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
                     emailIntent.setType("application/image");
                     emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{NavItms.get(0).getEmail(), "administracion@rptoscoreanos.com"});
