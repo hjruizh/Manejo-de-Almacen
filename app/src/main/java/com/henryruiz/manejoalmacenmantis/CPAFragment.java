@@ -141,6 +141,7 @@ public class CPAFragment extends Fragment {
             dialog.dismiss();
             if (bytes==1)
             {
+                Log.i("enviar correo","-"+mensaje);
                 Toast.makeText(c, mensaje, Toast.LENGTH_SHORT).show();
             }
             else
@@ -160,6 +161,7 @@ public class CPAFragment extends Fragment {
         protected Integer doInBackground(String... params) {
             try {
                 mensaje = s.eliminar_CPA(params[0]);
+                NavItms = s.sincronizar_CPA();
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -174,7 +176,14 @@ public class CPAFragment extends Fragment {
             dialog.dismiss();
             if (bytes==1)
             {
+                Log.i("enviar correo","-"+mensaje);
                 Toast.makeText(c, mensaje, Toast.LENGTH_SHORT).show();
+                if (NavItms!=null)
+                {
+                    //NavItms = grupo;
+                    ListaCPAAdapter adaptadorGrid = new ListaCPAAdapter(c, NavItms);
+                    listview.setAdapter(adaptadorGrid);
+                }
             }
             else
             {
