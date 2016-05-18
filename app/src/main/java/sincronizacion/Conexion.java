@@ -434,24 +434,18 @@ public class Conexion {
             Post post = new Post();
             parametros.add("compra");
             parametros.add(comp);
-            parametros.add("inv_pk");
+            parametros.add("buscar");
             parametros.add(String.valueOf(pk));
             parametros.add("impresos");
             parametros.add(impreso);
             parametros.add("cantidad");
             parametros.add(cant);
             String datos = post.getServerDataString(parametros, direccion
-                    + "Inventario/Inv.aspx");
+                    + "Servicio.svc/GuardarCompra");
 
             Log.i("sin error", direccion + "Inventario/Inv.aspx");
 
-            try {
-                return (parseJSONdataActualizarAlm(datos));
-            } catch (JSONException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-
-            }
+            return datos.replace("\"","");
 
         } else {
             Log.i("sin conexion", "usr_busq.php");
