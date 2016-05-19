@@ -114,7 +114,7 @@ public class CuentasPorCobrar extends Fragment {
                 name = CARPETA + archivo;
                 final Intent[] intent = {new Intent(MediaStore.ACTION_IMAGE_CAPTURE)};
                 final int[] code = {TAKE_PICTURE};
-                final CharSequence colors[] = new CharSequence[] {"Tomar Foto", "Seleccionar Foto de Galeria", "Sin Foto"};
+                final CharSequence colors[] = new CharSequence[] {"Tomar Foto", "Seleccionar Foto de Galeria", "Sin Foto", "Enviar cuentas por cobrar"};
                 final boolean[] band = {true};
                 AlertDialog.Builder builder = new AlertDialog.Builder(c);
                 builder.setTitle("Tomar Foto");
@@ -141,6 +141,9 @@ public class CuentasPorCobrar extends Fragment {
                                 new EnviarPago().execute(msg.getText().toString(), montoTotal.getText().toString(), "No");
                                 band[0] = false;
                                 break;
+                            case 3:
+
+                                break;
                         }
                         if(band[0])
                             getActivity().startActivityFromFragment(CuentasPorCobrar.this,intent[0], code[0]);
@@ -157,7 +160,21 @@ public class CuentasPorCobrar extends Fragment {
 
     //envio de imagen y correo
 
+    //Mensaje de Alerta
+    private void alerta_cantidad(String mensaje) {
 
+        AlertDialog alertDialog = new AlertDialog.Builder(c).create();
+        alertDialog.setTitle("");
+        alertDialog.setMessage(mensaje);
+        alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                return;
+
+            }
+        });
+        alertDialog.show();
+    }
+    //Mensaje de Alerta
 
     /**
      * Funci?n que se ejecuta cuando concluye el intent en el que se solicita una imagen
@@ -378,6 +395,52 @@ public class CuentasPorCobrar extends Fragment {
             if (bytes==1) {
                 try {
 
+                } catch (Exception e) {
+                    //Log.i("error", e.getMessage());
+                }
+            }
+            else {
+                //Log.i("error","Sin Grupo");
+            }
+        }
+
+    }
+
+    private class EnviarCuentasxCobrar extends AsyncTask<String, Float, Integer> {
+        ProgressDialog dialog;
+        String msg;
+
+        protected void onPreExecute() { // Mostramos antes de comenzar
+            dialog = ProgressDialog.show(getActivity(), "", "Consultando Cuentas por Cobrar...", true);
+        }
+
+        protected Integer doInBackground(String... params) {
+            try {
+                msg = s.enviar_CXC(params[0]);
+                if (msg != null)
+                {
+                    return 1;
+                }
+                else
+                    return 0;
+            } catch (Exception e) {
+                Log.i("error_grupo", "-"+e.getLocalizedMessage());
+                e.printStackTrace();
+                return 0;
+            }
+        }
+
+        protected void onProgressUpdate(Float... valores) {
+            /*if (!verificar_internet()) {
+                //dialog.dismiss();
+            }*/
+        }
+
+        protected void onPostExecute(Integer bytes) {
+            dialog.dismiss();
+            if (bytes==1) {
+                try {
+                    alerta_cantidad(msg);
                 } catch (Exception e) {
                     //Log.i("error", e.getMessage());
                 }

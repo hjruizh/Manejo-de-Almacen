@@ -982,4 +982,18 @@ public class Conexion {
         return "";
     }
     //Eliminar cuentas pagadas
+    //Enviar cuentas por cobrar
+    public String enviar_CXC(String pk) throws JSONException {
+        if (isOnline()) {
+            ArrayList parametros = new ArrayList();
+            Post post = new Post();
+            String datos = post.getServerDataString(parametros, direccion
+                    + "Servicio.svc/EnviarCXC/" + pk);
+            return datos.replace("\"","");
+        } else {
+            Log.i("sin conexion", "inv_busq2.php");
+        }
+        return "";
+    }
+    //Enviar cuentas por cobrar
 }
