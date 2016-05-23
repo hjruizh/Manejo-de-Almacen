@@ -756,15 +756,23 @@ public class Conexion {
             throws JSONException {
         ArrayList<CLI> cli = new ArrayList<CLI>();
         JSONArray jsonArray = new JSONArray(data);
-
+        String pk = "";
+        int j = 0;
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject item = jsonArray.getJSONObject(i);
             CLI cliente = new CLI();
-            cliente.setPk(Integer.parseInt(item.getString("CLI_PK")));
-            cliente.setCodigo(item.getString("CLI_CODIGO").trim());
-            cliente.setNombre(item.getString("CLI_NOMBRE").trim());
-            cliente.setSaldo(item.getString("CLI_SALDO").trim());
-            cli.add(i, cliente);
+            if(!pk.equals(item.getString("CLI_PK").trim())) {
+                cliente.setPk(Integer.parseInt(item.getString("CLI_PK")));
+                cliente.setCodigo(item.getString("CLI_CODIGO").trim());
+                cliente.setNombre(item.getString("CLI_NOMBRE").trim());
+                cliente.setSaldo(item.getString("CLI_SALDO").trim());
+                cli.add(j, cliente);
+                j++;
+                pk = item.getString("CLI_PK").trim();
+            }
+            else{
+                cli.get(j-1).setSaldo(Float.toString(Float.parseFloat(cli.get(j-1).getSaldo().replace(",",".")) + Float.parseFloat(item.getString("CLI_SALDO").trim().replace(",","."))));
+            }
         }
         return cli;
     }

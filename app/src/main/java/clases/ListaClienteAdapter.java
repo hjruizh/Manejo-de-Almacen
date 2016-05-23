@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.henryruiz.manejoalmacenmantis.R;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.List;
 
 import tablas.CLI;
@@ -57,13 +59,17 @@ public class ListaClienteAdapter extends BaseAdapter {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         CLI item=items.get(position);
         Log.i("item","posicion "+position+" tam: "+getCount()+ " Nombre ");
+        DecimalFormatSymbols simbolo=new DecimalFormatSymbols();
+        simbolo.setDecimalSeparator(',');
+        simbolo.setGroupingSeparator('.');
+        DecimalFormat formateador = new DecimalFormat("###,###.##",simbolo);
         if (convertView == null) {
             view = new Fila();
             convertView = inflator.inflate(R.layout.layout_grupo_cli, null);
             view.titulo_itm = (TextView) convertView.findViewById(R.id.textViewNombre);
             view.codigo = (TextView) convertView.findViewById(R.id.textViewCodigo);
             view.titulo_itm.setText(item.getNombre());
-            view.codigo.setText(item.getCodigo() + " - " + item.getSaldo());
+            view.codigo.setText(item.getCodigo() + " - " + formateador.format(Float.parseFloat(item.getSaldo().replace(",","."))));
             convertView.setTag(view);
 
         } else {
@@ -71,7 +77,7 @@ public class ListaClienteAdapter extends BaseAdapter {
             view.titulo_itm = (TextView) convertView.findViewById(R.id.textViewNombre);
             view.codigo = (TextView) convertView.findViewById(R.id.textViewCodigo);
             view.titulo_itm.setText(item.getNombre());
-            view.codigo.setText(item.getCodigo() + " - " + item.getSaldo());
+            view.codigo.setText(item.getCodigo() + " - " + formateador.format(Float.parseFloat(item.getSaldo().replace(",","."))));
         }
 
         //Setear la imagen desde el recurso drawable
