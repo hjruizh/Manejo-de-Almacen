@@ -142,7 +142,8 @@ public class CuentasPorCobrar extends Fragment {
                                 band[0] = false;
                                 break;
                             case 3:
-
+                                new EnviarCuentasxCobrar().execute(Variables.getCliPk().toString());
+                                band[0] = false;
                                 break;
                         }
                         if(band[0])
