@@ -63,7 +63,7 @@ public class ListaClienteAdapter extends BaseAdapter {
             view.titulo_itm = (TextView) convertView.findViewById(R.id.textViewNombre);
             view.codigo = (TextView) convertView.findViewById(R.id.textViewCodigo);
             view.titulo_itm.setText(item.getNombre());
-            view.codigo.setText(item.getCodigo());
+            view.codigo.setText(item.getCodigo() + " - " + item.getSaldo());
             convertView.setTag(view);
 
         } else {
@@ -71,7 +71,7 @@ public class ListaClienteAdapter extends BaseAdapter {
             view.titulo_itm = (TextView) convertView.findViewById(R.id.textViewNombre);
             view.codigo = (TextView) convertView.findViewById(R.id.textViewCodigo);
             view.titulo_itm.setText(item.getNombre());
-            view.codigo.setText(item.getCodigo());
+            view.codigo.setText(item.getCodigo() + " - " + item.getSaldo());
         }
 
         //Setear la imagen desde el recurso drawable

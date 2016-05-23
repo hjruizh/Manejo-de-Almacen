@@ -8,6 +8,7 @@ public class CLI {
     private String codigo;
     private String nombre;
     private String grupo;
+    private String saldo;
 
     public int getPk() {
         return pk;
@@ -39,5 +40,13 @@ public class CLI {
 
     public void setGrupo(String grupo) {
         this.grupo = grupo;
+    }
+
+    public String getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(String saldo) {
+        this.saldo = saldo;
     }
 }

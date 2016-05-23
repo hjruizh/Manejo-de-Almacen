@@ -763,6 +763,7 @@ public class Conexion {
             cliente.setPk(Integer.parseInt(item.getString("CLI_PK")));
             cliente.setCodigo(item.getString("CLI_CODIGO").trim());
             cliente.setNombre(item.getString("CLI_NOMBRE").trim());
+            cliente.setSaldo(item.getString("CLI_SALDO").trim());
             cli.add(i, cliente);
         }
         return cli;
