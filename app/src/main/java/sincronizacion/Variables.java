@@ -29,6 +29,7 @@ public class Variables extends Application {
     private static String mensaje_pk = "";
     private static String mensaje = "";
     private static String cliPk = "";
+    private static String gruPK = "";
 
     public static String getDireccion() {
         return direccion = "http://"+Variables.getUrl()+":"+Variables.getPuerto()+"/";
@@ -211,5 +212,13 @@ public class Variables extends Application {
 
     public static void setCliPk(String cliPk) {
         Variables.cliPk = cliPk;
+    }
+
+    public static String getGruPK() {
+        return gruPK;
+    }
+
+    public static void setGruPK(String gruPK) {
+        Variables.gruPK = gruPK;
     }
 }

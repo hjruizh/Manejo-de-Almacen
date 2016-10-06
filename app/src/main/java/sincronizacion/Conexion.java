@@ -17,6 +17,7 @@ import tablas.CPA;
 import tablas.CXC;
 import tablas.FOTO;
 import tablas.GCL;
+import tablas.GRU;
 import tablas.INV;
 import tablas.MSG;
 import tablas.USR;
@@ -1005,4 +1006,37 @@ public class Conexion {
         return "";
     }
     //Enviar cuentas por cobrar
+
+    //Detalle Grupo de productos
+    private ArrayList<GRU> parseJSONdataGru(String data)
+            throws JSONException {
+        ArrayList<GRU> cxc = new ArrayList<GRU>();
+        JSONArray jsonArray = new JSONArray(data);
+
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject item = jsonArray.getJSONObject(i);
+            GRU cuantasxcobrar = new GRU();
+            cuantasxcobrar.setPk(Integer.parseInt(item.getString("GRU_PK")));
+            cuantasxcobrar.setNombre(item.getString("GRU_NOMBRE").trim());
+            cxc.add(i, cuantasxcobrar);
+        }
+        return cxc;
+    }
+    public ArrayList<GRU> sincronizar_GRU() throws JSONException {
+        if (isOnline()) {
+            ArrayList parametros = new ArrayList();
+            Post post = new Post();
+            String datos = post.getServerDataString(parametros, direccion
+                    + "Servicio.svc/Grupos/");
+            try {
+                    return parseJSONdataGru(datos);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Log.i("sin conexion", "inv_busq2.php");
+        }
+        return new ArrayList<GRU>();
+    }
+    //Detalle grupo de productos
 }
