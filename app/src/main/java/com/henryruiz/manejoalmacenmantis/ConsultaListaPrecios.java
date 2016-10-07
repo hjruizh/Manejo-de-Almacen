@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,7 +42,7 @@ public class ConsultaListaPrecios extends Fragment {
         c = (Context)getActivity();
         s = new Conexion(c);
         new Grupo().execute("");
-
+        listview = (ListView) rootView.findViewById(R.id.listView2);
         ImageButton enviar = (ImageButton) rootView.findViewById(R.id.buttonBuscar);
         android.widget.SearchView search = (android.widget.SearchView) rootView.findViewById(R.id.searchView2);
 
@@ -142,8 +141,7 @@ public class ConsultaListaPrecios extends Fragment {
         ProgressDialog dialog;
 
         protected void onPreExecute() { // Mostramos antes de comenzar
-            dialog = ProgressDialog.show(ListadoDeInventario.this, "", "Cargando...",
-                    true);
+            dialog = ProgressDialog.show(getActivity(), "", "Consultando productos...", true);
         }
 
         protected Integer doInBackground(String... params) {
@@ -152,7 +150,7 @@ public class ConsultaListaPrecios extends Fragment {
                 String nivel = "1";
 
                 publishProgress();
-                invent = s.buscar_INV(params[0].trim());
+                invent = s.buscar_INV_GRU(params[0].trim(),Variables.getGruPK());
 
             } catch (Exception e) {
 
@@ -161,4 +159,18 @@ public class ConsultaListaPrecios extends Fragment {
             }
             return 1;
         }
+
+        protected void onProgressUpdate(Float... valores) {
+            dialog.dismiss();
+        }
+
+        protected void onPostExecute(Integer bytes) {
+            dialog.dismiss();
+            if ((bytes == 1) && (invent != null)) {
+
+                CustomListAdapter adaptadorGrid = new CustomListAdapter(c, invent);
+                listview.setAdapter(adaptadorGrid);
+            }
+        }
+    }
 }

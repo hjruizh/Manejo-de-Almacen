@@ -211,6 +211,35 @@ public class Conexion {
         }
         return null;
     }
+    public ArrayList<INV> buscar_INV_GRU(String valor, String gru) {
+        try {
+            if (isOnline()) {
+                ArrayList parametros = new ArrayList();
+                Post post = new Post();
+                parametros.add("valor");
+                parametros.add(valor);
+                if (!Variables.getInventario().equals("")){
+                    parametros.add("valor_inv");
+                    parametros.add(Variables.getInventario());
+                }
+                String datos = post.getServerDataString(parametros, direccion
+                        + "Servicio.svc/ProductosGru/" + gru);
+                Log.i("buscado", valor);
+                Log.i("sin error", "Busqueda de Inventario");
+                return parseJSONdata_INV(datos);
+            } else {
+                Log.i("sin conexion", "Busqueda de Inventario");
+            }
+        } catch (JSONException e) {
+
+            Log.i("error", e.getMessage());
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     //Buscar Inventario Pedido Cotizacion Factura
     public ArrayList<INV> sincronizar_INV_pedido(String valor,String campo, String bus) {
         try {
@@ -1012,13 +1041,16 @@ public class Conexion {
             throws JSONException {
         ArrayList<GRU> cxc = new ArrayList<GRU>();
         JSONArray jsonArray = new JSONArray(data);
-
+        GRU temp = new GRU();
+        temp.setNombre("Seleccione una marca");
+        temp.setPk(0);
+        cxc.add(0,temp);
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject item = jsonArray.getJSONObject(i);
             GRU cuantasxcobrar = new GRU();
             cuantasxcobrar.setPk(Integer.parseInt(item.getString("GRU_PK")));
             cuantasxcobrar.setNombre(item.getString("GRU_NOMBRE").trim());
-            cxc.add(i, cuantasxcobrar);
+            cxc.add(i+1, cuantasxcobrar);
         }
         return cxc;
     }
