@@ -1072,4 +1072,25 @@ public class Conexion {
         return new ArrayList<GRU>();
     }
     //Detalle grupo de productos
+
+    //Enviar lista de precios
+    public String enviar_ListaPrecios(String valor, String gru, String porcen) throws JSONException {
+        if (isOnline()) {
+            ArrayList parametros = new ArrayList();
+            Post post = new Post();
+            parametros.add("valor");
+            parametros.add(valor);
+            parametros.add("pocentaje");
+            parametros.add(porcen);
+            parametros.add("cliente");
+            parametros.add(Variables.getCliPk());
+            String datos = post.getServerDataString(parametros, direccion
+                    + "Servicio.svc/EnviarCorreo/" + gru);
+            return datos.replace("\"","");
+        } else {
+            Log.i("sin conexion", "inv_busq2.php");
+        }
+        return "";
+    }
+    //Enviar lista de precios
 }

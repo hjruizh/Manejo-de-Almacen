@@ -34,9 +34,9 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Seleccione una marca"
             android:id="@+id/textView16"
-            android:layout_below="@+id/searchView2"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_below="@+id/textView17"
+            android:layout_alignRight="@+id/editTextPorcen"
+            android:layout_alignEnd="@+id/editTextPorcen" />
 
         <ListView
             android:layout_width="wrap_content"
@@ -45,6 +45,27 @@
             android:layout_below="@+id/spinnerGrupo"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Porcentaje"
+            android:id="@+id/textView17"
+            android:layout_below="@+id/searchView2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberSigned"
+            android:ems="10"
+            android:id="@+id/editTextPorcen"
+            android:layout_below="@+id/searchView2"
+            android:layout_toRightOf="@+id/textView17"
+            android:layout_toEndOf="@+id/textView17"
+            android:text="0" />
 
     </RelativeLayout>
     <ImageButton

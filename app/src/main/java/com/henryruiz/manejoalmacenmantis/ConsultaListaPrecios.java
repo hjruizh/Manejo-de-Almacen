@@ -1,7 +1,9 @@
 package com.henryruiz.manejoalmacenmantis;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -30,6 +33,8 @@ public class ConsultaListaPrecios extends Fragment {
     ArrayList<GRU> NavItms = new ArrayList<GRU>();
     ArrayList<INV> invent = new ArrayList<INV>();
     ListView listview;
+    EditText porcen;
+    String enviado;
 
     public ConsultaListaPrecios() {
         // Required empty public constructor
@@ -43,10 +48,12 @@ public class ConsultaListaPrecios extends Fragment {
         s = new Conexion(c);
         new Grupo().execute("");
         listview = (ListView) rootView.findViewById(R.id.listView2);
-        ImageButton enviar = (ImageButton) rootView.findViewById(R.id.buttonBuscar);
-        android.widget.SearchView search = (android.widget.SearchView) rootView.findViewById(R.id.searchView2);
+        porcen = (EditText) rootView.findViewById(R.id.editTextPorcen);
+        ImageButton buscar = (ImageButton) rootView.findViewById(R.id.buttonBuscar);
+        ImageButton email = (ImageButton) rootView.findViewById(R.id.buttonEmail);
+        final android.widget.SearchView search = (android.widget.SearchView) rootView.findViewById(R.id.searchView2);
 
-        search.setQueryHint("Buscar Cliente");
+        search.setQueryHint("Buscar Productos");
 
         search.setOnQueryTextListener(new android.widget.SearchView.OnQueryTextListener() {
 
@@ -70,6 +77,17 @@ public class ConsultaListaPrecios extends Fragment {
                 return false;
             }
         });
+        buscar.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                new BuscarInv().execute(String.valueOf(search.getQuery()));
+            }
+        });
+        email.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                new EnviarEmail().execute(String.valueOf(search.getQuery()),porcen.getText().toString());
+            }
+        });
+
         return rootView;
     }
 
@@ -173,4 +191,53 @@ public class ConsultaListaPrecios extends Fragment {
             }
         }
     }
+    private class EnviarEmail extends AsyncTask<String, Float, Integer> {
+        ProgressDialog dialog;
+
+        protected void onPreExecute() { // Mostramos antes de comenzar
+            dialog = ProgressDialog.show(getActivity(), "", "Consultando productos...", true);
+        }
+
+        protected Integer doInBackground(String... params) {
+            try {
+
+                String nivel = "1";
+                publishProgress();
+                enviado = s.enviar_ListaPrecios(params[0].trim(),Variables.getGruPK(),params[1].trim());
+
+            } catch (Exception e) {
+
+                e.printStackTrace();
+                return 0;
+            }
+            return 1;
+        }
+
+        protected void onProgressUpdate(Float... valores) {
+            dialog.dismiss();
+        }
+
+        protected void onPostExecute(Integer bytes) {
+            dialog.dismiss();
+            if ((bytes == 1) && (invent != null)) {
+
+                alerta_cantidad(enviado);
+            }
+        }
+    }
+    //Mensaje de Alerta
+    private void alerta_cantidad(String mensaje) {
+
+        AlertDialog alertDialog = new AlertDialog.Builder(c).create();
+        alertDialog.setTitle("");
+        alertDialog.setMessage(mensaje);
+        alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                return;
+
+            }
+        });
+        alertDialog.show();
+    }
+    //Mensaje de Alerta
 }
