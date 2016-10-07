@@ -16,6 +16,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -114,7 +116,7 @@ public class CuentasPorCobrar extends Fragment {
                 name = CARPETA + archivo;
                 final Intent[] intent = {new Intent(MediaStore.ACTION_IMAGE_CAPTURE)};
                 final int[] code = {TAKE_PICTURE};
-                final CharSequence colors[] = new CharSequence[] {"Tomar Foto", "Seleccionar Foto de Galeria", "Sin Foto", "Enviar cuentas por cobrar"};
+                final CharSequence colors[] = new CharSequence[] {"Tomar Foto", "Seleccionar Foto de Galeria", "Sin Foto", "Enviar cuentas por cobrar", "Lista de precios"};
                 final boolean[] band = {true};
                 AlertDialog.Builder builder = new AlertDialog.Builder(c);
                 builder.setTitle("Tomar Foto");
@@ -143,6 +145,14 @@ public class CuentasPorCobrar extends Fragment {
                                 break;
                             case 3:
                                 new EnviarCuentasxCobrar().execute(Variables.getCliPk().toString());
+                                band[0] = false;
+                                break;
+                            case 4:
+                                ConsultaListaPrecios fragment2 = new ConsultaListaPrecios();
+                                FragmentManager fragmentManager = getFragmentManager();
+                                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                fragmentTransaction.replace(R.id.content_frame, fragment2);
+                                fragmentTransaction.commit();
                                 band[0] = false;
                                 break;
                         }

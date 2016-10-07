@@ -1027,8 +1027,9 @@ public class Conexion {
             ArrayList parametros = new ArrayList();
             Post post = new Post();
             String datos = post.getServerDataString(parametros, direccion
-                    + "Servicio.svc/Grupos/");
+                    + "Servicio.svc/Grupos");
             try {
+                Log.i("Grupos", datos);
                     return parseJSONdataGru(datos);
             } catch (JSONException e) {
                 e.printStackTrace();
