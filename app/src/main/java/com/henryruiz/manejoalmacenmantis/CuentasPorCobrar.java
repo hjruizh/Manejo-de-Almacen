@@ -75,6 +75,7 @@ public class CuentasPorCobrar extends Fragment {
         listview = (ListView) rootView.findViewById(R.id.listViewFac);
         montoTotal = (EditText) rootView.findViewById(R.id.editTextMonto);
         msg = (TextView)  rootView.findViewById(R.id.editTextMensaje);
+        Variables.setTituloVentana("CuentasPorCobrar");
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

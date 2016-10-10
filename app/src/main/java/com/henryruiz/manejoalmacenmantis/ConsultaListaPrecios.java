@@ -7,8 +7,6 @@ import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,6 +46,7 @@ public class ConsultaListaPrecios extends Fragment {
         rootView = inflater.inflate(R.layout.fragment_consulta_lista_precios, container, false);
         c = (Context)getActivity();
         s = new Conexion(c);
+        Variables.setTituloVentana("ConsultaListaPrecios");
         new Grupo().execute("");
         listview = (ListView) rootView.findViewById(R.id.listView2);
         porcen = (EditText) rootView.findViewById(R.id.editTextPorcen);
@@ -242,13 +241,4 @@ public class ConsultaListaPrecios extends Fragment {
         alertDialog.show();
     }
     //Mensaje de Alerta
-    public void onBackPressed()
-    {
-        // Añade más funciones si fuese necesario
-        CuentasPorCobrar fragment2 = new CuentasPorCobrar();
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.content_frame, fragment2);
-        getActivity().onBackPressed();  // Invoca al método
-    }
 }

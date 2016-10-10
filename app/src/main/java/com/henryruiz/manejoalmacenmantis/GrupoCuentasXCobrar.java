@@ -42,6 +42,7 @@ public class GrupoCuentasXCobrar extends Fragment {
         c = (Context)getActivity();
         s = new Conexion(c);
         listview = (ListView) rootView.findViewById(R.id.listViewGrupo);
+        Variables.setTituloVentana("GrupoCuentasXCobrar");
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

@@ -72,18 +72,22 @@ public class MainActivity extends AppCompatActivity {
 
                     switch (pos) {
                         case 0:
+                            Variables.setTituloVentana("BuscarProductosPCF");
                             fragment = new BuscarProductosPCF();
                             //principal.setVisibility(View.GONE);
                             break;
                         case 1:
+                            Variables.setTituloVentana("BuscarProductosCompras");
                             fragment = new BuscarProductosCompras();
                             //principal.setVisibility(View.GONE);
                             break;
                         case 2:
+                            Variables.setTituloVentana("SeleccionarInventario");
                             fragment = new SeleccionarInventario();
                             //principal.setVisibility(View.GONE);
                             break;
                         case 3:
+                            Variables.setTituloVentana("FotosFacPedCotCom");
                             fragment = new FotosFacPedCotCom();
                             //principal.setVisibility(View.GONE);
                             break;
@@ -92,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
                             //principal.setVisibility(View.GONE);
                             break;
                         case 5:
+                            Variables.setTituloVentana("GrupoCuentasPagadas");
                             fragment = new GrupoCuentasPagadas();
                             //principal.setVisibility(View.GONE);
                             break;
@@ -202,5 +207,41 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    public void onBackPressed(){
+
+        if (Variables.getTituloVentana().equals("GrupoCuentasXCobrar")) {
+            Principal fragment2 = new Principal();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.content_frame, fragment2)
+                    .commit();
+            //FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            //fragmentTransaction.replace(R.id.content_frame, fragment2);
+        }
+        if (Variables.getTituloVentana().equals("ListaClientes")) {
+            GrupoCuentasXCobrar fragment2 = new GrupoCuentasXCobrar();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.content_frame, fragment2)
+                    .commit();
+            //FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            //fragmentTransaction.replace(R.id.content_frame, fragment2);
+        }
+        if (Variables.getTituloVentana().equals("CuentasPorCobrar")) {
+            ListaClientes fragment2 = new ListaClientes();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.content_frame, fragment2)
+                    .commit();
+            //FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            //fragmentTransaction.replace(R.id.content_frame, fragment2);
+        }
+        if (Variables.getTituloVentana().equals("ConsultaListaPrecios")) {
+            CuentasPorCobrar fragment2 = new CuentasPorCobrar();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.content_frame, fragment2)
+                    .commit();
+            //FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            //fragmentTransaction.replace(R.id.content_frame, fragment2);
+        }
+        // super.onBackPressed();
     }
 }
