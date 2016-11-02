@@ -34,6 +34,7 @@ public class ConsultaListaPrecios extends Fragment {
     ArrayList<INV> invent = new ArrayList<INV>();
     ListView listview;
     EditText porcen;
+    EditText correo;
     String enviado;
 
     public ConsultaListaPrecios() {
@@ -50,6 +51,7 @@ public class ConsultaListaPrecios extends Fragment {
         new Grupo().execute("");
         listview = (ListView) rootView.findViewById(R.id.listView2);
         porcen = (EditText) rootView.findViewById(R.id.editTextPorcen);
+        correo = (EditText) rootView.findViewById(R.id.editTextCorreo);
         ImageButton buscar = (ImageButton) rootView.findViewById(R.id.buttonBuscar);
         ImageButton email = (ImageButton) rootView.findViewById(R.id.buttonEmail);
         final android.widget.SearchView search = (android.widget.SearchView) rootView.findViewById(R.id.searchView2);
@@ -85,7 +87,7 @@ public class ConsultaListaPrecios extends Fragment {
         });
         email.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                new EnviarEmail().execute(String.valueOf(search.getQuery()),porcen.getText().toString());
+                new EnviarEmail().execute(String.valueOf(search.getQuery()),porcen.getText().toString(), correo.getText().toString());
             }
         });
 
@@ -204,7 +206,7 @@ public class ConsultaListaPrecios extends Fragment {
 
                 String nivel = "1";
                 publishProgress();
-                enviado = s.enviar_ListaPrecios(params[0].trim(),Variables.getGruPK(),params[1].trim());
+                enviado = s.enviar_ListaPrecios(params[0].trim(),Variables.getGruPK(),params[1].trim(), params[2].trim());
 
             } catch (Exception e) {
 

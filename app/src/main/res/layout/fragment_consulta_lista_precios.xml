@@ -24,9 +24,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/spinnerGrupo"
+            android:layout_alignParentStart="true"
             android:layout_below="@+id/textView16"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentLeft="true" />
 
         <TextView
             android:layout_width="match_parent"
@@ -34,17 +34,17 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Seleccione una marca"
             android:id="@+id/textView16"
-            android:layout_below="@+id/textView17"
-            android:layout_alignRight="@+id/editTextPorcen"
-            android:layout_alignEnd="@+id/editTextPorcen" />
+            android:layout_below="@+id/textView18"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/listView2"
+            android:layout_alignParentStart="true"
             android:layout_below="@+id/spinnerGrupo"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentLeft="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -54,7 +54,8 @@
             android:id="@+id/textView17"
             android:layout_below="@+id/searchView2"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:paddingTop="10dp" />
 
         <EditText
             android:layout_width="match_parent"
@@ -66,6 +67,30 @@
             android:layout_toRightOf="@+id/textView17"
             android:layout_toEndOf="@+id/textView17"
             android:text="0" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Ingrese correo (Opcional)"
+            android:id="@+id/textView18"
+            android:layout_below="@+id/textView17"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textSize="15dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:id="@+id/editTextCorreo"
+            android:layout_alignTop="@+id/textView18"
+            android:layout_alignRight="@+id/editTextPorcen"
+            android:layout_alignEnd="@+id/editTextPorcen"
+            android:paddingLeft="5dp" />
 
     </RelativeLayout>
     <ImageButton

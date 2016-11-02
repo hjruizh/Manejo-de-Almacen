@@ -12,8 +12,6 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
-import android.support.v4.app.NotificationCompat;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.henryruiz.manejoalmacenmantis.ListadoDeInventario;
@@ -100,6 +98,7 @@ public class Servicio extends Service {
 			//notification.setContentIntent(contentIntent);
 			PendingIntent intencionPendiente = PendingIntent.getActivity(
 					this, 0, new Intent(this, ListadoDeInventario.class), 0);
+
 			notification.setLatestEventInfo(this, contentTitle,
 					contentText, intencionPendiente);
 	        //Le a?ade sonido

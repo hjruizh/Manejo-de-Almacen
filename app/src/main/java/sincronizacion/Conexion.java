@@ -1074,7 +1074,7 @@ public class Conexion {
     //Detalle grupo de productos
 
     //Enviar lista de precios
-    public String enviar_ListaPrecios(String valor, String gru, String porcen) throws JSONException {
+    public String enviar_ListaPrecios(String valor, String gru, String porcen, String email) throws JSONException {
         if (isOnline()) {
             ArrayList parametros = new ArrayList();
             Post post = new Post();
@@ -1083,7 +1083,10 @@ public class Conexion {
             parametros.add("pocentaje");
             parametros.add(porcen);
             parametros.add("cliente");
-            parametros.add(Variables.getCliPk());
+            if (email.equals(""))
+                parametros.add(Variables.getCliPk());
+            else
+                parametros.add(email);
             String datos = post.getServerDataString(parametros, direccion
                     + "Servicio.svc/EnviarCorreo/" + gru);
             return datos.replace("\"","");
