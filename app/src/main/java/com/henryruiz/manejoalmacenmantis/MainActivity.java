@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             ndList = (ListView) findViewById(R.id.navdrawerlist);
 
             final String[] opciones = new String[]{"Buscar Productos", "Buscar Productos Por Compra", "Relaizar Inventario",
-                    "Tomar Fotos Cot, Ped, Fac, Com","Cuentas por Cobrar", "Cuentas Pagadas"};
+                    "Tomar Fotos Cot, Ped, Fac, Com","Cuentas por Cobrar", "Cuentas Pagadas", "Configuración"};
 
             ArrayAdapter<String> ndMenuAdapter =
                     new ArrayAdapter<>(this,
@@ -103,6 +103,11 @@ public class MainActivity extends AppCompatActivity {
                         case 5:
                             Variables.setTituloVentana("GrupoCuentasPagadas");
                             fragment = new GrupoCuentasPagadas();
+                            //principal.setVisibility(View.GONE);
+                            break;
+                        case 6:
+                            Variables.setTituloVentana("Configuraciones");
+                            fragment = new ConfMsgFragment();
                             //principal.setVisibility(View.GONE);
                             break;
                     }
