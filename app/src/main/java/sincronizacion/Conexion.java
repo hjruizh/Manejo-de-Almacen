@@ -1087,6 +1087,10 @@ public class Conexion {
                 parametros.add(Variables.getCliPk());
             else
                 parametros.add(email);
+            parametros.add("asunto");
+            parametros.add(Variables.getAsunto());
+            parametros.add("msg");
+            parametros.add(Variables.getMsg());
             String datos = post.getServerDataString(parametros, direccion
                     + "Servicio.svc/EnviarCorreo/" + gru);
             return datos.replace("\"","");

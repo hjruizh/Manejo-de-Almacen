@@ -31,6 +31,8 @@ public class Variables extends Application {
     private static String cliPk = "";
     private static String gruPK = "";
     private static String tituloVentana = "";
+    private static String asunto = "";
+    private static String msg = "";
 
     public static String getDireccion() {
         return direccion = "http://"+Variables.getUrl()+":"+Variables.getPuerto()+"/";
@@ -229,5 +231,21 @@ public class Variables extends Application {
 
     public static void setTituloVentana(String tituloVentana) {
         Variables.tituloVentana = tituloVentana;
+    }
+
+    public static String getAsunto() {
+        return asunto;
+    }
+
+    public static void setAsunto(String asunto) {
+        Variables.asunto = asunto;
+    }
+
+    public static String getMsg() {
+        return msg;
+    }
+
+    public static void setMsg(String msg) {
+        Variables.msg = msg;
     }
 }

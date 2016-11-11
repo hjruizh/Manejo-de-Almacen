@@ -45,6 +45,11 @@ public class MainActivity extends AppCompatActivity {
         Variables.setPk(settings.getString("pk", null));
         Variables.setUser(settings.getString("alias", null));
         Variables.setMensaje_pk(settings.getString("pk_mensaje", null));
+        try {
+            Variables.setAsunto(settings.getString("asunto", ""));
+            Variables.setMsg(settings.getString("msg", ""));
+        }
+        catch (Exception x){}
 
         if(Variables.getPk()!=null) {
             //Menu del Navigation Drawer
