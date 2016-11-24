@@ -14,6 +14,7 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.List;
 
+import sincronizacion.Variables;
 import tablas.CLI;
 
 /**
@@ -69,7 +70,10 @@ public class ListaClienteAdapter extends BaseAdapter {
             view.titulo_itm = (TextView) convertView.findViewById(R.id.textViewNombre);
             view.codigo = (TextView) convertView.findViewById(R.id.textViewCodigo);
             view.titulo_itm.setText(item.getNombre());
-            view.codigo.setText(item.getCodigo() + " - " + formateador.format(Float.parseFloat(item.getSaldo().replace(",","."))));
+            if (!Variables.getGruPK().equals("0"))
+                view.codigo.setText(item.getCodigo() + " - " + formateador.format(Float.parseFloat(item.getSaldo().replace(",","."))));
+            else
+                view.codigo.setText(item.getCodigo());
             convertView.setTag(view);
 
         } else {
@@ -77,7 +81,10 @@ public class ListaClienteAdapter extends BaseAdapter {
             view.titulo_itm = (TextView) convertView.findViewById(R.id.textViewNombre);
             view.codigo = (TextView) convertView.findViewById(R.id.textViewCodigo);
             view.titulo_itm.setText(item.getNombre());
-            view.codigo.setText(item.getCodigo() + " - " + formateador.format(Float.parseFloat(item.getSaldo().replace(",","."))));
+            if (!Variables.getGruPK().equals("0"))
+                view.codigo.setText(item.getCodigo() + " - " + formateador.format(Float.parseFloat(item.getSaldo().replace(",","."))));
+            else
+                view.codigo.setText(item.getCodigo());
         }
 
         //Setear la imagen desde el recurso drawable

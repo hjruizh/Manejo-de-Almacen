@@ -127,7 +127,7 @@ public class ConsultaListaPrecios extends Fragment {
                 try {
                     if (NavItms!=null)
                     {
-                        String array_spinner[]=new String[NavItms.size()+1];
+                        String array_spinner[]=new String[NavItms.size()];
                         for (int i = 0; i<NavItms.size(); i++){
                             array_spinner[i] = NavItms.get(i).getNombre();
                         }

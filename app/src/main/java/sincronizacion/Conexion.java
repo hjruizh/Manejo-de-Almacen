@@ -795,7 +795,8 @@ public class Conexion {
                 cliente.setPk(Integer.parseInt(item.getString("CLI_PK")));
                 cliente.setCodigo(item.getString("CLI_CODIGO").trim());
                 cliente.setNombre(item.getString("CLI_NOMBRE").trim());
-                cliente.setSaldo(item.getString("CLI_SALDO").trim());
+                if (!Variables.getGruPK().equals("0"))
+                    cliente.setSaldo(item.getString("CLI_SALDO").trim());
                 cli.add(j, cliente);
                 j++;
                 pk = item.getString("CLI_PK").trim();
@@ -812,6 +813,8 @@ public class Conexion {
             Post post = new Post();
             String datos = post.getServerDataString(parametros, direccion
                     + "Servicio.svc/Cliente/" + pk);
+            Log.i("sin conexion", direccion
+                    + "Servicio.svc/Cliente/" + pk + datos);
             try {
                 return parseJSONdataCli(datos);
             } catch (JSONException e) {
@@ -839,6 +842,74 @@ public class Conexion {
             Log.i("sin conexion", "inv_busq2.php");
         }
         return new ArrayList<CLI>();
+    }
+
+    public ArrayList<CLI> sincronizar_cli_nuevos(String pk) throws JSONException {
+        if (isOnline()) {
+            ArrayList parametros = new ArrayList();
+            Post post = new Post();
+            String datos = post.getServerDataString(parametros, direccion
+                    + "Servicio.svc/ClienteN/" + pk);
+            Log.i("sin conexion", direccion
+                    + "Servicio.svc/ClienteN/" + pk + datos);
+            try {
+                return parseJSONdataCli(datos);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Log.i("sin conexion", "inv_busq2.php");
+        }
+        return new ArrayList<CLI>();
+    }
+    public ArrayList<CLI> sincronizar_cli_nuevos(String pk, String buscar) throws JSONException {
+        if (isOnline()) {
+            ArrayList parametros = new ArrayList();
+            Post post = new Post();
+            parametros.add("valor");
+            parametros.add(buscar);
+            String datos = post.getServerDataString(parametros, direccion
+                    + "Servicio.svc/ClienteN/" + pk);
+            try {
+                return parseJSONdataCli(datos);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Log.i("sin conexion", "inv_busq2.php");
+        }
+        return new ArrayList<CLI>();
+    }
+
+    public String guardar_cli_nuevo(String rif,String nom,
+                                    String tel,String dir,
+                                    String obs,String mail) throws JSONException {
+        if (isOnline()) {
+            ArrayList parametros = new ArrayList();
+            Post post = new Post();
+            parametros.add("CLN_RIF");
+            parametros.add(rif);
+            parametros.add("CLN_NOMBRE");
+            parametros.add(nom);
+            parametros.add("CLN_GCLFK");
+            parametros.add(Variables.getGruPK());
+            parametros.add("CLN_TEL");
+            parametros.add(tel);
+            parametros.add("CLN_DIR");
+            parametros.add(dir);
+            parametros.add("CLN_OBS");
+            parametros.add(obs);
+            parametros.add("CLN_EMAIL");
+            parametros.add(mail);
+            String datos = post.getServerDataString(parametros, direccion
+                    + "Servicio.svc/GuardarNuevoCliente");
+            Log.i("sin conexion", direccion
+                    + "Servicio.svc/GuardarNuevoCliente" + datos);
+            return datos.replace("\"","");
+        } else {
+            Log.i("sin conexion", "inv_busq2.php");
+        }
+        return "";
     }
     //Sincronizar Clientes
     //Detalle cuentas por cobrar

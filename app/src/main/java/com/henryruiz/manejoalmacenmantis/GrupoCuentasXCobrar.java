@@ -49,8 +49,8 @@ public class GrupoCuentasXCobrar extends Fragment {
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long id) {
                 Log.i("posicion", "posicion " + position);
                 final GCL posActual = NavItms.get(position);
-                Variables.setCliPk(String.valueOf(posActual.getPk()));
-                String pk = Variables.getCliPk();
+                Variables.setGruPK(String.valueOf(posActual.getPk()));
+                String pk = Variables.getGruPK();
                 ListaClientes fragment2 = new ListaClientes();
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

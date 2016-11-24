@@ -1,5 +1,6 @@
 package com.henryruiz.manejoalmacenmantis;
 
+
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -24,7 +26,7 @@ import sincronizacion.Variables;
 import tablas.CLI;
 
 
-public class ListaClientes extends Fragment {
+public class ListaClientesNuevosFragment extends Fragment {
 
     View rootView;
     Context c;
@@ -32,22 +34,35 @@ public class ListaClientes extends Fragment {
     ArrayList<CLI> NavItms = new ArrayList<CLI>();
     ListView listview;
 
-    public ListaClientes() {
+    public ListaClientesNuevosFragment() {
         // Required empty public constructor
     }
 
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        rootView = inflater.inflate(R.layout.fragment_lista_clientes, container, false);
+        rootView = inflater.inflate(R.layout.fragment_lista_clientes_nuevos, container, false);
         c = (Context)getActivity();
         s = new Conexion(c);
-        Variables.setTituloVentana("ListaClientes");
+        Variables.setTituloVentana("ListaClientesNuevos");
         listview = (ListView) rootView.findViewById(R.id.listViewGrupo);
 
         if (!Variables.getGruPK().equals("")) {
             new Clientes().execute("");
         }
+
+        ImageButton nuevo = (ImageButton) rootView.findViewById(R.id.buttonNuevo);
+        nuevo.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                RegistrarClienteFragment fragment2 = new RegistrarClienteFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.content_frame, fragment2);
+                fragmentTransaction.commit();
+            }
+        });
 
         SearchView search = (SearchView) rootView.findViewById(R.id.searchView);
 

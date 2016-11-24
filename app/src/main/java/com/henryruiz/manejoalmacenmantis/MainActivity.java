@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             ndList = (ListView) findViewById(R.id.navdrawerlist);
 
             final String[] opciones = new String[]{"Buscar Productos", "Buscar Productos Por Compra", "Relaizar Inventario",
-                    "Tomar Fotos Cot, Ped, Fac, Com","Cuentas por Cobrar", "Cuentas Pagadas", "Configuración"};
+                    "Tomar Fotos Cot, Ped, Fac, Com","Cuentas por Cobrar", "Cuentas Pagadas", "Clientes a Credito", "Clientes Nuevos", "Configuración"};
 
             ArrayAdapter<String> ndMenuAdapter =
                     new ArrayAdapter<>(this,
@@ -106,6 +106,17 @@ public class MainActivity extends AppCompatActivity {
                             //principal.setVisibility(View.GONE);
                             break;
                         case 6:
+                            Variables.setTituloVentana("ClientesCredito");
+                            Variables.setGruPK("0");
+                            fragment = new ListaClientes();
+                            //principal.setVisibility(View.GONE);
+                            break;
+                        case 7:
+                            Variables.setTituloVentana("ListaClientesNuevos");
+                            fragment = new ListaClientesNuevosFragment();
+                            //principal.setVisibility(View.GONE);
+                            break;
+                        case 8:
                             Variables.setTituloVentana("Configuraciones");
                             fragment = new ConfMsgFragment();
                             //principal.setVisibility(View.GONE);
@@ -245,7 +256,32 @@ public class MainActivity extends AppCompatActivity {
             //fragmentTransaction.replace(R.id.content_frame, fragment2);
         }
         if (Variables.getTituloVentana().equals("ConsultaListaPrecios")) {
-            CuentasPorCobrar fragment2 = new CuentasPorCobrar();
+            if(!Variables.getGruPK().equals("0")) {
+                CuentasPorCobrar fragment2 = new CuentasPorCobrar();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.content_frame, fragment2)
+                        .commit();
+            }
+            else{
+                ListaClientes fragment2 = new ListaClientes();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.content_frame, fragment2)
+                        .commit();
+            }
+            //FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            //fragmentTransaction.replace(R.id.content_frame, fragment2);
+        }
+        if (Variables.getTituloVentana().equals("ClientesNuevos")) {
+            ListaClientesNuevosFragment fragment2 = new ListaClientesNuevosFragment();
+            Variables.setGruPK("");
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.content_frame, fragment2)
+                    .commit();
+            //FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            //fragmentTransaction.replace(R.id.content_frame, fragment2);
+        }
+        if (Variables.getTituloVentana().equals("ListaClientesNuevos")) {
+            Principal fragment2 = new Principal();
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.content_frame, fragment2)
                     .commit();
