@@ -797,6 +797,11 @@ public class Conexion {
                 cliente.setNombre(item.getString("CLI_NOMBRE").trim());
                 if (!Variables.getGruPK().equals("0"))
                     cliente.setSaldo(item.getString("CLI_SALDO").trim());
+                else
+                    try {
+                        cliente.setEmail(item.getString("CLI_EMAIL").trim());
+                    }
+                    catch (Exception x){}
                 cli.add(j, cliente);
                 j++;
                 pk = item.getString("CLI_PK").trim();
@@ -1162,6 +1167,10 @@ public class Conexion {
             parametros.add(Variables.getAsunto());
             parametros.add("msg");
             parametros.add(Variables.getMsg());
+            if (Variables.getMasVendido()){
+                parametros.add("masVendido");
+                parametros.add("True");
+            }
             String datos = post.getServerDataString(parametros, direccion
                     + "Servicio.svc/EnviarCorreo/" + gru);
             return datos.replace("\"","");

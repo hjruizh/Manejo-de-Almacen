@@ -48,10 +48,8 @@ public class ListaClientesNuevosFragment extends Fragment {
         s = new Conexion(c);
         Variables.setTituloVentana("ListaClientesNuevos");
         listview = (ListView) rootView.findViewById(R.id.listViewGrupo);
-
-        if (!Variables.getGruPK().equals("")) {
-            new Clientes().execute("");
-        }
+        Variables.setEmailCliN("");
+        new Clientes().execute("");
 
         ImageButton nuevo = (ImageButton) rootView.findViewById(R.id.buttonNuevo);
         nuevo.setOnClickListener(new View.OnClickListener() {
@@ -99,21 +97,13 @@ public class ListaClientesNuevosFragment extends Fragment {
                 Log.i("posicion", "posicion " + position);
                 final CLI posActual = NavItms.get(position);
                 Variables.setCliPk(String.valueOf(posActual.getPk()));
+                Variables.setEmailCliN(posActual.getEmail());
                 String pk = Variables.getCliPk();
-                if (!Variables.getGruPK().equals("0")) {
-                    CuentasPorCobrar fragment2 = new CuentasPorCobrar();
-                    FragmentManager fragmentManager = getFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.content_frame, fragment2);
-                    fragmentTransaction.commit();
-                }
-                else {
-                    ConsultaListaPrecios fragment2 = new ConsultaListaPrecios();
-                    FragmentManager fragmentManager = getFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.content_frame, fragment2);
-                    fragmentTransaction.commit();
-                }
+                ConsultaListaPrecios fragment2 = new ConsultaListaPrecios();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.content_frame, fragment2);
+                fragmentTransaction.commit();
             }
         });
 
@@ -129,11 +119,11 @@ public class ListaClientesNuevosFragment extends Fragment {
 
         protected Integer doInBackground(String... params) {
             try {
-                String pk = Variables.getGruPK();
+                String pk = "0";
                 if (params[0].equals(""))
-                    NavItms = s.sincronizar_cli(pk);
+                    NavItms = s.sincronizar_cli_nuevos(pk);
                 else
-                    NavItms = s.sincronizar_cli(pk, params[0]);
+                    NavItms = s.sincronizar_cli_nuevos(pk, params[0]);
                 if (NavItms!= null)
                 {
                     return 1;

@@ -42,6 +42,7 @@ public class ListaClientes extends Fragment {
         rootView = inflater.inflate(R.layout.fragment_lista_clientes, container, false);
         c = (Context)getActivity();
         s = new Conexion(c);
+        Variables.setEmailCliN("");
         Variables.setTituloVentana("ListaClientes");
         listview = (ListView) rootView.findViewById(R.id.listViewGrupo);
 

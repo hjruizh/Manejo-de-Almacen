@@ -45,6 +45,7 @@ public class ListaClientesCPA extends Fragment {
         rootView = inflater.inflate(R.layout.fragment_lista_clientes, container, false);
         c = (Context)getActivity();
         s = new Conexion(c);
+        Variables.setEmailCliN("");
         listview = (ListView) rootView.findViewById(R.id.listViewGrupo);
 
         if (!Variables.getCliPk().equals("")) {

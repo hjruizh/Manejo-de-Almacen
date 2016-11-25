@@ -1,7 +1,9 @@
 package com.henryruiz.manejoalmacenmantis;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -53,9 +55,12 @@ public class RegistrarClienteFragment extends Fragment {
         final EditText mail = (EditText) rootView.findViewById(R.id.editTextEmail);
         guardar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                new Guardar().execute(rif.getText().toString(),nom.getText().toString(),
+                if (rif.getText().toString().trim().equals(""))
+                    new Guardar().execute(rif.getText().toString(),nom.getText().toString(),
                         tel.getText().toString(),dir.getText().toString(),
                         obs.getText().toString(),mail.getText().toString());
+                else
+                    alerta_cantidad("Ingrese al menos el rif del cliente");
             }
         });
 
@@ -158,16 +163,42 @@ public class RegistrarClienteFragment extends Fragment {
         protected void onPostExecute(Integer bytes) {
             dialog.dismiss();
             if (bytes==1) {
-                try {
-
-                } catch (Exception e) {
-                    //Log.i("error", e.getMessage());
+                if (valor.contains("Datos guardados de manera exitosa")){
+                    final EditText rif = (EditText) rootView.findViewById(R.id.editTextRif);
+                    final EditText nom = (EditText) rootView.findViewById(R.id.editTextNombre);
+                    final EditText tel = (EditText) rootView.findViewById(R.id.editTextTel);
+                    final EditText dir = (EditText) rootView.findViewById(R.id.editTextDir);
+                    final EditText obs = (EditText) rootView.findViewById(R.id.editTextObs);
+                    final EditText mail = (EditText) rootView.findViewById(R.id.editTextEmail);
+                    rif.setText("");
+                    nom.setText("");
+                    tel.setText("");
+                    dir.setText("");
+                    obs.setText("");
+                    mail.setText("");
+                    alerta_cantidad(valor);
                 }
             }
             else {
+                alerta_cantidad(valor);
                 //Log.i("error","Sin Grupo");
             }
         }
 
     }
+    //Mensaje de Alerta
+    private void alerta_cantidad(String mensaje) {
+
+        AlertDialog alertDialog = new AlertDialog.Builder(c).create();
+        alertDialog.setTitle("");
+        alertDialog.setMessage(mensaje);
+        alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                return;
+
+            }
+        });
+        alertDialog.show();
+    }
+    //Mensaje de Alerta
 }

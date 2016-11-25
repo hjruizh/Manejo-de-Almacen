@@ -33,6 +33,8 @@ public class Variables extends Application {
     private static String tituloVentana = "";
     private static String asunto = "";
     private static String msg = "";
+    private static String emailCliN = "";
+    private static boolean masVendido = false;
 
     public static String getDireccion() {
         return direccion = "http://"+Variables.getUrl()+":"+Variables.getPuerto()+"/";
@@ -247,5 +249,21 @@ public class Variables extends Application {
 
     public static void setMsg(String msg) {
         Variables.msg = msg;
+    }
+
+    public static String getEmailCliN() {
+        return emailCliN;
+    }
+
+    public static void setEmailCliN(String emailCliN) {
+        Variables.emailCliN = emailCliN;
+    }
+
+    public static boolean getMasVendido() {
+        return masVendido;
+    }
+
+    public static void setMasVendido(boolean masVendido) {
+        Variables.masVendido = masVendido;
     }
 }

@@ -112,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
                             //principal.setVisibility(View.GONE);
                             break;
                         case 7:
+                            Variables.setGruPK("0");
                             Variables.setTituloVentana("ListaClientesNuevos");
                             fragment = new ListaClientesNuevosFragment();
                             //principal.setVisibility(View.GONE);
@@ -263,17 +264,26 @@ public class MainActivity extends AppCompatActivity {
                         .commit();
             }
             else{
-                ListaClientes fragment2 = new ListaClientes();
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.content_frame, fragment2)
-                        .commit();
+                if (Variables.getEmailCliN().equals("")) {
+                    ListaClientes fragment2 = new ListaClientes();
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.content_frame, fragment2)
+                            .commit();
+                }
+                else{
+                    Variables.setEmailCliN("");
+                    ListaClientesNuevosFragment fragment2 = new ListaClientesNuevosFragment();
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.content_frame, fragment2)
+                            .commit();
+                }
             }
             //FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             //fragmentTransaction.replace(R.id.content_frame, fragment2);
         }
         if (Variables.getTituloVentana().equals("ClientesNuevos")) {
             ListaClientesNuevosFragment fragment2 = new ListaClientesNuevosFragment();
-            Variables.setGruPK("");
+            Variables.setGruPK("0");
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.content_frame, fragment2)
                     .commit();

@@ -52,6 +52,9 @@ public class ConsultaListaPrecios extends Fragment {
         listview = (ListView) rootView.findViewById(R.id.listView2);
         porcen = (EditText) rootView.findViewById(R.id.editTextPorcen);
         correo = (EditText) rootView.findViewById(R.id.editTextCorreo);
+        if (!Variables.getEmailCliN().equals("")){
+            correo.setText(Variables.getEmailCliN());
+        }
         ImageButton buscar = (ImageButton) rootView.findViewById(R.id.buttonBuscar);
         ImageButton email = (ImageButton) rootView.findViewById(R.id.buttonEmail);
         final android.widget.SearchView search = (android.widget.SearchView) rootView.findViewById(R.id.searchView2);
@@ -87,6 +90,23 @@ public class ConsultaListaPrecios extends Fragment {
         });
         email.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(c);
+                builder.setTitle("Tomar Foto");
+                final CharSequence colors[] = new CharSequence[] {"Enviar Productos", "Enviar mas vendidos"};
+                builder.setItems(colors, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case 0:
+                                Variables.setMasVendido(false);
+                                break;
+                            case 1:
+                                Variables.setMasVendido(true);
+                                break;
+                        }
+                    }
+                });
+                builder.show();
                 new EnviarEmail().execute(String.valueOf(search.getQuery()),porcen.getText().toString(), correo.getText().toString());
             }
         });
