@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -89,21 +88,21 @@ public class DetalleProducto extends BaseActivity implements ObservableScrollVie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detalle_producto);
+        setContentView(com.henryruiz.manejoalmacenmantis.R.layout.activity_detalle_producto);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar((Toolbar) findViewById(com.henryruiz.manejoalmacenmantis.R.id.toolbar));
+        toolbar = (Toolbar) findViewById(com.henryruiz.manejoalmacenmantis.R.id.toolbar);
         toolbar.setTitle("Detalle de Productos");
         setSupportActionBar(toolbar);
 
-        mImageView = findViewById(R.id.image);
-        mToolbarView = findViewById(R.id.toolbar);
-        mToolbarView.setBackgroundColor(ScrollUtils.getColorWithAlpha(0, getResources().getColor(R.color.list_row_pressed_bg)));
+        mImageView = findViewById(com.henryruiz.manejoalmacenmantis.R.id.image);
+        mToolbarView = findViewById(com.henryruiz.manejoalmacenmantis.R.id.toolbar);
+        mToolbarView.setBackgroundColor(ScrollUtils.getColorWithAlpha(0, getResources().getColor(com.henryruiz.manejoalmacenmantis.R.color.list_row_pressed_bg)));
 
-        mScrollView = (ObservableScrollView) findViewById(R.id.scroll);
+        mScrollView = (ObservableScrollView) findViewById(com.henryruiz.manejoalmacenmantis.R.id.scroll);
         mScrollView.setScrollViewCallbacks(this);
 
-        mParallaxImageHeight = getResources().getDimensionPixelSize(R.dimen.parallax_image_height);
+        mParallaxImageHeight = getResources().getDimensionPixelSize(com.henryruiz.manejoalmacenmantis.R.dimen.parallax_image_height);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             pk = extras.getString("pk");
@@ -111,14 +110,14 @@ public class DetalleProducto extends BaseActivity implements ObservableScrollVie
         if (!pk.equals(""))
             new Detalle().execute("");
         //Ocultar o Mostrar Contados por Compra o Auditoria
-        CardView audi = (CardView)findViewById(R.id.card_view_contados);
+        CardView audi = (CardView)findViewById(com.henryruiz.manejoalmacenmantis.R.id.card_view_contados);
         if(!Variables.getCom().equals("") || !Variables.getInventario().equals(""))
             audi.setVisibility(View.VISIBLE);
         else
             audi.setVisibility(View.GONE);
         //Ocultar o Mostrar Contados por Compra o Auditoria
         //Tomar Foto o seleccionar foto de Galeria
-        ImageButton btnAction = (ImageButton)findViewById(R.id.fabButton);
+        ImageButton btnAction = (ImageButton)findViewById(com.henryruiz.manejoalmacenmantis.R.id.fabButton);
         btnAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -175,17 +174,17 @@ public class DetalleProducto extends BaseActivity implements ObservableScrollVie
         });
         //Tomar Foto o seleccionar foto de Galeria
         //Ubicaciones
-        final EditText u1 = (EditText) findViewById(R.id.editTextUbi1);
-        final EditText u2 = (EditText) findViewById(R.id.editTextUbi2);
-        final EditText u3 = (EditText) findViewById(R.id.editTextUbi3);
-        final EditText u4 = (EditText) findViewById(R.id.editTextUbi4);
-        final EditText u5 = (EditText) findViewById(R.id.editTextUbi5);
-        final EditText u6 = (EditText) findViewById(R.id.editTextUbi6);
+        final EditText u1 = (EditText) findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextUbi1);
+        final EditText u2 = (EditText) findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextUbi2);
+        final EditText u3 = (EditText) findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextUbi3);
+        final EditText u4 = (EditText) findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextUbi4);
+        final EditText u5 = (EditText) findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextUbi5);
+        final EditText u6 = (EditText) findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextUbi6);
         //Ubicaciones
         //Imprimir Etiquetas Peque�as
-        final EditText cantidad = (EditText) findViewById(R.id.editTextCantidad);
-        ImageButton boton_impp = (ImageButton) findViewById(R.id.buttonEtiquetaP);
-        final EditText cont = (EditText) findViewById(R.id.editTextCantidad);
+        final EditText cantidad = (EditText) findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextCantidad);
+        ImageButton boton_impp = (ImageButton) findViewById(com.henryruiz.manejoalmacenmantis.R.id.buttonEtiquetaP);
+        final EditText cont = (EditText) findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextCantidad);
         boton_impp.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 String ncant = cantidad.getText().toString().trim();
@@ -230,7 +229,7 @@ public class DetalleProducto extends BaseActivity implements ObservableScrollVie
         });
         //Imprimir Etiquetas Peque�as
         //Imprimir Etiquetas Grandes
-        ImageButton boton_impg = (ImageButton) findViewById(R.id.buttonEtiquetaG);
+        ImageButton boton_impg = (ImageButton) findViewById(com.henryruiz.manejoalmacenmantis.R.id.buttonEtiquetaG);
         boton_impg.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 String ncant = cantidad.getText().toString().trim();
@@ -268,8 +267,8 @@ public class DetalleProducto extends BaseActivity implements ObservableScrollVie
         });
         //Imprimir Etiquetas Grandes
         //Guardar Informacion
-        final EditText contados = (EditText) findViewById(R.id.editTextContados);
-        ImageButton boton_comprar = (ImageButton) findViewById(R.id.buttonGuardar);
+        final EditText contados = (EditText) findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextContados);
+        ImageButton boton_comprar = (ImageButton) findViewById(com.henryruiz.manejoalmacenmantis.R.id.buttonGuardar);
         boton_comprar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 if (!Variables.getCom().equals("") || !Variables.getInventario().equals(""))
@@ -285,20 +284,20 @@ public class DetalleProducto extends BaseActivity implements ObservableScrollVie
         //Informacion de productos solicitados por Chat
         SharedPreferences settings = getSharedPreferences("perfil", MODE_PRIVATE);
         codigoChat = settings.getString("codigo", null);
-        final ImageButton NoHay = (ImageButton) findViewById(R.id.fabButtonListo);
+        final ImageButton NoHay = (ImageButton) findViewById(com.henryruiz.manejoalmacenmantis.R.id.fabButtonListo);
         NoHay.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
                     new updateMsg().execute("4");
                 }
             });
-        final ImageButton Entregado = (ImageButton) findViewById(R.id.fabButtonCancelar);
+        final ImageButton Entregado = (ImageButton) findViewById(com.henryruiz.manejoalmacenmantis.R.id.fabButtonCancelar);
         Entregado.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {new updateMsg().execute("3");
                 }
             });
         //Informacion de productos solicitados por Chat
         //Enviar Etiqueta
-        final ImageButton sms = (ImageButton) findViewById(R.id.fabButtonSMS);
+        final ImageButton sms = (ImageButton) findViewById(com.henryruiz.manejoalmacenmantis.R.id.fabButtonSMS);
         sms.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(DetalleProducto.this);
@@ -488,7 +487,7 @@ public class DetalleProducto extends BaseActivity implements ObservableScrollVie
                      */
                     Log.i("Seleccionado", "" + requestCode + TAKE_PICTURE);
                     if (data.hasExtra("data")) {
-                        ImageView iv = (ImageView) findViewById(R.id.image);
+                        ImageView iv = (ImageView) findViewById(com.henryruiz.manejoalmacenmantis.R.id.image);
                         iv.setImageBitmap((Bitmap) data.getParcelableExtra("data"));
                         //new Foto().execute("");
                     }
@@ -503,7 +502,7 @@ public class DetalleProducto extends BaseActivity implements ObservableScrollVie
                     Log.i("Seleccionado", "" + requestCode + TAKE_PICTURE);
                     File f = new File(name);
                     Bitmap bitmap = BitmapRe.decodeFile(f,800,600);
-                    ImageView iv = (ImageView) findViewById(R.id.image);
+                    ImageView iv = (ImageView) findViewById(com.henryruiz.manejoalmacenmantis.R.id.image);
                     iv.setImageBitmap(bitmap);
                     /**
                      * Para guardar la imagen en la galer?a, utilizamos una conexi?n a un MediaScanner
@@ -545,7 +544,7 @@ public class DetalleProducto extends BaseActivity implements ObservableScrollVie
                         BufferedInputStream bis = new BufferedInputStream(is);
                         File f = new File(selectedImagePath);
                         Bitmap bitmap = BitmapRe.decodeFile(f,800,600);//BitmapFactory.decodeStream(bis);
-                        ImageView iv = (ImageView) findViewById(R.id.image);
+                        ImageView iv = (ImageView) findViewById(com.henryruiz.manejoalmacenmantis.R.id.image);
                         iv.setImageBitmap(bitmap);
                         //new Foto().execute("");
                     } catch (FileNotFoundException e) {
@@ -581,7 +580,7 @@ public class DetalleProducto extends BaseActivity implements ObservableScrollVie
 
     @Override
     public void onScrollChanged(int scrollY, boolean firstScroll, boolean dragging) {
-        int baseColor = getResources().getColor(R.color.list_row_pressed_bg);
+        int baseColor = getResources().getColor(com.henryruiz.manejoalmacenmantis.R.color.list_row_pressed_bg);
         float alpha = Math.min(1, (float) scrollY / mParallaxImageHeight);
         mToolbarView.setBackgroundColor(ScrollUtils.getColorWithAlpha(alpha, baseColor));
         ViewHelper.setTranslationY(mImageView, scrollY / 2);
@@ -636,16 +635,16 @@ public class DetalleProducto extends BaseActivity implements ObservableScrollVie
         protected void onPostExecute(Integer bytes) {
             dialog.dismiss();
             if (aux != null) {
-                TextView t1 = (TextView) findViewById(R.id.toolbar_nombre);
-                TextView t2 = (TextView) findViewById(R.id.toolbar_codigo);
-                ImageView i = (ImageView) findViewById(R.id.image);
-                EditText u1 = (EditText) findViewById(R.id.editTextUbi1);
-                EditText u2 = (EditText) findViewById(R.id.editTextUbi2);
-                EditText u3 = (EditText) findViewById(R.id.editTextUbi3);
-                EditText u4 = (EditText) findViewById(R.id.editTextUbi4);
-                EditText u5 = (EditText) findViewById(R.id.editTextUbi5);
-                EditText u6 = (EditText) findViewById(R.id.editTextUbi6);
-                TextView ex = (TextView) findViewById(R.id.textViewTitulo5);
+                TextView t1 = (TextView) findViewById(com.henryruiz.manejoalmacenmantis.R.id.toolbar_nombre);
+                TextView t2 = (TextView) findViewById(com.henryruiz.manejoalmacenmantis.R.id.toolbar_codigo);
+                ImageView i = (ImageView) findViewById(com.henryruiz.manejoalmacenmantis.R.id.image);
+                EditText u1 = (EditText) findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextUbi1);
+                EditText u2 = (EditText) findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextUbi2);
+                EditText u3 = (EditText) findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextUbi3);
+                EditText u4 = (EditText) findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextUbi4);
+                EditText u5 = (EditText) findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextUbi5);
+                EditText u6 = (EditText) findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextUbi6);
+                TextView ex = (TextView) findViewById(com.henryruiz.manejoalmacenmantis.R.id.textViewTitulo5);
                 t1.setText(aux.getNombre());
                 t2.setText(aux.getCodigo());
                 u1.setText(aux.getubi1());
@@ -659,7 +658,7 @@ public class DetalleProducto extends BaseActivity implements ObservableScrollVie
                 }
                 archivo = aux.getCodigo() + ".jpg";
                 if (!Variables.getCom().equals("")){
-                    EditText con = (EditText) findViewById(R.id.editTextContados);
+                    EditText con = (EditText) findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextContados);
                     con.setText(aux.getcontados());
                 }
                 //ex.setText(String.valueOf(aux.getExistencia()));
@@ -740,7 +739,7 @@ public class DetalleProducto extends BaseActivity implements ObservableScrollVie
 
                 }
                 else{
-                    CardView chat = (CardView)findViewById(R.id.card_view_chat);
+                    CardView chat = (CardView)findViewById(com.henryruiz.manejoalmacenmantis.R.id.card_view_chat);
                     chat.setVisibility(View.GONE);
                 }
             }
@@ -790,7 +789,7 @@ public class DetalleProducto extends BaseActivity implements ObservableScrollVie
 
         protected Integer doInBackground(String... urls) {
             try {
-                EditText cant = (EditText) findViewById(R.id.editTextCantidad);
+                EditText cant = (EditText) findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextCantidad);
                 mensaje = "Etiqueta: "+s.enviar_etiqueta(aux.getPk(), urls[0], cant.getText().toString())+"\n";
                 /*if (!compra.equals("") && urls[0].equals("1")){
                     EditText cont = (EditText) findViewById(R.id.editTextCont);
@@ -826,18 +825,18 @@ public class DetalleProducto extends BaseActivity implements ObservableScrollVie
 
         protected Integer doInBackground(String... urls) {
             try {
-                EditText u1 = (EditText) findViewById(R.id.editTextUbi1);
-                EditText u2 = (EditText) findViewById(R.id.editTextUbi2);
-                EditText u3 = (EditText) findViewById(R.id.editTextUbi3);
-                EditText u4 = (EditText) findViewById(R.id.editTextUbi4);
-                EditText u5 = (EditText) findViewById(R.id.editTextUbi5);
-                EditText u6 = (EditText) findViewById(R.id.editTextUbi6);
+                EditText u1 = (EditText) findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextUbi1);
+                EditText u2 = (EditText) findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextUbi2);
+                EditText u3 = (EditText) findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextUbi3);
+                EditText u4 = (EditText) findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextUbi4);
+                EditText u5 = (EditText) findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextUbi5);
+                EditText u6 = (EditText) findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextUbi6);
                 mensaje = "Ubicacion: "+s.enviar_ubicacion(aux.getainPk(), u1.getText()
                         .toString(), u2.getText().toString(), u3.getText()
                         .toString(), u4.getText().toString(), u5.getText()
                         .toString(), u6.getText().toString())+"\n";
                 if (!Variables.getMes().equals("") && !Variables.getAnio().equals("")){
-                    EditText cont = (EditText) findViewById(R.id.editTextContados);
+                    EditText cont = (EditText) findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextContados);
                     String mes = Variables.agregarCero(Integer.parseInt(Variables.getMes()) + 1);
                     String fechaf = String.valueOf(Variables.getAnio().toString()) + mes + Fecha.diasDelMes(Integer.parseInt(Variables.getMes()), Variables.getAnio().toString());
                     mensaje += "Contados: "+s.enviar_conatdos(String.valueOf(aux.getPk()), fechaf,
@@ -846,19 +845,19 @@ public class DetalleProducto extends BaseActivity implements ObservableScrollVie
                     Log.i("Inventario","-"+(Variables.getInventario().equals("Diario")));
                 }
                 if(Variables.getInventario().equals("Diario")){
-                    EditText cont = (EditText) findViewById(R.id.editTextContados);
+                    EditText cont = (EditText) findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextContados);
                     mensaje += "Contados: "+s.enviar_conatdos(String.valueOf(aux.getPk()), "",
                             cont.getText().toString(), String.valueOf(aux.getExistencia()));
                     Log.i("Inventario","-"+(Variables.getInventario()));
                     Log.i("Inventario","-"+(Variables.getInventario().equals("Diario")));
                 }
                 if (!Variables.getAudi().equals("")){
-                    EditText cont = (EditText) findViewById(R.id.editTextContados);
+                    EditText cont = (EditText) findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextContados);
                     mensaje += "Contados: "+s.enviar_conatdos(String.valueOf(aux.getPk()),
                             cont.getText().toString(), String.valueOf(aux.getExistencia()));
                 }
                 if (!Variables.getCom().equals("")){
-                    EditText cont = (EditText) findViewById(R.id.editTextContados);
+                    EditText cont = (EditText) findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextContados);
                     mensaje += "Auditar: " + s.enviar_etiqueta_comp(Variables.getCom(),aux.getPk(),
                             "0", cont.getText().toString());
                 }

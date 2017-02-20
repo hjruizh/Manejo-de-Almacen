@@ -38,10 +38,10 @@ public class GrupoCuentasPagadas extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_grupo_cuentas_x_cobrar, container, false);
+        rootView = inflater.inflate(com.henryruiz.manejoalmacenmantis.R.layout.fragment_grupo_cuentas_x_cobrar, container, false);
         c = (Context)getActivity();
         s = new Conexion(c);
-        listview = (ListView) rootView.findViewById(R.id.listViewGrupo);
+        listview = (ListView) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.listViewGrupo);
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -53,7 +53,7 @@ public class GrupoCuentasPagadas extends Fragment {
                 ListaClientesCPA fragment2 = new ListaClientesCPA();
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.content_frame, fragment2);
+                fragmentTransaction.replace(com.henryruiz.manejoalmacenmantis.R.id.content_frame, fragment2);
                 fragmentTransaction.commit();
             }
         });

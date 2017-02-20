@@ -43,26 +43,26 @@ public class ListaClientesNuevosFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        rootView = inflater.inflate(R.layout.fragment_lista_clientes_nuevos, container, false);
+        rootView = inflater.inflate(com.henryruiz.manejoalmacenmantis.R.layout.fragment_lista_clientes_nuevos, container, false);
         c = (Context)getActivity();
         s = new Conexion(c);
         Variables.setTituloVentana("ListaClientesNuevos");
-        listview = (ListView) rootView.findViewById(R.id.listViewGrupo);
+        listview = (ListView) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.listViewGrupo);
         Variables.setEmailCliN("");
         new Clientes().execute("");
 
-        ImageButton nuevo = (ImageButton) rootView.findViewById(R.id.buttonNuevo);
+        ImageButton nuevo = (ImageButton) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.buttonNuevo);
         nuevo.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 RegistrarClienteFragment fragment2 = new RegistrarClienteFragment();
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.content_frame, fragment2);
+                fragmentTransaction.replace(com.henryruiz.manejoalmacenmantis.R.id.content_frame, fragment2);
                 fragmentTransaction.commit();
             }
         });
 
-        SearchView search = (SearchView) rootView.findViewById(R.id.searchView);
+        SearchView search = (SearchView) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.searchView);
 
         search.setQueryHint("Buscar Cliente");
 
@@ -89,7 +89,7 @@ public class ListaClientesNuevosFragment extends Fragment {
             }
         });
 
-        listview = (ListView) rootView.findViewById(R.id.listViewGrupo);
+        listview = (ListView) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.listViewGrupo);
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -102,7 +102,7 @@ public class ListaClientesNuevosFragment extends Fragment {
                 ConsultaListaPrecios fragment2 = new ConsultaListaPrecios();
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.content_frame, fragment2);
+                fragmentTransaction.replace(com.henryruiz.manejoalmacenmantis.R.id.content_frame, fragment2);
                 fragmentTransaction.commit();
             }
         });

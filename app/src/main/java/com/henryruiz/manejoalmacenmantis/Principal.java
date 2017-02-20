@@ -24,8 +24,8 @@ public class Principal extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View vista = inflater.inflate(R.layout.fragment_principal, container, false);
-        TextView bienvenida = (TextView) vista.findViewById(R.id.textView11);
+        View vista = inflater.inflate(com.henryruiz.manejoalmacenmantis.R.layout.fragment_principal, container, false);
+        TextView bienvenida = (TextView) vista.findViewById(com.henryruiz.manejoalmacenmantis.R.id.textView11);
         bienvenida.setText("Bienvenido " + Variables.getUser());
         return vista;
     }

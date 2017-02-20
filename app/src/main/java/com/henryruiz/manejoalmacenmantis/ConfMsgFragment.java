@@ -24,11 +24,11 @@ public class ConfMsgFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        rootView = inflater.inflate(R.layout.fragment_conf_msg, container, false);
+        rootView = inflater.inflate(com.henryruiz.manejoalmacenmantis.R.layout.fragment_conf_msg, container, false);
         c = (Context)getActivity();
-        final EditText asunto = (EditText) rootView.findViewById(R.id.editTextAsunto);
-        final EditText msg = (EditText) rootView.findViewById(R.id.editTextMsg);
-        Button salvar = (Button) rootView.findViewById(R.id.button);
+        final EditText asunto = (EditText) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextAsunto);
+        final EditText msg = (EditText) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextMsg);
+        Button salvar = (Button) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.button);
 
         salvar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {

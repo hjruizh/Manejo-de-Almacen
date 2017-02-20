@@ -62,7 +62,7 @@ public class ImageDownloaderTask extends AsyncTask<String, Void, Bitmap> {
 							false));
 				} else {
 					imageView.setImageDrawable(imageView.getContext()
-							.getResources().getDrawable(R.drawable.nologo));
+							.getResources().getDrawable(com.henryruiz.manejoalmacenmantis.R.drawable.nologo));
 				}
 			}
 

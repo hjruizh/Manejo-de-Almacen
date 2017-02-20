@@ -23,7 +23,7 @@
         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/spinnerGrupo"
+            android:id="@+id/spinnerProveedor"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/textView16"
             android:layout_alignParentLeft="true" />
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/listView2"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/spinnerGrupo"
+            android:layout_below="@+id/spinnerProveedor"
             android:layout_alignParentLeft="true" />
 
         <TextView
@@ -105,7 +105,7 @@
         android:layout_marginBottom="16dp"
         android:layout_marginRight="16dp"
         android:background="@drawable/fab_background"
-        android:src="@drawable/abc_ic_search_api_mtrl_alpha"
+        android:src="@android:drawable/ic_menu_search"
         android:contentDescription="@string/fab_description"/>
     <ImageButton
         android:id="@+id/buttonEmail"
@@ -115,6 +115,6 @@
         android:layout_marginBottom="16dp"
         android:layout_marginRight="70dp"
         android:background="@drawable/fab_background"
-        android:src="@drawable/ic_action_email"
+        android:src="@android:drawable/ic_dialog_email"
         android:contentDescription="@string/fab_description"/>
 </FrameLayout>

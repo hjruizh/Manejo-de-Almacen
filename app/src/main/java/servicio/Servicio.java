@@ -99,8 +99,8 @@ public class Servicio extends Service {
 			PendingIntent intencionPendiente = PendingIntent.getActivity(
 					this, 0, new Intent(this, ListadoDeInventario.class), 0);
 
-			notification.setLatestEventInfo(this, contentTitle,
-					contentText, intencionPendiente);
+			/*notification.setLatestEventInfo(this, contentTitle,
+					contentText, intencionPendiente);*/
 	        //Le a?ade sonido
 			notification.defaults |= Notification.DEFAULT_SOUND;
 			//Le a?ade vibraci?n

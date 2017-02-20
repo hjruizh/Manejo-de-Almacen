@@ -39,18 +39,18 @@ public class ListaClientes extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        rootView = inflater.inflate(R.layout.fragment_lista_clientes, container, false);
+        rootView = inflater.inflate(com.henryruiz.manejoalmacenmantis.R.layout.fragment_lista_clientes, container, false);
         c = (Context)getActivity();
         s = new Conexion(c);
         Variables.setEmailCliN("");
         Variables.setTituloVentana("ListaClientes");
-        listview = (ListView) rootView.findViewById(R.id.listViewGrupo);
+        listview = (ListView) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.listViewGrupo);
 
         if (!Variables.getGruPK().equals("")) {
             new Clientes().execute("");
         }
 
-        SearchView search = (SearchView) rootView.findViewById(R.id.searchView);
+        SearchView search = (SearchView) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.searchView);
 
         search.setQueryHint("Buscar Cliente");
 
@@ -77,7 +77,7 @@ public class ListaClientes extends Fragment {
             }
         });
 
-        listview = (ListView) rootView.findViewById(R.id.listViewGrupo);
+        listview = (ListView) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.listViewGrupo);
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -90,14 +90,14 @@ public class ListaClientes extends Fragment {
                     CuentasPorCobrar fragment2 = new CuentasPorCobrar();
                     FragmentManager fragmentManager = getFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.content_frame, fragment2);
+                    fragmentTransaction.replace(com.henryruiz.manejoalmacenmantis.R.id.content_frame, fragment2);
                     fragmentTransaction.commit();
                 }
                 else {
                     ConsultaListaPrecios fragment2 = new ConsultaListaPrecios();
                     FragmentManager fragmentManager = getFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.content_frame, fragment2);
+                    fragmentTransaction.replace(com.henryruiz.manejoalmacenmantis.R.id.content_frame, fragment2);
                     fragmentTransaction.commit();
                 }
             }

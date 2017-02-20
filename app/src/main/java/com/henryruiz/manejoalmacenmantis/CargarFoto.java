@@ -48,9 +48,9 @@ public class CargarFoto extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cargar_foto);
-        TextView t1 = (TextView) findViewById(R.id.toolbar_nombre);
-        TextView t2 = (TextView) findViewById(R.id.toolbar_codigo);
+        setContentView(com.henryruiz.manejoalmacenmantis.R.layout.activity_cargar_foto);
+        TextView t1 = (TextView) findViewById(com.henryruiz.manejoalmacenmantis.R.id.toolbar_nombre);
+        TextView t2 = (TextView) findViewById(com.henryruiz.manejoalmacenmantis.R.id.toolbar_codigo);
         //Cargar Titulos de Toolbar
         if (!Variables.getCot().equals("")){
             t1.setText("Cotización Nro "+ Variables.getCot().trim());
@@ -71,7 +71,7 @@ public class CargarFoto extends AppCompatActivity {
         //Cargar titulos de Toolbar
         Fragment fragment = new SubirFotos();
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.content_frame, fragment)
+                .replace(com.henryruiz.manejoalmacenmantis.R.id.content_frame, fragment)
                 .commit();
     }
 }

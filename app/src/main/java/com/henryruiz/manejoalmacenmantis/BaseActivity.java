@@ -34,7 +34,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected int getActionBarSize() {
         TypedValue typedValue = new TypedValue();
-        int[] textSizeAttr = new int[]{R.attr.actionBarSize};
+        int[] textSizeAttr = new int[]{com.henryruiz.manejoalmacenmantis.R.attr.actionBarSize};
         int indexOfAttrTextSize = 0;
         TypedArray a = obtainStyledAttributes(typedValue.data, textSizeAttr);
         int actionBarSize = a.getDimensionPixelSize(indexOfAttrTextSize, -1);

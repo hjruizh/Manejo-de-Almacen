@@ -41,10 +41,10 @@ public class CPAFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        vista = inflater.inflate(R.layout.fragment_cpa, container, false);
+        vista = inflater.inflate(com.henryruiz.manejoalmacenmantis.R.layout.fragment_cpa, container, false);
         c = (Context)getActivity();
         s = new Conexion(c);
-        listview = (ListView) vista.findViewById(R.id.listViewCPA);
+        listview = (ListView) vista.findViewById(com.henryruiz.manejoalmacenmantis.R.id.listViewCPA);
         new ListaCPA().execute();
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -72,8 +72,8 @@ public abstract class AbstractListViewActivity extends Activity {
 	}
 
 	protected void updateDisplayingTextView() {
-		textViewDisplaying = (TextView) findViewById(R.id.displaying);
-		String text = getString(R.string.display);
+		textViewDisplaying = (TextView) findViewById(com.henryruiz.manejoalmacenmantis.R.id.displaying);
+		String text = getString(com.henryruiz.manejoalmacenmantis.R.string.display);
 		text = String.format(text, la.getCount(), datasource.getSize());
 		textViewDisplaying.setText(text);
 	}

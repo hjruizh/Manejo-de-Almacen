@@ -38,9 +38,7 @@ public class ConsultaListaPrecios extends Fragment {
     String enviado;
 
     public ConsultaListaPrecios() {
-        // Required empty public constructor
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -49,15 +47,15 @@ public class ConsultaListaPrecios extends Fragment {
         s = new Conexion(c);
         Variables.setTituloVentana("ConsultaListaPrecios");
         new Grupo().execute("");
-        listview = (ListView) rootView.findViewById(R.id.listView2);
-        porcen = (EditText) rootView.findViewById(R.id.editTextPorcen);
-        correo = (EditText) rootView.findViewById(R.id.editTextCorreo);
+        listview = (ListView) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.listView2);
+        porcen = (EditText) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextPorcen);
+        correo = (EditText) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextCorreo);
         if (!Variables.getEmailCliN().equals("")){
             correo.setText(Variables.getEmailCliN());
         }
-        ImageButton buscar = (ImageButton) rootView.findViewById(R.id.buttonBuscar);
-        ImageButton email = (ImageButton) rootView.findViewById(R.id.buttonEmail);
-        final android.widget.SearchView search = (android.widget.SearchView) rootView.findViewById(R.id.searchView2);
+        ImageButton buscar = (ImageButton) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.buttonBuscar);
+        ImageButton email = (ImageButton) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.buttonEmail);
+        final android.widget.SearchView search = (android.widget.SearchView) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.searchView2);
 
         search.setQueryHint("Buscar Productos");
 
@@ -151,7 +149,7 @@ public class ConsultaListaPrecios extends Fragment {
                         for (int i = 0; i<NavItms.size(); i++){
                             array_spinner[i] = NavItms.get(i).getNombre();
                         }
-                        final Spinner auditoria = (Spinner) rootView.findViewById(R.id.spinnerGrupo);
+                        final Spinner auditoria = (Spinner) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.spinnerProveedor);
                         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item, array_spinner);
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         auditoria.setAdapter(adapter);

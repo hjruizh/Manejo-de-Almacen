@@ -37,7 +37,7 @@ public class FotosFacPedCotCom extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        rootView = inflater.inflate(R.layout.fragment_fotos_fac_ped_cot_com, container, false);
+        rootView = inflater.inflate(com.henryruiz.manejoalmacenmantis.R.layout.fragment_fotos_fac_ped_cot_com, container, false);
         Variables.setFac("");
         Variables.setCot("");
         Variables.setPed("");
@@ -48,8 +48,8 @@ public class FotosFacPedCotCom extends Fragment {
         Variables.setAudi("");
         c = (Context)getActivity();
         s = new Conexion(c);
-        final Spinner tipoInv = (Spinner) rootView.findViewById(R.id.spinnerSeleccionar);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.tipoFoto, android.R.layout.simple_spinner_item);
+        final Spinner tipoInv = (Spinner) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.spinnerSeleccionar);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), com.henryruiz.manejoalmacenmantis.R.array.tipoFoto, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         tipoInv.setAdapter(adapter);
         tipoInv.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -80,7 +80,7 @@ public class FotosFacPedCotCom extends Fragment {
             }
         });
         //Edicion de correlativo
-        final EditText num = (EditText) rootView.findViewById(R.id.editTextCompra);
+        final EditText num = (EditText) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextCompra);
         num.addTextChangedListener(new TextWatcher() {
 
             public void afterTextChanged(Editable s) {
@@ -117,7 +117,7 @@ public class FotosFacPedCotCom extends Fragment {
             }
         });
         //Edicion de correlativo
-        ImageView buscar = (ImageView) rootView.findViewById(R.id.imageViewBuscar);
+        ImageView buscar = (ImageView) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.imageViewBuscar);
         buscar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), CargarFoto.class);
@@ -174,7 +174,7 @@ public class FotosFacPedCotCom extends Fragment {
             dialog.dismiss();
             if (bytes==1) {
                 try {
-                    EditText numero1 = (EditText) rootView.findViewById(R.id.editTextCompra);
+                    EditText numero1 = (EditText) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextCompra);
                     numero1.setText(nuemro.trim());
                 } catch (Exception e) {
                     Log.i("error", e.getMessage());

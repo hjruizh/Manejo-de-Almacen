@@ -15,11 +15,14 @@ import java.util.ArrayList;
 import tablas.CLI;
 import tablas.CPA;
 import tablas.CXC;
+import tablas.DVI;
 import tablas.FOTO;
 import tablas.GCL;
 import tablas.GRU;
 import tablas.INV;
+import tablas.MED;
 import tablas.MSG;
+import tablas.PRO;
 import tablas.USR;
 import tablas.VN1;
 
@@ -488,8 +491,10 @@ public class Conexion {
             if (isOnline()) {
                 ArrayList parametros = new ArrayList();
                 Post post = new Post();
-                parametros.add("fechai");
-                parametros.add(fechaI);
+                if (fechaI!=null) {
+                    parametros.add("fechai");
+                    parametros.add(fechaI);
+                }
                 parametros.add("fechaf");
                 parametros.add(fechaF);
                 parametros.add("buscar");
@@ -497,7 +502,7 @@ public class Conexion {
                 String datos = post.getServerDataString(parametros, direccion
                         + "Servicio.svc/Inventario");
 
-                Log.i("sin error", direccion + "Inventario/Inventario");
+                Log.i("sin error", direccion + "Servicio.svc/Inventario");
                 return parseJSONdata_INV(datos);
             } else {
                 Log.i("sin conexion", "inv_busq.php");
@@ -516,18 +521,18 @@ public class Conexion {
         if (isOnline()) {
             ArrayList parametros = new ArrayList();
             Post post = new Post();
-            parametros.add("vnm_invfk");
+            parametros.add("VN1_INVFK");
             parametros.add(pk);
-            parametros.add("inventario");
+            parametros.add("NOMBRE");
             parametros.add(Variables.getAudi());
-            parametros.add("contados");
+            parametros.add("CONTADOS");
             parametros.add(contados);
-            parametros.add("existencia");
+            parametros.add("EXISTENCIA");
             parametros.add(existencia);
             String datos = post.getServerDataString(parametros, direccion
-                    + "Servicio.svc/Inv.aspx");
+                    + "Servicio.svc/GuardarInventario");
 
-            Log.i("sin error", direccion + "Inventario/Inv.aspx");
+            Log.i("sin error", direccion + "Inventario/GuardarInventario");
             Log.i("ain_pk", Variables.getAudi());
 
             try {
@@ -1180,4 +1185,196 @@ public class Conexion {
         return "";
     }
     //Enviar lista de precios
+    //Sincronizar Proveedores DVI
+    private ArrayList<PRO> parseJSONdataPro(String data)
+            throws JSONException {
+        ArrayList<PRO> gru = new ArrayList<PRO>();
+        JSONArray jsonArray = new JSONArray(data);
+
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject item = jsonArray.getJSONObject(i);
+            PRO grupo = new PRO();
+            grupo.setPk(Integer.parseInt(item.getString("PRO_PK")));
+            grupo.setCodigo(item.getString("PRO_CODIGO").trim());
+            grupo.setNombre(item.getString("PRO_NOMBRE").trim());
+            grupo.setEmail(item.getString("PRO_EMAIL").trim());
+            grupo.setSaldoB(item.getString("PRO_SALDOB").trim());
+            grupo.setSaldoD(item.getString("PRO_SALDOD").trim());
+            grupo.setDviFk(item.getString("PRO_DVIPK").trim());
+            grupo.setPagado(item.getString("PRO_PAGADO").trim());
+            gru.add(i, grupo);
+        }
+        return gru;
+    }
+    public ArrayList<PRO> sincronizar_Pro() throws JSONException {
+        if (isOnline()) {
+            ArrayList parametros = new ArrayList();
+            Post post = new Post();
+            String datos = post.getServerDataString(parametros, direccion
+                    + "Servicio.svc/ProveedoresDVI");
+            Log.i("sin conexion", "Servicio.svc/ProveedoresDVI" + datos);
+            try {
+                return parseJSONdataPro(datos);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Log.i("sin conexion", "Servicio.svc/ProveedoresDVI");
+        }
+        return new ArrayList<PRO>();
+    }
+    public ArrayList<PRO> sincronizar_ProAll() throws JSONException {
+        if (isOnline()) {
+            ArrayList parametros = new ArrayList();
+            Post post = new Post();
+            String datos = post.getServerDataString(parametros, direccion
+                    + "Servicio.svc/Proveedores");
+            Log.i("sin conexion", "Servicio.svc/Proveedores" + datos);
+            try {
+                return parseJSONdataPro(datos);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Log.i("sin conexion", "Servicio.svc/Proveedores");
+        }
+        return new ArrayList<PRO>();
+    }
+    //Sincronizar Proveedores DVI
+    //Guardar DVI
+    public String save_DVI(String id, String montod, String monotb) throws JSONException {
+        if (isOnline()) {
+            ArrayList parametros = new ArrayList();
+            Post post = new Post();
+            parametros.add("DVI_PROFK");
+            parametros.add(id);
+            parametros.add("DVI_MONTOD");
+            parametros.add(montod);
+            parametros.add("DVI_MONTOB");
+            parametros.add(monotb);
+            if(!Variables.getIdDVI().equals("")){
+                parametros.add("DVI_PK");
+                parametros.add(Variables.getIdDVI());
+            }
+            String datos = post.getServerDataString(parametros, direccion
+                    + "Servicio.svc/SetDivisas");
+            Log.i("sin conexion", "Servicio.svc/SetDivisas" + datos);
+            String[] temp = datos.replace("\"","").split("-");
+            Variables.setIdDVI(temp[1].replace("\n",""));
+            return temp[0];
+        } else {
+            Log.i("sin conexion", "Servicio.svc/SetDivisas");
+            return "Sin conexion a la red";
+        }
+    }
+    //Guardar DVI
+    //Sincronizar Detalle DVI
+    private ArrayList<MED> parseJSONdataDetalleDVI(String data)
+            throws JSONException {
+        ArrayList<MED> gru = new ArrayList<MED>();
+        JSONArray jsonArray = new JSONArray(data);
+
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject item = jsonArray.getJSONObject(i);
+            MED grupo = new MED();
+            grupo.setMED_PK(item.getString("MED_PK"));
+            grupo.setMED_CLIFK(item.getString("MED_CLIFK").trim());
+            grupo.setMED_DVIFK(item.getString("MED_DVIFK").trim());
+            grupo.setMED_FACTURA(item.getString("MED_FACTURA").trim());
+            grupo.setMED_FECHA(item.getString("MED_FECHA").trim());
+            grupo.setMED_FOTO(item.getString("MED_FOTO").trim());
+            grupo.setMED_MONTO(item.getString("MED_MONTO").trim());
+            grupo.setMED_REFERENCIA(item.getString("MED_REFERENCIA").trim());
+            gru.add(i, grupo);
+        }
+        return gru;
+    }
+    public ArrayList<MED> sincronizar_DetalleDVI(String id, String detalle) throws JSONException {
+        if (isOnline()) {
+            ArrayList parametros = new ArrayList();
+            Post post = new Post();
+            String datos = post.getServerDataString(parametros, direccion
+                    + "Servicio.svc/GetDivisasDetalle/" + id + "/" + detalle);
+            Log.i("sin conexion", "Servicio.svc/GetDivisasDetalle/"+ id + datos);
+            try {
+                return parseJSONdataDetalleDVI(datos);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Log.i("sin conexion", "Servicio.svc/GetDivisasDetalle/"+ id);
+        }
+        return new ArrayList<MED>();
+    }
+    //Sincronizar Proveedores DVI
+    //Sincronizar DVI
+    private ArrayList<DVI> parseJSONdataDVI(String data)
+            throws JSONException {
+        ArrayList<DVI> gru = new ArrayList<DVI>();
+        JSONArray jsonArray = new JSONArray(data);
+
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject item = jsonArray.getJSONObject(i);
+            DVI grupo = new DVI();
+            grupo.setDVI_PK(item.getString("DVI_PK"));
+            grupo.setDVI_FECHA(item.getString("DVI_FECHA").trim());
+            grupo.setDVI_MONTOB(item.getString("DVI_MONTOB").trim());
+            grupo.setDVI_MONTOD(item.getString("DVI_MONTOD").trim());
+            grupo.setDVI_PROFK(item.getString("DVI_PROFK").trim());
+            grupo.setDVI_FOTO(item.getString("DVI_FOTO").trim());
+            gru.add(i, grupo);
+        }
+        return gru;
+    }
+    public ArrayList<DVI> sincronizar_DVI(String id) throws JSONException {
+        if (isOnline()) {
+            ArrayList parametros = new ArrayList();
+            Post post = new Post();
+            String datos = post.getServerDataString(parametros, direccion
+                    + "Servicio.svc/DivisasPC/"+ id);
+            Log.i("sin conexion", "Servicio.svc/DivisasPC/"+ id + datos);
+            try {
+                return parseJSONdataDVI(datos);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Log.i("sin conexion", "Servicio.svc/DivisasPC/"+ id);
+        }
+        return new ArrayList<DVI>();
+    }
+    //Sincronizar DVI
+    //Guardar Detalle DVI
+    public String save_DetalleDVI(String id, String idPro, String monto, String ref, String obs, String fecha) throws JSONException {
+        if (isOnline()) {
+            ArrayList parametros = new ArrayList();
+            Post post = new Post();
+            parametros.add("MED_CLIFK");
+            parametros.add(idPro);
+            parametros.add("MED_MONTO");
+            parametros.add(monto);
+            parametros.add("MED_REFERENCIA");
+            parametros.add(ref);
+            parametros.add("MED_FACTURA");
+            parametros.add(obs);
+            parametros.add("MED_FECHA");
+            parametros.add(fecha);
+            parametros.add("MED_DVIFK");
+            parametros.add(id);
+            if(!Variables.getIdDetalleDVI().equals("")){
+                parametros.add("MED_PK");
+                parametros.add(Variables.getIdDetalleDVI());
+            }
+            String datos = post.getServerDataString(parametros, direccion
+                    + "Servicio.svc/SetDivisasPagos");
+            Log.i("sin conexion", "Servicio.svc/SetDivisasPagos" + datos);
+            String[] temp = datos.replace("\"","").split("-");
+            Variables.setIdDetalleDVI(temp[1].replace("\n",""));
+            return temp[0];
+        } else {
+            Log.i("sin conexion", "Servicio.svc/SetDivisas");
+            return "Sin conexion a la red";
+        }
+    }
+    //Guardar DVI
 }

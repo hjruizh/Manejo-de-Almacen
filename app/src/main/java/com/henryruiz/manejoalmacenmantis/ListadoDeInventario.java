@@ -48,20 +48,20 @@ public class ListadoDeInventario extends AbstractListViewActivity  implements Vi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_listado_de_inventario);
+        setContentView(com.henryruiz.manejoalmacenmantis.R.layout.activity_listado_de_inventario);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-        this.listView = (ListView) findViewById(R.id.listView);
+        this.listView = (ListView) findViewById(com.henryruiz.manejoalmacenmantis.R.id.listView);
 
-        ImageButton boton_comprar = (ImageButton) findViewById(R.id.buttonBuscar);
-        final EditText buscar = (EditText) findViewById(R.id.editTextBuscar);
+        ImageButton boton_comprar = (ImageButton) findViewById(com.henryruiz.manejoalmacenmantis.R.id.buttonBuscar);
+        final EditText buscar = (EditText) findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextBuscar);
 
         boton_comprar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 new BuscarInv().execute(buscar.getText().toString());
             }
         });
-        ImageButton boton_qr = (ImageButton) findViewById(R.id.buttonScan);
+        ImageButton boton_qr = (ImageButton) findViewById(com.henryruiz.manejoalmacenmantis.R.id.buttonScan);
 
         boton_qr.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -76,7 +76,7 @@ public class ListadoDeInventario extends AbstractListViewActivity  implements Vi
             }
         });
 
-        TextView t = (TextView) findViewById(R.id.txtHeader);
+        TextView t = (TextView) findViewById(com.henryruiz.manejoalmacenmantis.R.id.txtHeader);
         if (!Variables.getInventario().equals("")) {
             t.setText("BD: " + Variables.getBd() + " Auditoria: " + Variables.getInventario());
             Log.i("Inventario General","-" + Variables.getInventario());
@@ -104,7 +104,7 @@ public class ListadoDeInventario extends AbstractListViewActivity  implements Vi
         else {
             t.setText("BD: " + Variables.getBd());
         }
-        ImageView back = (ImageView) findViewById(R.id.imageViewBack);
+        ImageView back = (ImageView) findViewById(com.henryruiz.manejoalmacenmantis.R.id.imageViewBack);
         back.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 onBackPressed();
@@ -120,7 +120,7 @@ public class ListadoDeInventario extends AbstractListViewActivity  implements Vi
         /*ImageButton scan = (ImageButton) findViewById(R.id.buttonScan);
         scan.setOnClickListener(this);*/
         /*Busqueda por voz*/
-        ImageButton mic = (ImageButton)findViewById(R.id.buttonVoz);
+        ImageButton mic = (ImageButton)findViewById(com.henryruiz.manejoalmacenmantis.R.id.buttonVoz);
         PackageManager pm = getPackageManager();
 
         List<ResolveInfo> activities = pm.queryIntentActivities(new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH), 0);
@@ -161,7 +161,7 @@ public class ListadoDeInventario extends AbstractListViewActivity  implements Vi
             builder.setTitle("");
             builder.setItems(items, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int item) {
-                    EditText buscar = (EditText) findViewById(R.id.editTextBuscar);
+                    EditText buscar = (EditText) findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextBuscar);
                     buscar.setText(items[item].toString());
                 }
             });
@@ -176,7 +176,7 @@ public class ListadoDeInventario extends AbstractListViewActivity  implements Vi
             if (result != null) {
                 String contents = result.getContents();
                 if (contents != null) {
-                    EditText numero = (EditText) findViewById(R.id.editTextBuscar);
+                    EditText numero = (EditText) findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextBuscar);
                     numero.setText(contents);
                 } else {
                 }
@@ -190,7 +190,7 @@ public class ListadoDeInventario extends AbstractListViewActivity  implements Vi
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_listado_de_inventario, menu);
+        getMenuInflater().inflate(com.henryruiz.manejoalmacenmantis.R.menu.menu_listado_de_inventario, menu);
         return true;
     }
 
@@ -202,7 +202,7 @@ public class ListadoDeInventario extends AbstractListViewActivity  implements Vi
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == com.henryruiz.manejoalmacenmantis.R.id.action_settings) {
             return true;
         }
 
@@ -252,6 +252,9 @@ public class ListadoDeInventario extends AbstractListViewActivity  implements Vi
                             Log.i("Inventario","Fecha i " + fechaI + "Fecha F" + fechaF);
                             invent = s.sincronizar_INV_CDI(fechaI,fechaF,params[0].trim());
                         }
+                        else if (!Variables.getInventario().equals("")){
+                            invent = s.sincronizar_INV_CDI(null,Variables.getAudi(),params[0].trim());
+                        }
                         else {
                             invent = s.buscar_INV(params[0].trim());
                             if (mensaje){
@@ -284,6 +287,9 @@ public class ListadoDeInventario extends AbstractListViewActivity  implements Vi
                             Log.i("Inventario","Fecha i " + fechaI + "Fecha F" + fechaF);
                             invent = s.sincronizar_INV_CDI(fechaI,fechaF,"");
                         }
+                        else if (!Variables.getInventario().equals("") && !Variables.getAudi().equals("")){
+                            //invent = s.sincronizar_INV_CDI(null,Variables.getAudi(),"");
+                        }
                     }
 
                 } catch (Exception e) {
@@ -306,8 +312,8 @@ public class ListadoDeInventario extends AbstractListViewActivity  implements Vi
 
                 datasource = Datasource.getInstance(invent);
                 footerView = ((LayoutInflater) c
-                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE))
-                        .inflate(R.layout.footer, null, false);
+                        .getSystemService(LAYOUT_INFLATER_SERVICE))
+                        .inflate(com.henryruiz.manejoalmacenmantis.R.layout.footer, null, false);
                 listView.addFooterView(footerView, null, false);
                 asignar_adaptador(new CustomListAdapter(c, datasource.getData(
                         0, PAGESIZE)));

@@ -14,7 +14,7 @@ public class Variables extends Application {
     private static String bd = "Principal";
     private static String direccion;
     private static String direccion_fotos;
-    private static String url = "192.168.1.250";//http://rptoscoreanos.myq-see.com
+    private static String url = "192.168.1.250";//http://rptoscoreanos.myq-see.com192.168.1.249
     private static String puerto = "4043";
     private static String fac = "";
     private static String ped = "";
@@ -35,6 +35,8 @@ public class Variables extends Application {
     private static String msg = "";
     private static String emailCliN = "";
     private static boolean masVendido = false;
+    private static String idDVI = "";
+    private static String idDetalleDVI = "";
 
     public static String getDireccion() {
         return direccion = "http://"+Variables.getUrl()+":"+Variables.getPuerto()+"/";
@@ -265,5 +267,21 @@ public class Variables extends Application {
 
     public static void setMasVendido(boolean masVendido) {
         Variables.masVendido = masVendido;
+    }
+
+    public static String getIdDVI() {
+        return idDVI;
+    }
+
+    public static void setIdDVI(String idDVI) {
+        Variables.idDVI = idDVI;
+    }
+
+    public static String getIdDetalleDVI() {
+        return idDetalleDVI;
+    }
+
+    public static void setIdDetalleDVI(String idDetalleDVI) {
+        Variables.idDetalleDVI = idDetalleDVI;
     }
 }

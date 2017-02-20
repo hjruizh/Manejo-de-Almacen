@@ -57,25 +57,25 @@ public class CustomListAdapter extends ArrayAdapter<INV> {
 		if (convertView == null) {
 			Log.i("item", "posicion " + position + " tam: " + getCount() + " Nombre ");
 			convertView = layoutInflater
-					.inflate(R.layout.list_row_layout, null);
+					.inflate(com.henryruiz.manejoalmacenmantis.R.layout.list_row_layout, null);
 			holder = new ViewHolder();
 			holder.headlineView = (TextView) convertView
-					.findViewById(R.id.title);
+					.findViewById(com.henryruiz.manejoalmacenmantis.R.id.title);
 			holder.reporterNameView = (TextView) convertView
-					.findViewById(R.id.reporter);
+					.findViewById(com.henryruiz.manejoalmacenmantis.R.id.reporter);
 			holder.imageView = (ImageView) convertView
-					.findViewById(R.id.thumbImage);
+					.findViewById(com.henryruiz.manejoalmacenmantis.R.id.thumbImage);
 			holder.reportedExistencia = (TextView) convertView
-					.findViewById(R.id.Existencia);
+					.findViewById(com.henryruiz.manejoalmacenmantis.R.id.Existencia);
 			convertView.setTag(holder);
 			holder.fondo = (RelativeLayout) convertView
-					.findViewById(R.id.fondo);
+					.findViewById(com.henryruiz.manejoalmacenmantis.R.id.fondo);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
 		if (Variables.getInventario().equals("")){
 			holder.inventario = (LinearLayout) convertView
-					.findViewById(R.id.LinearLayoutInv);
+					.findViewById(com.henryruiz.manejoalmacenmantis.R.id.LinearLayoutInv);
 			holder.inventario.setVisibility(View.GONE);
 		}
 
@@ -118,7 +118,7 @@ public class CustomListAdapter extends ArrayAdapter<INV> {
 				//new ImageDownloaderTask(holder.imageView).execute(newsItem.getFoto());
 			}
 		} else
-			holder.imageView.setImageResource(R.drawable.nologo);
+			holder.imageView.setImageResource(com.henryruiz.manejoalmacenmantis.R.drawable.nologo);
 
 		return convertView;
 	}

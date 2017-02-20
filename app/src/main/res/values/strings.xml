@@ -27,5 +27,24 @@
     <string name="title_activity_detalle_producto">Detalle Producto</string>
     <string name="fab_description">FAB button description</string>
     <string name="title_activity_cargar_foto">Cargar Foto</string>
+    <string name="prompt_user">Usuario</string>
+    <string name="prompt_name">Nombre</string>
+    <string name="prompt_rif">Rif</string>
+    <string name="prompt_tel">Teléfono</string>
+    <string name="prompt_mail">Email</string>
+    <string name="prompt_mailO">Email (Opcional)</string>
+    <string name="prompt_dir">Dirección</string>
+    <string name="prompt_obs">Observación</string>
+    <string name="prompt_gru">Grupo por zona</string>
+    <string name="prompt_save">Guardar</string>
+    <string name="prompt_por">Porcentaje</string>
+    <string name="prompt_asu">Asunto</string>
+    <string name="prompt_msg">Mensaje</string>
+    <string name="prompt_password">Clave</string>
+    <string name="prompt_prov">Seleccione Proveedor</string>
+    <string name="prompt_montod">Monto en $.</string>
+    <string name="prompt_montob">Monto en Bs.</string>
+    <string name="prompt_ref">Referencia</string>
+    <string name="prompt_date">Fecha</string>
 
 </resources>

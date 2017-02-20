@@ -47,7 +47,7 @@ public class SeleccionarInventario extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        rootView = inflater.inflate(R.layout.fragment_seleccionar_inventario, container, false);
+        rootView = inflater.inflate(com.henryruiz.manejoalmacenmantis.R.layout.fragment_seleccionar_inventario, container, false);
         c = (Context)getActivity();
         s = new Conexion(c);
         Variables.setFac("");
@@ -58,9 +58,9 @@ public class SeleccionarInventario extends Fragment {
         Variables.setAnio("");
         Variables.setMes("");
         Variables.setAudi("");
-        final Spinner auditoria = (Spinner) rootView.findViewById(R.id.spinnerAuditoria);
-        final Spinner tipoInv = (Spinner) rootView.findViewById(R.id.spinnerSeleccionarInv);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.inventario, android.R.layout.simple_spinner_item);
+        final Spinner auditoria = (Spinner) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.spinnerAuditoria);
+        final Spinner tipoInv = (Spinner) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.spinnerSeleccionarInv);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), com.henryruiz.manejoalmacenmantis.R.array.inventario, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         tipoInv.setAdapter(adapter);
 
@@ -95,7 +95,7 @@ public class SeleccionarInventario extends Fragment {
         month = c.get(Calendar.MONTH);
         day = c.get(Calendar.DAY_OF_MONTH);
 
-        ImageView buscar = (ImageView) rootView.findViewById(R.id.imageViewBuscarD);
+        ImageView buscar = (ImageView) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.imageViewBuscarD);
         buscar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 if (Variables.getInventario().equals("General") && !Variables.getAudi().equals("")) {
@@ -241,7 +241,7 @@ public class SeleccionarInventario extends Fragment {
                             array_spinner[i+1] = invent.get(i).getMensaje();
                         }
                     }
-                    final Spinner auditoria = (Spinner) rootView.findViewById(R.id.spinnerAuditoria);
+                    final Spinner auditoria = (Spinner) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.spinnerAuditoria);
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item, array_spinner);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     auditoria.setAdapter(adapter);

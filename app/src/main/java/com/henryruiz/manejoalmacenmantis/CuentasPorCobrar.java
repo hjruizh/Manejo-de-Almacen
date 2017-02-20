@@ -69,12 +69,12 @@ public class CuentasPorCobrar extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        rootView = inflater.inflate(R.layout.fragment_cuentas_por_cobrar, container, false);
+        rootView = inflater.inflate(com.henryruiz.manejoalmacenmantis.R.layout.fragment_cuentas_por_cobrar, container, false);
         c = (Context)getActivity();
         s = new Conexion(c);
-        listview = (ListView) rootView.findViewById(R.id.listViewFac);
-        montoTotal = (EditText) rootView.findViewById(R.id.editTextMonto);
-        msg = (TextView)  rootView.findViewById(R.id.editTextMensaje);
+        listview = (ListView) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.listViewFac);
+        montoTotal = (EditText) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextMonto);
+        msg = (TextView)  rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextMensaje);
         Variables.setTituloVentana("CuentasPorCobrar");
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -83,7 +83,7 @@ public class CuentasPorCobrar extends Fragment {
                 Log.i("posicion", "posicion " + position);
                 final CXC posActual = NavItms.get(position);
                 Variables.setCliPk(String.valueOf(posActual.getPk()));
-                EditText msg = (EditText) rootView.findViewById(R.id.editTextMensaje);
+                EditText msg = (EditText) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextMensaje);
                 String str1 = String.valueOf(msg.getText());
                 int wantedPosition = position; // Whatever position you're looking for
                 int firstPosition = listview.getFirstVisiblePosition() - listview.getHeaderViewsCount(); // This is the same as child #0
@@ -110,7 +110,7 @@ public class CuentasPorCobrar extends Fragment {
             }
         });
 
-        ImageButton enviar = (ImageButton) rootView.findViewById(R.id.buttonEnviar);
+        ImageButton enviar = (ImageButton) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.buttonEnviar);
 
         enviar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -152,7 +152,7 @@ public class CuentasPorCobrar extends Fragment {
                                 ConsultaListaPrecios fragment2 = new ConsultaListaPrecios();
                                 FragmentManager fragmentManager = getFragmentManager();
                                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                fragmentTransaction.replace(R.id.content_frame, fragment2);
+                                fragmentTransaction.replace(com.henryruiz.manejoalmacenmantis.R.id.content_frame, fragment2);
                                 fragmentTransaction.commit();
                                 band[0] = false;
                                 break;
@@ -343,8 +343,8 @@ public class CuentasPorCobrar extends Fragment {
                     {
                         ListaCxcAdapter adaptadorGrid = new ListaCxcAdapter(c, NavItms);
                         listview.setAdapter(adaptadorGrid);
-                        TextView Nombre = (TextView) rootView.findViewById(R.id.textViewNombre);
-                        TextView Codigo = (TextView) rootView.findViewById(R.id.textViewCodigo);
+                        TextView Nombre = (TextView) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.textViewNombre);
+                        TextView Codigo = (TextView) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.textViewCodigo);
                         Nombre.setText(NavItms.get(0).getNombre());
                         Codigo.setText(NavItms.get(0).getCodigo());
                     }

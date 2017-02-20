@@ -1,12 +1,8 @@
 package com.henryruiz.manejoalmacenmantis;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,7 +14,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -45,11 +40,11 @@ public class IniciarSesion extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        vista = inflater.inflate(R.layout.fragment_iniciar_sesion, container, false);
+        vista = inflater.inflate(com.henryruiz.manejoalmacenmantis.R.layout.fragment_iniciar_sesion, container, false);
         c = (Context)getActivity();
         s = new Conexion(c);
-        final Button iniciar = (Button) vista.findViewById(R.id.buttonGuardar);
-        final Spinner usuarios = (Spinner) vista.findViewById(R.id.spinnerUsuario);
+        final Button iniciar = (Button) vista.findViewById(com.henryruiz.manejoalmacenmantis.R.id.buttonGuardar);
+        final Spinner usuarios = (Spinner) vista.findViewById(com.henryruiz.manejoalmacenmantis.R.id.spinnerUsuario);
         iniciar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Variables.setUser(usuarios.getSelectedItem().toString().trim());
@@ -124,7 +119,7 @@ public class IniciarSesion extends Fragment {
                         array_spinner[i+1] = usuario.get(i).getAlias();
                         Log.i("valor", "con"+usuario.get(i).getAlias());
                     }
-                    final Spinner auditoria = (Spinner) vista.findViewById(R.id.spinnerUsuario);
+                    final Spinner auditoria = (Spinner) vista.findViewById(com.henryruiz.manejoalmacenmantis.R.id.spinnerUsuario);
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item, array_spinner);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     auditoria.setAdapter(adapter);

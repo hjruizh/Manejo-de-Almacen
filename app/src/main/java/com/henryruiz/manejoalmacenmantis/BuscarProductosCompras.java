@@ -35,7 +35,7 @@ public class BuscarProductosCompras extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        vista = inflater.inflate(R.layout.fragment_buscar_productos_compras, container, false);
+        vista = inflater.inflate(com.henryruiz.manejoalmacenmantis.R.layout.fragment_buscar_productos_compras, container, false);
         Variables.setFac("");
         Variables.setCot("");
         Variables.setPed("");
@@ -47,7 +47,7 @@ public class BuscarProductosCompras extends Fragment {
         c = (Context)getActivity();
         s = new Conexion(c);
         //Edicion de correlativo
-        final EditText num = (EditText) vista.findViewById(R.id.editTextCompra);
+        final EditText num = (EditText) vista.findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextCompra);
         num.addTextChangedListener(new TextWatcher() {
 
             public void afterTextChanged(Editable s) {
@@ -60,7 +60,7 @@ public class BuscarProductosCompras extends Fragment {
         });
         //Edicion de correlativo
         new Correlativo().execute("COM","COMPRA");
-        ImageView buscar = (ImageView) vista.findViewById(R.id.imageViewBuscar);
+        ImageView buscar = (ImageView) vista.findViewById(com.henryruiz.manejoalmacenmantis.R.id.imageViewBuscar);
         buscar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), ListadoDeInventario.class);
@@ -98,7 +98,7 @@ public class BuscarProductosCompras extends Fragment {
             dialog.dismiss();
             if (bytes==1) {
                 try {
-                    EditText numero1 = (EditText) vista.findViewById(R.id.editTextCompra);
+                    EditText numero1 = (EditText) vista.findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextCompra);
                     numero1.setText(nuemro.trim());
                 } catch (Exception e) {
                     Log.i("error", e.getMessage());

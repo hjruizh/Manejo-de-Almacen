@@ -38,10 +38,10 @@ public class GrupoCuentasXCobrar extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        rootView = inflater.inflate(R.layout.fragment_grupo_cuentas_x_cobrar, container, false);
+        rootView = inflater.inflate(com.henryruiz.manejoalmacenmantis.R.layout.fragment_grupo_cuentas_x_cobrar, container, false);
         c = (Context)getActivity();
         s = new Conexion(c);
-        listview = (ListView) rootView.findViewById(R.id.listViewGrupo);
+        listview = (ListView) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.listViewGrupo);
         Variables.setTituloVentana("GrupoCuentasXCobrar");
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -54,7 +54,7 @@ public class GrupoCuentasXCobrar extends Fragment {
                 ListaClientes fragment2 = new ListaClientes();
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.content_frame, fragment2);
+                fragmentTransaction.replace(com.henryruiz.manejoalmacenmantis.R.id.content_frame, fragment2);
                 fragmentTransaction.commit();
             }
         });

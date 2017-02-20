@@ -70,7 +70,7 @@ public class SubirFotos extends Fragment {
     /**
      * Variable que define el nombre para el archivo donde escribiremos
      * la fotograf?a de tama?o completo al tomarla.
-     */
+    */
     private String name = "";
 
     public SubirFotos() {
@@ -82,11 +82,11 @@ public class SubirFotos extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        vista = inflater.inflate(R.layout.fragment_subir_fotos, container, false);
+        vista = inflater.inflate(com.henryruiz.manejoalmacenmantis.R.layout.fragment_subir_fotos, container, false);
         c = (Context)getActivity();
         s = new Conexion(c);
         f = new Envio(c);
-        listview = (ListView) vista.findViewById(R.id.listViewFoto);
+        listview = (ListView) vista.findViewById(com.henryruiz.manejoalmacenmantis.R.id.listViewFoto);
 
         //Cargar Titulos de Toolbar
         if (!Variables.getCot().equals("")){
@@ -108,7 +108,7 @@ public class SubirFotos extends Fragment {
         //Cargar titulos de Toolbar
 
         //Tomar Foto o seleccionar foto de Galeria
-        ImageButton btnAction = (ImageButton) vista.findViewById(R.id.fabButton);
+        ImageButton btnAction = (ImageButton) vista.findViewById(com.henryruiz.manejoalmacenmantis.R.id.fabButton);
         btnAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -182,7 +182,7 @@ public class SubirFotos extends Fragment {
         //Tomar Foto o seleccionar foto de Galeria
         //Eliminar Foto
         final AlertDialog.Builder alt_bld = new AlertDialog.Builder(c);
-        ImageView i = (ImageView) vista.findViewById(R.id.imagenTomada);
+        ImageView i = (ImageView) vista.findViewById(com.henryruiz.manejoalmacenmantis.R.id.imagenTomada);
         i.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Log.i("eliminar foto", "foto: " + foto);
@@ -207,7 +207,7 @@ public class SubirFotos extends Fragment {
                             });
                     AlertDialog alert = alt_bld.create();
                     alert.setTitle("Eliminar Foto"); // Aqui ponemos el titulo de la ventana
-                    alert.setIcon(R.drawable.logo); // Aqui ponemos el icono de la ventana
+                    alert.setIcon(com.henryruiz.manejoalmacenmantis.R.drawable.logo); // Aqui ponemos el icono de la ventana
                     alert.show();
                 }
             }
@@ -240,7 +240,7 @@ public class SubirFotos extends Fragment {
                         });
                 AlertDialog alert = alt_bld.create();
                 alert.setTitle("Eliminar Foto"); // Aqui ponemos el titulo de la ventana
-                alert.setIcon(R.drawable.logo); // Aqui ponemos el icono de la ventana
+                alert.setIcon(com.henryruiz.manejoalmacenmantis.R.drawable.logo); // Aqui ponemos el icono de la ventana
                 alert.show();
                 /*Intent intent = new Intent(getActivity(), ViewArticuloActivity.class);
                 intent.putExtra("id_art", posActual.getPk());
@@ -289,7 +289,7 @@ public class SubirFotos extends Fragment {
                  */
                 Log.i("Seleccionado", "" + requestCode + TAKE_PICTURE);
                 if (data.hasExtra("data")) {
-                    ImageView iv = (ImageView)vista.findViewById(R.id.imagenTomada);
+                    ImageView iv = (ImageView)vista.findViewById(com.henryruiz.manejoalmacenmantis.R.id.imagenTomada);
                     iv.setImageBitmap((Bitmap) data.getParcelableExtra("data"));
                     //new Foto().execute("");
                 }
@@ -302,7 +302,7 @@ public class SubirFotos extends Fragment {
                  * para el ImageView
                  */
                 Log.i("Seleccionado",""+requestCode+TAKE_PICTURE);
-                ImageView iv = (ImageView)vista.findViewById(R.id.imagenTomada);
+                ImageView iv = (ImageView)vista.findViewById(com.henryruiz.manejoalmacenmantis.R.id.imagenTomada);
                 iv.setImageBitmap(BitmapFactory.decodeFile(name));
                 /**
                  * Para guardar la imagen en la galer?a, utilizamos una conexi?n a un MediaScanner
@@ -338,7 +338,7 @@ public class SubirFotos extends Fragment {
                     is = c.getContentResolver().openInputStream(selectedImage);
                     BufferedInputStream bis = new BufferedInputStream(is);
                     Bitmap bitmap = BitmapFactory.decodeStream(bis);
-                    ImageView iv = (ImageView) vista.findViewById(R.id.imagenTomada);
+                    ImageView iv = (ImageView) vista.findViewById(com.henryruiz.manejoalmacenmantis.R.id.imagenTomada);
                     iv.setImageBitmap(bitmap);
                     //new Foto().execute("");
                 } catch (FileNotFoundException e) {
@@ -398,8 +398,8 @@ public class SubirFotos extends Fragment {
 
         protected void onPostExecute(Integer bytes) {
             dialog.dismiss();
-            ImageView i = (ImageView) vista.findViewById(R.id.imagenTomada);
-            String[] img = foto.split("$");
+            ImageView i = (ImageView) vista.findViewById(com.henryruiz.manejoalmacenmantis.R.id.imagenTomada);
+            String[] img = foto.split("\\$");
             Log.i("foto cargada", Variables.getDireccion_fotos() + img[1]);
             new ImageDownloaderTask(i).execute(Variables.getDireccion_fotos() + img[1]);
             if (NavItms!=null)

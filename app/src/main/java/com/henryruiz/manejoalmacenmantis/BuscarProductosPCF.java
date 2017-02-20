@@ -36,7 +36,7 @@ public class BuscarProductosPCF extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
          // Inflate the layout for this fragment
-         rootView = inflater.inflate(R.layout.fragment_buscar_productos_pcf, container, false);
+         rootView = inflater.inflate(com.henryruiz.manejoalmacenmantis.R.layout.fragment_buscar_productos_pcf, container, false);
          Variables.setFac("");
          Variables.setCot("");
          Variables.setPed("");
@@ -48,7 +48,7 @@ public class BuscarProductosPCF extends Fragment {
          c = (Context)getActivity();
          s = new Conexion(c);
 
-         ImageView buscar = (ImageView) rootView.findViewById(R.id.imageViewBuscar);
+         ImageView buscar = (ImageView) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.imageViewBuscar);
          buscar.setOnClickListener(new View.OnClickListener() {
              public void onClick(View view) {
                  Intent intent = new Intent(getActivity(), ListadoDeInventario.class);
@@ -56,21 +56,21 @@ public class BuscarProductosPCF extends Fragment {
              }
          });
 
-         final RadioButton ped = (RadioButton) rootView.findViewById(R.id.radioButtonPed);
-         final RadioButton cot = (RadioButton) rootView.findViewById(R.id.radioButtonCot);
-         final RadioButton fac = (RadioButton) rootView.findViewById(R.id.radioButtonFac);
+         final RadioButton ped = (RadioButton) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.radioButtonPed);
+         final RadioButton cot = (RadioButton) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.radioButtonCot);
+         final RadioButton fac = (RadioButton) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.radioButtonFac);
          //Buscar Ultimo Correlativo
          View.OnClickListener list = new View.OnClickListener() {
              @Override
              public void onClick(View view) {
                  switch(view.getId()) {
-                     case R.id.radioButtonPed:
+                     case com.henryruiz.manejoalmacenmantis.R.id.radioButtonPed:
                          new Correlativo().execute("V06","");
                          break;
-                     case R.id.radioButtonCot:
+                     case com.henryruiz.manejoalmacenmantis.R.id.radioButtonCot:
                          new Correlativo().execute("V02","");
                          break;
-                     case R.id.radioButtonFac:
+                     case com.henryruiz.manejoalmacenmantis.R.id.radioButtonFac:
                          new Correlativo().execute("VEN","");
                          break;
                  }
@@ -81,7 +81,7 @@ public class BuscarProductosPCF extends Fragment {
          fac.setOnClickListener(list);
          //Buscar Ultimo Correlativo
          //Edicion de correlativo
-         final EditText num = (EditText) rootView.findViewById(R.id.editTextNumero);
+         final EditText num = (EditText) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextNumero);
          num.addTextChangedListener(new TextWatcher() {
 
              public void afterTextChanged(Editable s) {
@@ -153,7 +153,7 @@ public class BuscarProductosPCF extends Fragment {
             dialog.dismiss();
             if (bytes==1) {
                 try {
-                    EditText numero1 = (EditText) rootView.findViewById(R.id.editTextNumero);
+                    EditText numero1 = (EditText) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextNumero);
                     numero1.setText(nuemro.trim());
                 } catch (Exception e) {
                     Log.i("error", e.getMessage());

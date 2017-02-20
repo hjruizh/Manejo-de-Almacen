@@ -42,17 +42,17 @@ public class ListaClientesCPA extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        rootView = inflater.inflate(R.layout.fragment_lista_clientes, container, false);
+        rootView = inflater.inflate(com.henryruiz.manejoalmacenmantis.R.layout.fragment_lista_clientes, container, false);
         c = (Context)getActivity();
         s = new Conexion(c);
         Variables.setEmailCliN("");
-        listview = (ListView) rootView.findViewById(R.id.listViewGrupo);
+        listview = (ListView) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.listViewGrupo);
 
         if (!Variables.getCliPk().equals("")) {
             new Clientes().execute("");
         }
 
-        SearchView search = (SearchView) rootView.findViewById(R.id.searchView);
+        SearchView search = (SearchView) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.searchView);
 
         search.setQueryHint("Buscar Cliente");
 
@@ -79,7 +79,7 @@ public class ListaClientesCPA extends Fragment {
             }
         });
 
-        listview = (ListView) rootView.findViewById(R.id.listViewGrupo);
+        listview = (ListView) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.listViewGrupo);
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -91,7 +91,7 @@ public class ListaClientesCPA extends Fragment {
                 CPAFragment fragment2 = new CPAFragment();
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.content_frame, fragment2);
+                fragmentTransaction.replace(com.henryruiz.manejoalmacenmantis.R.id.content_frame, fragment2);
                 fragmentTransaction.commit();
             }
         });
