@@ -1377,4 +1377,19 @@ public class Conexion {
         }
     }
     //Guardar DVI
+    //Correo Detalle DVI
+    public String save_CorreoDVI() throws JSONException {
+        if (isOnline()) {
+            ArrayList parametros = new ArrayList();
+            Post post = new Post();
+            String datos = post.getServerDataString(parametros, direccion
+                    + "Servicio.svc/CorreoDVI/" + Variables.getIdDVI());
+            Log.i("sin conexion", "Servicio.svc/CorreoDVI/" + Variables.getIdDVI() + datos);
+            return datos.replace("\"","");
+        } else {
+            Log.i("sin conexion", "Servicio.svc/CorreoDVI/" + Variables.getIdDVI());
+            return "Sin conexion a la red";
+        }
+    }
+    //Correo Detalle DVI
 }
