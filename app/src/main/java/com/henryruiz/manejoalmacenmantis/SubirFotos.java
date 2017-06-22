@@ -23,8 +23,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -182,7 +182,7 @@ public class SubirFotos extends Fragment {
         //Tomar Foto o seleccionar foto de Galeria
         //Eliminar Foto
         final AlertDialog.Builder alt_bld = new AlertDialog.Builder(c);
-        ImageView i = (ImageView) vista.findViewById(com.henryruiz.manejoalmacenmantis.R.id.imagenTomada);
+        /*ImageView i = (ImageView) vista.findViewById(com.henryruiz.manejoalmacenmantis.R.id.imagenTomada);
         i.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Log.i("eliminar foto", "foto: " + foto);
@@ -211,8 +211,15 @@ public class SubirFotos extends Fragment {
                     alert.show();
                 }
             }
-        });
+        });*/
         //Eliminar Foto
+        Button actualizar = (Button) vista.findViewById(R.id.actualizar);
+        actualizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new ListaFoto().execute();
+            }
+        });
         new ListaFoto().execute();
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -289,8 +296,8 @@ public class SubirFotos extends Fragment {
                  */
                 Log.i("Seleccionado", "" + requestCode + TAKE_PICTURE);
                 if (data.hasExtra("data")) {
-                    ImageView iv = (ImageView)vista.findViewById(com.henryruiz.manejoalmacenmantis.R.id.imagenTomada);
-                    iv.setImageBitmap((Bitmap) data.getParcelableExtra("data"));
+                    /*ImageView iv = (ImageView)vista.findViewById(com.henryruiz.manejoalmacenmantis.R.id.imagenTomada);
+                    iv.setImageBitmap((Bitmap) data.getParcelableExtra("data"));*/
                     //new Foto().execute("");
                 }
                 /**
@@ -302,8 +309,8 @@ public class SubirFotos extends Fragment {
                  * para el ImageView
                  */
                 Log.i("Seleccionado",""+requestCode+TAKE_PICTURE);
-                ImageView iv = (ImageView)vista.findViewById(com.henryruiz.manejoalmacenmantis.R.id.imagenTomada);
-                iv.setImageBitmap(BitmapFactory.decodeFile(name));
+                /*ImageView iv = (ImageView)vista.findViewById(com.henryruiz.manejoalmacenmantis.R.id.imagenTomada);
+                iv.setImageBitmap(BitmapFactory.decodeFile(name));*/
                 /**
                  * Para guardar la imagen en la galer?a, utilizamos una conexi?n a un MediaScanner
                  */
@@ -338,8 +345,8 @@ public class SubirFotos extends Fragment {
                     is = c.getContentResolver().openInputStream(selectedImage);
                     BufferedInputStream bis = new BufferedInputStream(is);
                     Bitmap bitmap = BitmapFactory.decodeStream(bis);
-                    ImageView iv = (ImageView) vista.findViewById(com.henryruiz.manejoalmacenmantis.R.id.imagenTomada);
-                    iv.setImageBitmap(bitmap);
+                    /*ImageView iv = (ImageView) vista.findViewById(com.henryruiz.manejoalmacenmantis.R.id.imagenTomada);
+                    iv.setImageBitmap(bitmap);*/
                     //new Foto().execute("");
                 } catch (FileNotFoundException e) {
                 }
@@ -398,10 +405,10 @@ public class SubirFotos extends Fragment {
 
         protected void onPostExecute(Integer bytes) {
             dialog.dismiss();
-            ImageView i = (ImageView) vista.findViewById(com.henryruiz.manejoalmacenmantis.R.id.imagenTomada);
+            //ImageView i = (ImageView) vista.findViewById(com.henryruiz.manejoalmacenmantis.R.id.imagenTomada);
             String[] img = foto.split("\\$");
-            Log.i("foto cargada", Variables.getDireccion_fotos() + img[1]);
-            new ImageDownloaderTask(i).execute(Variables.getDireccion_fotos() + img[1]);
+            /*Log.i("foto cargada", Variables.getDireccion_fotos() + img[1]);*/
+            //new ImageDownloaderTask(i).execute(Variables.getDireccion_fotos() + img[1]);
             if (NavItms!=null)
             {
                 //NavItms = grupo;

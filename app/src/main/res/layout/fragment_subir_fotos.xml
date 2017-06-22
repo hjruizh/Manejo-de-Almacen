@@ -13,8 +13,9 @@
             android:background="@android:color/white"
             android:layout_marginTop="15dp"
             android:layout_below="@+id/card_view"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/relativeLayout">
+            android:id="@+id/relativeLayout"
+            android:layout_toLeftOf="@+id/actualizar"
+            android:layout_toStartOf="@+id/actualizar">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -23,12 +24,6 @@
                 android:text="Foto Tomada"
                 android:id="@+id/textViewTitulo"
                 android:layout_margin="5dp" />
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:id="@+id/imagenTomada"
-                android:layout_below="@id/textViewTitulo" />
 
         </RelativeLayout>
 
@@ -51,6 +46,15 @@
                 android:gravity="center"
                 android:layout_weight="1" />
         </LinearLayout>
+
+        <Button
+            android:id="@+id/actualizar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/relativeLayout"
+            android:text="Actulizar" />
 
     </RelativeLayout>
 

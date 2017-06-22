@@ -19,8 +19,8 @@ android {
         applicationId "com.henryruiz.manejoalmacenmantis"
         minSdkVersion 14
         targetSdkVersion 24
-        versionCode 45
-        versionName '5.pda'
+        versionCode 46
+        versionName '5.5'
     }
     buildTypes {
         release {
