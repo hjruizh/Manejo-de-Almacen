@@ -193,6 +193,8 @@ public class Conexion {
                 Post post = new Post();
                 parametros.add("valor");
                 parametros.add(valor);
+                parametros.add("user");
+                parametros.add(Variables.getPk());
                 if (!Variables.getInventario().equals("")){
                     parametros.add("valor_inv");
                     parametros.add(Variables.getInventario());
@@ -214,13 +216,17 @@ public class Conexion {
         }
         return null;
     }
-    public ArrayList<INV> buscar_INV_GRU(String valor, String gru) {
+    public ArrayList<INV> buscar_INV_GRU(String valor, String gru, String clase) {
         try {
             if (isOnline()) {
                 ArrayList parametros = new ArrayList();
                 Post post = new Post();
                 parametros.add("valor");
                 parametros.add(valor);
+                parametros.add("user");
+                parametros.add(Variables.getPk());
+                parametros.add("clase");
+                parametros.add(clase);
                 if (!Variables.getInventario().equals("")){
                     parametros.add("valor_inv");
                     parametros.add(Variables.getInventario());
@@ -258,10 +264,10 @@ public class Conexion {
                 String datos = post.getServerDataString(parametros, direccion
                         + "Servicio.svc/PedFacCot");
                 Log.i("buscado", valor);
-                Log.i("sin error", "inv_busq2.php");
+                Log.i("sin error", "-");
                 return parseJSONdata_INV(datos);
             } else {
-                Log.i("sin conexion", "inv_busq2.php");
+                Log.i("sin conexion", "-");
             }
         } catch (JSONException e) {
 
@@ -280,13 +286,15 @@ public class Conexion {
                 Post post = new Post();
                 parametros.add("valor");
                 parametros.add(valor);
+                parametros.add("user");
+                parametros.add(Variables.getPk());
                 String datos = post.getServerDataString(parametros, direccion
                         + "Servicio.svc/detalle");
                 Log.i("buscado", valor);
-                Log.i("sin error", "inv_busq2.php");
+                Log.i("sin error", "-");
                 return parseJSONdata_INV(datos);
             } else {
-                Log.i("sin conexion", "inv_busq2.php");
+                Log.i("sin conexion", "-");
             }
         } catch (JSONException e) {
 
@@ -310,10 +318,10 @@ public class Conexion {
                 String datos = post.getServerDataString(parametros, direccion
                         + "Servicio.svc/CompraPk");
                 Log.i("buscado", valor);
-                Log.i("sin error", "inv_busq2.php");
+                Log.i("sin error", "-");
                 return parseJSONdata_INV(datos);
             } else {
-                Log.i("sin conexion", "inv_busq2.php");
+                Log.i("sin conexion", "-");
             }
         } catch (JSONException e) {
 
@@ -421,6 +429,8 @@ public class Conexion {
             parametros.add(ubi5);
             parametros.add("AIN_UBI6");
             parametros.add(ubi6);
+            parametros.add("user");
+            parametros.add(Variables.getPk());
             String datos = post.getServerDataString(parametros, direccion
                     + "Servicio.svc/ActUbi");
 
@@ -499,13 +509,15 @@ public class Conexion {
                 parametros.add(fechaF);
                 parametros.add("buscar");
                 parametros.add(buscar);
+                parametros.add("user");
+                parametros.add(Variables.getPk());
                 String datos = post.getServerDataString(parametros, direccion
                         + "Servicio.svc/Inventario");
 
                 Log.i("sin error", direccion + "Servicio.svc/Inventario");
                 return parseJSONdata_INV(datos);
             } else {
-                Log.i("sin conexion", "inv_busq.php");
+                Log.i("sin conexion", "-");
             }
         } catch (JSONException e) {
 
@@ -646,7 +658,7 @@ public class Conexion {
                 Log.i("data", "datos" + datos);
                 return  parseJSONdataUser_busq(datos);
             } else {
-                Log.i("sin conexion", "inv_busq2.php");
+                Log.i("sin conexion", "-");
             }
         } catch (JSONException e) {
 
@@ -689,7 +701,7 @@ public class Conexion {
                         + "Users/Chat.aspx");
                 return  parseJSONdataMsg_busq(datos);
             } else {
-                Log.i("sin conexion", "inv_busq2.php");
+                Log.i("sin conexion", "-");
             }
         } catch (JSONException e) {
 
@@ -726,7 +738,7 @@ public class Conexion {
                     return parseJSONdataMsg_veri(datos);
                 }
             } else {
-                Log.i("sin conexion", "inv_busq2.php");
+                Log.i("sin conexion", "-");
             }
         } catch (JSONException e) {
 
@@ -749,7 +761,7 @@ public class Conexion {
                     + "Users/Chat.aspx");
             //Log.i("sincronizar_Mensaje_guardar","Estado: " + estado + datos);
         } else {
-            Log.i("sin conexion", "inv_busq2.php");
+            Log.i("sin conexion", "-");
         }
     }
     //Actualizar Estado del Mensaje
@@ -781,7 +793,7 @@ public class Conexion {
                 e.printStackTrace();
             }
         } else {
-            Log.i("sin conexion", "inv_busq2.php");
+            Log.i("sin conexion", "-");
         }
         return new ArrayList<GCL>();
     }
@@ -831,7 +843,7 @@ public class Conexion {
                 e.printStackTrace();
             }
         } else {
-            Log.i("sin conexion", "inv_busq2.php");
+            Log.i("sin conexion", "-");
         }
         return new ArrayList<CLI>();
     }
@@ -849,7 +861,7 @@ public class Conexion {
                 e.printStackTrace();
             }
         } else {
-            Log.i("sin conexion", "inv_busq2.php");
+            Log.i("sin conexion", "-");
         }
         return new ArrayList<CLI>();
     }
@@ -868,7 +880,7 @@ public class Conexion {
                 e.printStackTrace();
             }
         } else {
-            Log.i("sin conexion", "inv_busq2.php");
+            Log.i("sin conexion", "-");
         }
         return new ArrayList<CLI>();
     }
@@ -886,7 +898,7 @@ public class Conexion {
                 e.printStackTrace();
             }
         } else {
-            Log.i("sin conexion", "inv_busq2.php");
+            Log.i("sin conexion", "-");
         }
         return new ArrayList<CLI>();
     }
@@ -917,7 +929,7 @@ public class Conexion {
                     + "Servicio.svc/GuardarNuevoCliente" + datos);
             return datos.replace("\"","");
         } else {
-            Log.i("sin conexion", "inv_busq2.php");
+            Log.i("sin conexion", "-");
         }
         return "";
     }
@@ -957,7 +969,7 @@ public class Conexion {
                 e.printStackTrace();
             }
         } else {
-            Log.i("sin conexion", "inv_busq2.php");
+            Log.i("sin conexion", "-");
         }
         return new ArrayList<CXC>();
     }
@@ -977,7 +989,7 @@ public class Conexion {
                     + "Servicio.svc/CuentasPagadas");
             return datos.replace("\"","");
         } else {
-            Log.i("sin conexion", "inv_busq2.php");
+            Log.i("sin conexion", "-");
         }
         return "";
     }
@@ -995,7 +1007,7 @@ public class Conexion {
                 e.printStackTrace();
             }
         } else {
-            Log.i("sin conexion", "inv_busq2.php");
+            Log.i("sin conexion", "-");
         }
         return new ArrayList<GCL>();
     }
@@ -1011,7 +1023,7 @@ public class Conexion {
                 e.printStackTrace();
             }
         } else {
-            Log.i("sin conexion", "inv_busq2.php");
+            Log.i("sin conexion", "-");
         }
         return new ArrayList<CLI>();
     }
@@ -1029,7 +1041,7 @@ public class Conexion {
                 e.printStackTrace();
             }
         } else {
-            Log.i("sin conexion", "inv_busq2.php");
+            Log.i("sin conexion", "-");
         }
         return new ArrayList<CLI>();
     }
@@ -1069,7 +1081,7 @@ public class Conexion {
                 e.printStackTrace();
             }
         } else {
-            Log.i("sin conexion", "inv_busq2.php");
+            Log.i("sin conexion", "-");
         }
         return new ArrayList<CPA>();
     }
@@ -1083,7 +1095,7 @@ public class Conexion {
                     + "Servicio.svc/EnviarCPA/" + pk);
             return datos.replace("\"","");
         } else {
-            Log.i("sin conexion", "inv_busq2.php");
+            Log.i("sin conexion", "-");
         }
         return "";
     }
@@ -1097,7 +1109,7 @@ public class Conexion {
                     + "Servicio.svc/EliminarCPA/" + pk);
             return datos.replace("\"","");
         } else {
-            Log.i("sin conexion", "inv_busq2.php");
+            Log.i("sin conexion", "-");
         }
         return "";
     }
@@ -1111,7 +1123,7 @@ public class Conexion {
                     + "Servicio.svc/EnviarCXC/" + pk);
             return datos.replace("\"","");
         } else {
-            Log.i("sin conexion", "inv_busq2.php");
+            Log.i("sin conexion", "-");
         }
         return "";
     }
@@ -1148,14 +1160,14 @@ public class Conexion {
                 e.printStackTrace();
             }
         } else {
-            Log.i("sin conexion", "inv_busq2.php");
+            Log.i("sin conexion", "-");
         }
         return new ArrayList<GRU>();
     }
     //Detalle grupo de productos
 
     //Enviar lista de precios
-    public String enviar_ListaPrecios(String valor, String gru, String porcen, String email) throws JSONException {
+    public String enviar_ListaPrecios(String valor, String gru, String porcen, String email, String clase) throws JSONException {
         if (isOnline()) {
             ArrayList parametros = new ArrayList();
             Post post = new Post();
@@ -1172,6 +1184,10 @@ public class Conexion {
             parametros.add(Variables.getAsunto());
             parametros.add("msg");
             parametros.add(Variables.getMsg());
+            parametros.add("user");
+            parametros.add(Variables.getPk());
+            parametros.add("clase");
+            parametros.add(clase);
             if (Variables.getMasVendido()){
                 parametros.add("masVendido");
                 parametros.add("True");
@@ -1180,7 +1196,7 @@ public class Conexion {
                     + "Servicio.svc/EnviarCorreo/" + gru);
             return datos.replace("\"","");
         } else {
-            Log.i("sin conexion", "inv_busq2.php");
+            Log.i("sin conexion", "-");
         }
         return "";
     }

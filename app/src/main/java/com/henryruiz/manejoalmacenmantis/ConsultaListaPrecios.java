@@ -35,6 +35,7 @@ public class ConsultaListaPrecios extends Fragment {
     ListView listview;
     EditText porcen;
     EditText correo;
+    EditText clase;
     String enviado;
 
     public ConsultaListaPrecios() {
@@ -50,6 +51,7 @@ public class ConsultaListaPrecios extends Fragment {
         listview = (ListView) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.listView2);
         porcen = (EditText) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextPorcen);
         correo = (EditText) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextCorreo);
+        clase = (EditText) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextClase);
         if (!Variables.getEmailCliN().equals("")){
             correo.setText(Variables.getEmailCliN());
         }
@@ -83,7 +85,7 @@ public class ConsultaListaPrecios extends Fragment {
         });
         buscar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                new BuscarInv().execute(String.valueOf(search.getQuery()));
+                new BuscarInv().execute(String.valueOf(search.getQuery()),clase.getText().toString());
             }
         });
         email.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +107,7 @@ public class ConsultaListaPrecios extends Fragment {
                     }
                 });
                 builder.show();
-                new EnviarEmail().execute(String.valueOf(search.getQuery()),porcen.getText().toString(), correo.getText().toString());
+                new EnviarEmail().execute(String.valueOf(search.getQuery()),porcen.getText().toString(), correo.getText().toString(), clase.getText().toString());
             }
         });
 
@@ -189,7 +191,7 @@ public class ConsultaListaPrecios extends Fragment {
                 String nivel = "1";
 
                 publishProgress();
-                invent = s.buscar_INV_GRU(params[0].trim(),Variables.getGruPK());
+                invent = s.buscar_INV_GRU(params[0].trim(),Variables.getGruPK(),params[1]);
 
             } catch (Exception e) {
 
@@ -224,7 +226,7 @@ public class ConsultaListaPrecios extends Fragment {
 
                 String nivel = "1";
                 publishProgress();
-                enviado = s.enviar_ListaPrecios(params[0].trim(),Variables.getGruPK(),params[1].trim(), params[2].trim());
+                enviado = s.enviar_ListaPrecios(params[0].trim(),Variables.getGruPK(),params[1].trim(), params[2].trim(), params[3].trim());
 
             } catch (Exception e) {
 

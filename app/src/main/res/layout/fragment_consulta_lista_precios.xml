@@ -34,7 +34,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Seleccione una marca"
             android:id="@+id/textView16"
-            android:layout_below="@+id/textView18"
+            android:layout_below="@+id/editTextClase"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
@@ -95,6 +95,32 @@
             android:layout_toEndOf="@+id/textView18"
             android:layout_marginLeft="22dp"
             android:layout_marginStart="22dp" />
+
+        <EditText
+            android:id="@+id/editTextClase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/textView18"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/textView16"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/editTextCorreo"
+            android:layout_toLeftOf="@+id/editTextClase"
+            android:layout_toStartOf="@+id/editTextClase"
+            android:gravity="center_vertical"
+            android:text="Calse"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
     </RelativeLayout>
     <ImageButton
