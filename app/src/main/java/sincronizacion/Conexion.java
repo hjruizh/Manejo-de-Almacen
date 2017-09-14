@@ -278,6 +278,34 @@ public class Conexion {
         }
         return null;
     }
+
+    //Buscar Inventario Pedido Cotizacion Factura
+    public ArrayList<INV> sincronizar_INV_tarslado(String valor) {
+        try {
+            if (isOnline()) {
+                ArrayList parametros = new ArrayList();
+                Post post = new Post();
+                parametros.add("valor");
+                parametros.add(valor);
+                parametros.add("user");
+                parametros.add(Variables.getUser());
+                String datos = post.getServerDataString(parametros, direccion
+                        + "Servicio.svc/traslado");
+                Log.i("buscado", valor);
+                Log.i("sin error", "-");
+                return parseJSONdata_INV(datos);
+            } else {
+                Log.i("sin conexion", "-");
+            }
+        } catch (JSONException e) {
+
+            Log.i("error", e.getMessage());
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     //Buscar Producto por PK
     public ArrayList<INV> sincronizar_INV_pk(String valor) {
         try {

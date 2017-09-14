@@ -83,7 +83,8 @@ public class ListadoDeInventario extends AbstractListViewActivity  implements Vi
             new BuscarInv().execute("");
         }
         else if (!Variables.getPed().equals("") || !Variables.getCot().equals("")
-                || !Variables.getFac().equals("") || !Variables.getCom().equals("")){
+                || !Variables.getFac().equals("") || !Variables.getCom().equals("")
+                || !Variables.getTra().equals("")){
             if (!Variables.getPed().equals("")) {
                 t.setText("BD: " + Variables.getBd() + " Ped: " + Variables.getPed());
                 new BuscarInv().execute("");
@@ -98,6 +99,10 @@ public class ListadoDeInventario extends AbstractListViewActivity  implements Vi
             }
             if (!Variables.getCom().equals("")) {
                 t.setText("BD: " + Variables.getBd() + " Com: " + Variables.getCom());
+                new BuscarInv().execute("");
+            }
+            if (!Variables.getTra().equals("")) {
+                t.setText("BD: " + Variables.getBd() + " Tra: " + Variables.getTra());
                 new BuscarInv().execute("");
             }
         }
@@ -241,6 +246,9 @@ public class ListadoDeInventario extends AbstractListViewActivity  implements Vi
                         else if (!Variables.getCom().equals("")) {
 						    invent = s.sincronizar_INV_comp(Variables.getCom(), params[0].trim());
                         }
+                        else if (!Variables.getTra().equals("")) {
+                            invent = s.sincronizar_INV_tarslado(Variables.getTra());
+                        }
                         else if (!Variables.getInventario().equals("") && Variables.getAudi().equals("")){
                             String fechaI = "";
                             String fechaF = "";
@@ -275,6 +283,9 @@ public class ListadoDeInventario extends AbstractListViewActivity  implements Vi
                         }
                         else if (!Variables.getCom().equals("")) {
                             invent = s.sincronizar_INV_comp(Variables.getCom(),"");
+                        }
+                        else if (!Variables.getTra().equals("")) {
+                            invent = s.sincronizar_INV_tarslado(Variables.getTra());
                         }
                         else if (!Variables.getInventario().equals("") && Variables.getAudi().equals("")){
                             String fechaI = "";

@@ -73,7 +73,7 @@ public class CustomListAdapter extends ArrayAdapter<INV> {
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
-		if (Variables.getInventario().equals("")){
+		if (Variables.getInventario().equals("") && Variables.getTra().equals("")){
 			holder.inventario = (LinearLayout) convertView
 					.findViewById(com.henryruiz.manejoalmacenmantis.R.id.LinearLayoutInv);
 			holder.inventario.setVisibility(View.GONE);
@@ -83,7 +83,10 @@ public class CustomListAdapter extends ArrayAdapter<INV> {
 
 		holder.headlineView.setText(newsItem.getNombre());
 		//holder.reportedContados.setText("Contados: " + newsItem.getcontados());
-		holder.reportedExistencia.setText("Existencia: " + newsItem.getexistencia_actual());
+		if (Variables.getTra().equals(""))
+			holder.reportedExistencia.setText("Existencia: " + newsItem.getexistencia_actual());
+		else
+			holder.reportedExistencia.setText("Cantidad Traslado: " + newsItem.getExistencia());
 		String cod = "Cod. " + newsItem.getCodigo();
 		if (newsItem.getcontados()!= null && !newsItem.getcontados().equals("")){
 			if (newsItem.getexistencia_actual()!=null && !newsItem.getexistencia_actual().equals("")){

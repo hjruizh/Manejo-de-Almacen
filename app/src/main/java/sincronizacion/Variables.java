@@ -37,6 +37,7 @@ public class Variables extends Application {
     private static boolean masVendido = false;
     private static String idDVI = "";
     private static String idDetalleDVI = "";
+    private static String tra = "";
 
     public static String getDireccion() {
         return direccion = "http://"+Variables.getUrl()+":"+Variables.getPuerto()+"/";
@@ -283,5 +284,13 @@ public class Variables extends Application {
 
     public static void setIdDetalleDVI(String idDetalleDVI) {
         Variables.idDetalleDVI = idDetalleDVI;
+    }
+
+    public static String getTra() {
+        return tra;
+    }
+
+    public static void setTra(String tra) {
+        Variables.tra = tra;
     }
 }

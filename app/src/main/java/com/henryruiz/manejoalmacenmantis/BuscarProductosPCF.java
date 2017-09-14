@@ -59,6 +59,7 @@ public class BuscarProductosPCF extends Fragment {
          final RadioButton ped = (RadioButton) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.radioButtonPed);
          final RadioButton cot = (RadioButton) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.radioButtonCot);
          final RadioButton fac = (RadioButton) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.radioButtonFac);
+         final RadioButton tra = (RadioButton) rootView.findViewById(R.id.radioButtonTra);
          //Buscar Ultimo Correlativo
          View.OnClickListener list = new View.OnClickListener() {
              @Override
@@ -73,12 +74,16 @@ public class BuscarProductosPCF extends Fragment {
                      case com.henryruiz.manejoalmacenmantis.R.id.radioButtonFac:
                          new Correlativo().execute("VEN","");
                          break;
+                     case com.henryruiz.manejoalmacenmantis.R.id.radioButtonTra:
+                         new Correlativo().execute("I09","");
+                         break;
                  }
              }
          };
          ped.setOnClickListener(list);
          cot.setOnClickListener(list);
          fac.setOnClickListener(list);
+         tra.setOnClickListener(list);
          //Buscar Ultimo Correlativo
          //Edicion de correlativo
          final EditText num = (EditText) rootView.findViewById(com.henryruiz.manejoalmacenmantis.R.id.editTextNumero);
@@ -89,16 +94,25 @@ public class BuscarProductosPCF extends Fragment {
                      Variables.setPed(num.getText().toString());
                      Variables.setCot("");
                      Variables.setFac("");
+                     Variables.setTra("");
                  }
                  if (cot.isChecked()) {
                      Variables.setCot(num.getText().toString());
                      Variables.setFac("");
                      Variables.setPed("");
+                     Variables.setTra("");
                  }
                  if (fac.isChecked()) {
                      Variables.setFac(num.getText().toString());
                      Variables.setPed("");
                      Variables.setCot("");
+                     Variables.setTra("");
+                 }
+                 if (tra.isChecked()) {
+                     Variables.setTra(num.getText().toString());
+                     Variables.setPed("");
+                     Variables.setCot("");
+                     Variables.setFac("");
                  }
              }
 
@@ -131,6 +145,11 @@ public class BuscarProductosPCF extends Fragment {
                     Variables.setPed("");
                 }
                 if (params[0].equals("VEN")) {
+                    Variables.setFac(nuemro);
+                    Variables.setPed("");
+                    Variables.setCot("");
+                }
+                if (params[0].equals("I09")) {
                     Variables.setFac(nuemro);
                     Variables.setPed("");
                     Variables.setCot("");
