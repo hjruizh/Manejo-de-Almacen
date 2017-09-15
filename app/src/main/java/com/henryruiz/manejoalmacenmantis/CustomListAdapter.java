@@ -73,7 +73,7 @@ public class CustomListAdapter extends ArrayAdapter<INV> {
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
-		if (Variables.getInventario().equals("") && Variables.getTra().equals("")){
+		if (Variables.getTra().equals("")){//Variables.getInventario().equals("") &&
 			holder.inventario = (LinearLayout) convertView
 					.findViewById(com.henryruiz.manejoalmacenmantis.R.id.LinearLayoutInv);
 			holder.inventario.setVisibility(View.GONE);
@@ -91,7 +91,7 @@ public class CustomListAdapter extends ArrayAdapter<INV> {
 		if (newsItem.getcontados()!= null && !newsItem.getcontados().equals("")){
 			if (newsItem.getexistencia_actual()!=null && !newsItem.getexistencia_actual().equals("")){
 				cod += " - Contados: " + newsItem.getcontados();
-				if (newsItem.getcontados().equals(newsItem.getexistencia_actual())){
+				/*if (newsItem.getcontados().equals(newsItem.getexistencia_actual())){
 					holder.fondo.setBackgroundColor(Color.GREEN);
 				}
 				else{
@@ -100,7 +100,7 @@ public class CustomListAdapter extends ArrayAdapter<INV> {
 					else{
 						holder.fondo.setBackgroundColor(Color.RED);
 					}
-				}
+				}*/
 			}
 			else{
 				cod += " - Cantidad: " + newsItem.getcontados();

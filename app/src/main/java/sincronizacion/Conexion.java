@@ -1435,5 +1435,42 @@ public class Conexion {
             return "Sin conexion a la red";
         }
     }
-    //Correo Detalle DVI
+    //Verificar Usuario de traslado
+    public String get_user_traslado(String numero) {
+        if (isOnline()) {
+            ArrayList parametros = new ArrayList();
+            Post post = new Post();
+            parametros.add("valor");
+            parametros.add(numero);
+            String datos = post.getServerDataString(parametros, direccion
+                    + "Servicio.svc/trasladoAutorizado");
+
+            Log.i("sin error", direccion + "Inventario/Inv.aspx");
+            return (datos.replace("\"",""));
+
+        } else {
+            Log.i("sin conexion", "Inventario/Inv.aspx");
+        }
+        return "Error de conexión";
+    }
+    //Set Usuario de traslado
+    public String set_user_traslado(String numero, String user) {
+        if (isOnline()) {
+            ArrayList parametros = new ArrayList();
+            Post post = new Post();
+            parametros.add("valor");
+            parametros.add(numero);
+            parametros.add("user");
+            parametros.add(user);
+            String datos = post.getServerDataString(parametros, direccion
+                    + "Servicio.svc/trasladoSetAutorizado");
+
+            Log.i("sin error", direccion + "Inventario/Inv.aspx");
+            return (datos.replace("\"",""));
+
+        } else {
+            Log.i("sin conexion", "Inventario/Inv.aspx");
+        }
+        return "Error de conexión";
+    }
 }

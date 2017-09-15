@@ -19,10 +19,13 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -32,15 +35,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import clases.Datasource;
+import clases.Fecha;
 import sincronizacion.Conexion;
 import sincronizacion.Variables;
 import tablas.INV;
-import clases.Fecha;
+import tablas.USR;
 
 
 public class ListadoDeInventario extends AbstractListViewActivity  implements View.OnClickListener{
 
     ArrayList<INV> invent = new ArrayList<INV>();
+    static ArrayList<USR> usuario = new ArrayList<USR>();
+    String user = "";
+    AlertDialog alert;
     Conexion s = new Conexion(this);
     Context c = this;
     Boolean mensaje = false;
@@ -146,6 +153,46 @@ public class ListadoDeInventario extends AbstractListViewActivity  implements Vi
         startActivityForResult(intent, VOICE_RECOGNITION_REQUEST_CODE);
     }
     //Metodo de Busqueda
+
+    public AlertDialog createSimpleDialog(String title, String alert) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        final String[] select = {""};
+        View layout = inflater.inflate(R.layout.fragment_iniciar_sesion, null);
+        builder.setView(layout);
+        final Button iniciar = (Button) layout.findViewById(com.henryruiz.manejoalmacenmantis.R.id.buttonGuardar);
+        final Spinner usuarios = (Spinner) layout.findViewById(com.henryruiz.manejoalmacenmantis.R.id.spinnerUsuario);
+        Log.i("tamaño", ""+usuario.size());
+        String array_spinner[]=new String[usuario.size()+1];
+        array_spinner[0] = "Seleccione Usuario";
+        for (int i = 0; i<usuario.size(); i++){
+            array_spinner[i+1] = usuario.get(i).getAlias();
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(c,android.R.layout.simple_spinner_item, array_spinner);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        usuarios.setAdapter(adapter);
+        usuarios.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                select[0] = usuarios.getSelectedItem().toString().trim();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+
+            }
+        });
+        iniciar.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                if (!select[0].equals("Seleccione Usuario")) {
+                        new EnviarUserTraslado().execute(select[0]);
+                }
+            }
+        });
+        return builder.create();
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (requestCode == VOICE_RECOGNITION_REQUEST_CODE && resultCode == RESULT_OK) {
@@ -247,7 +294,12 @@ public class ListadoDeInventario extends AbstractListViewActivity  implements Vi
 						    invent = s.sincronizar_INV_comp(Variables.getCom(), params[0].trim());
                         }
                         else if (!Variables.getTra().equals("")) {
-                            invent = s.sincronizar_INV_tarslado(Variables.getTra());
+                            user = s.get_user_traslado(Variables.getTra());
+                            if (user.trim().length() > 2)
+                                invent = s.sincronizar_INV_tarslado(Variables.getTra());
+                            else {
+                                usuario = s.sincronizar_User();
+                            }
                         }
                         else if (!Variables.getInventario().equals("") && Variables.getAudi().equals("")){
                             String fechaI = "";
@@ -285,7 +337,12 @@ public class ListadoDeInventario extends AbstractListViewActivity  implements Vi
                             invent = s.sincronizar_INV_comp(Variables.getCom(),"");
                         }
                         else if (!Variables.getTra().equals("")) {
-                            invent = s.sincronizar_INV_tarslado(Variables.getTra());
+                            user = s.get_user_traslado(Variables.getTra());
+                            if (user.trim().length() > 2)
+                                invent = s.sincronizar_INV_tarslado(Variables.getTra());
+                            else {
+                                usuario = s.sincronizar_User();
+                            }
                         }
                         else if (!Variables.getInventario().equals("") && Variables.getAudi().equals("")){
                             String fechaI = "";
@@ -320,44 +377,91 @@ public class ListadoDeInventario extends AbstractListViewActivity  implements Vi
         protected void onPostExecute(Integer bytes) {
             dialog.dismiss();
             if ((bytes == 1) && (invent != null)) {
+                if (user.trim().length() > 2 || Variables.getTra().equals("")) {
+                    datasource = Datasource.getInstance(invent);
+                    footerView = ((LayoutInflater) c
+                            .getSystemService(LAYOUT_INFLATER_SERVICE))
+                            .inflate(com.henryruiz.manejoalmacenmantis.R.layout.footer, null, false);
+                    listView.addFooterView(footerView, null, false);
+                    asignar_adaptador(new CustomListAdapter(c, datasource.getData(
+                            0, PAGESIZE)));
+                    listView.removeFooterView(footerView);
+                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView adapter, View view,
+                                                int position, long arg) {
+                            onListItemClick(position, "");
 
-                datasource = Datasource.getInstance(invent);
-                footerView = ((LayoutInflater) c
-                        .getSystemService(LAYOUT_INFLATER_SERVICE))
-                        .inflate(com.henryruiz.manejoalmacenmantis.R.layout.footer, null, false);
-                listView.addFooterView(footerView, null, false);
-                asignar_adaptador(new CustomListAdapter(c, datasource.getData(
-                        0, PAGESIZE)));
-                listView.removeFooterView(footerView);
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView adapter, View view,
-                                            int position, long arg) {
-                        onListItemClick(position,"");
-
-                    }
-                });
-
-                listView.setOnScrollListener(new AbsListView.OnScrollListener() {
-                    @Override
-                    public void onScrollStateChanged(AbsListView arg0, int arg1) {
-                        // nothing here
-                    }
-
-                    @Override
-                    public void onScroll(AbsListView view,
-                                         int firstVisibleItem, int visibleItemCount,
-                                         int totalItemCount) {
-                        if (load(firstVisibleItem, visibleItemCount,
-                                totalItemCount)) {
-                            loading = true;
-                            listView.addFooterView(footerView, null, false);
-                            (new LoadNextPage()).execute("");
                         }
-                    }
-                });
+                    });
 
-                updateDisplayingTextView();
+                    listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+                        @Override
+                        public void onScrollStateChanged(AbsListView arg0, int arg1) {
+                            // nothing here
+                        }
+
+                        @Override
+                        public void onScroll(AbsListView view,
+                                             int firstVisibleItem, int visibleItemCount,
+                                             int totalItemCount) {
+                            if (load(firstVisibleItem, visibleItemCount,
+                                    totalItemCount)) {
+                                loading = true;
+                                listView.addFooterView(footerView, null, false);
+                                (new LoadNextPage()).execute("");
+                            }
+                        }
+                    });
+
+                    updateDisplayingTextView();
+                }
+                else {
+                    alert = createSimpleDialog("", "");
+                    alert.show();
+                }
+            }
+        }
+
+    }
+
+    private class EnviarUserTraslado extends AsyncTask<String, Float, Integer> {
+        ProgressDialog dialog;
+
+        protected void onPreExecute() { // Mostramos antes de comenzar
+            dialog = ProgressDialog.show(c, "", "Cargando...",
+                    true);
+        }
+
+        protected Integer doInBackground(String... params) {
+            try {
+                if (!params[0].equals("")) {
+                    s.set_user_traslado(Variables.getTra(),params[0]);
+                }
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+                return 0;
+            }
+            return 1;
+        }
+
+
+
+
+        protected void onProgressUpdate(Float... valores) {
+            /*if (!verificar_internet()) {
+                dialog.dismiss();
+            }*/
+        }
+
+        protected void onPostExecute(Integer bytes) {
+            dialog.dismiss();
+            try{
+                alert.cancel();
+                new BuscarInv().execute("");
+            }catch (Exception e) {
+                //Log.i("error",e.getMessage());
             }
         }
 
